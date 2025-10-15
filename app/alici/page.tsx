@@ -24,7 +24,7 @@ export default function Alici() {
 
   // Step 2 seçimlerini sıfırla (Step 1'e dönmez)
   const resetStep2Selections = () => {
-    setFormData(prev => ({
+    setFormData((prev: any) => ({
       ...prev,
       city: '',
       istanbul_side: '',

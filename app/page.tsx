@@ -8,6 +8,9 @@ export default function Home() {
   const [ilanNoAccepted, setIlanNoAccepted] = useState(false);
   const [phoneCountryCode, setPhoneCountryCode] = useState("+90");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [sending, setSending] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const countryCodes = [
     { code: "+90", country: "Türkiye", maxLength: 10 },
@@ -80,6 +83,45 @@ export default function Home() {
   const isIlanNoValid = ilanNo.length === 10;
   const isPhoneValid = phoneNumber.length === getCurrentCountryMaxLength();
 
+  const handleIlanBasvuru = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSending(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      const formData = new FormData();
+      formData.append("firstName", (e.target as any).firstName.value);
+      formData.append("lastName", (e.target as any).lastName.value);
+      formData.append("phone", phoneNumber);
+      formData.append("phoneCountryCode", phoneCountryCode);
+      formData.append("ilanNo", ilanNo);
+      formData.append("ilanNoAccepted", ilanNoAccepted ? "true" : "false");
+
+      const response = await fetch("/api/ilan-basvuru", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setSuccess(true);
+        // Form'u temizle
+        setIlanNo("");
+        setIlanNoAccepted(false);
+        setPhoneNumber("");
+        (e.target as any).firstName.value = "";
+        (e.target as any).lastName.value = "";
+      } else {
+        const data = await response.json();
+        setError(data.error || "Başvuru gönderim hatası");
+      }
+    } catch (err) {
+      setError("Bağlantı hatası");
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
     <main className="min-h-screen bg-[#F8F9FB] text-zinc-900">
       {/* Header */}
@@ -129,7 +171,7 @@ export default function Home() {
                            <p className="text-xs text-zinc-600">İlanınız zaten sahibinden.com'da varsa</p>
                          </div>
                        </div>
-                       <div className="space-y-3">
+                       <form onSubmit={handleIlanBasvuru} className="space-y-3">
                          <div className="grid grid-cols-2 gap-2">
                            <input
                              type="text"
@@ -185,14 +227,15 @@ export default function Home() {
                              className="w-4/5 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001]"
                            />
                            <button 
-                             disabled={!isIlanNoValid || !ilanNoAccepted}
+                             type="submit"
+                             disabled={!isIlanNoValid || !ilanNoAccepted || sending}
                              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                               isIlanNoValid && ilanNoAccepted 
+                               isIlanNoValid && ilanNoAccepted && !sending
                                  ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
                                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                              }`}
                            >
-                             Başvur
+                             {sending ? "Gönderiliyor..." : "Başvur"}
                            </button>
                          </div>
                          <label className="text-xs text-zinc-600 inline-flex items-start gap-2 cursor-pointer">
@@ -215,7 +258,23 @@ export default function Home() {
                              ⚠️ Lütfen şartları kabul etmek için kutucuğu işaretleyin
                            </p>
                          )}
-                       </div>
+                         
+                         {/* Success/Error Messages */}
+                         {success && (
+                           <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                             <p className="text-sm text-green-800">
+                               ✅ Başvurunuz başarıyla gönderildi! En kısa sürede size dönüş yapacağız.
+                             </p>
+                           </div>
+                         )}
+                         {error && (
+                           <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                             <p className="text-sm text-red-800">
+                               ❌ {error}
+                             </p>
+                           </div>
+                         )}
+                       </form>
                      </div>
 
                      {/* WhatsApp ile Başvuru */}
@@ -265,28 +324,36 @@ export default function Home() {
                   </p>
                   <div className="grid grid-cols-2 gap-3">
                     <a
-                      href="#"
+                      href="https://t.me/istanbul_yatirimlikevler"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="block bg-white border border-[#E7E9EC] text-zinc-700 rounded-xl p-4 text-center font-medium hover:bg-gray-50 hover:border-[#C40001] transition-all duration-300 shadow-sm hover:shadow-md"
                     >
-                      İstanbul
+                      📍 İstanbul
         </a>
         <a
-                      href="#"
+                      href="https://t.me/ankara_yatirimlikevler"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="block bg-white border border-[#E7E9EC] text-zinc-700 rounded-xl p-4 text-center font-medium hover:bg-gray-50 hover:border-[#C40001] transition-all duration-300 shadow-sm hover:shadow-md"
         >
-                      Ankara
+                      📍 Ankara
         </a>
         <a
-                      href="#"
+                      href="https://t.me/izmir_yatirimlikevler"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="block bg-white border border-[#E7E9EC] text-zinc-700 rounded-xl p-4 text-center font-medium hover:bg-gray-50 hover:border-[#C40001] transition-all duration-300 shadow-sm hover:shadow-md"
         >
-                      İzmir
+                      📍 İzmir
         </a>
         <a
-                      href="#"
+                      href="https://t.me/antalya_yatirimlikevler"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="block bg-white border border-[#E7E9EC] text-zinc-700 rounded-xl p-4 text-center font-medium hover:bg-gray-50 hover:border-[#C40001] transition-all duration-300 shadow-sm hover:shadow-md"
                     >
-                      Antalya
+                      📍 Antalya
                     </a>
                   </div>
                 </div>
