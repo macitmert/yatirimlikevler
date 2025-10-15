@@ -24,8 +24,39 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" href="/fonts/SFPRODISPLAYREGULAR.OTF" as="font" type="font/otf" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/SFPRODISPLAYMEDIUM.OTF" as="font" type="font/otf" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/SFPRODISPLAYBOLD.OTF" as="font" type="font/otf" crossOrigin="anonymous" />
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            @font-face {
+              font-family: 'SF Pro Display';
+              src: url('/fonts/SFPRODISPLAYREGULAR.OTF') format('opentype');
+              font-weight: 400;
+              font-style: normal;
+              font-display: swap;
+            }
+            @font-face {
+              font-family: 'SF Pro Display';
+              src: url('/fonts/SFPRODISPLAYMEDIUM.OTF') format('opentype');
+              font-weight: 500;
+              font-style: normal;
+              font-display: swap;
+            }
+            @font-face {
+              font-family: 'SF Pro Display';
+              src: url('/fonts/SFPRODISPLAYBOLD.OTF') format('opentype');
+              font-weight: 700;
+              font-style: normal;
+              font-display: swap;
+            }
+          `
+        }} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{fontFamily: "'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"}}
       >
         {children}
       </body>
