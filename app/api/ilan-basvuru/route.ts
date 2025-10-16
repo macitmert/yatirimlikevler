@@ -14,12 +14,15 @@ function createTransport() {
   }
   return nodemailer.createTransport({
     host: "mail.yatirimlikevler.com",
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false,
     auth: {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_PASS,
     },
+    tls: {
+      rejectUnauthorized: false
+    }
   });
 }
 
