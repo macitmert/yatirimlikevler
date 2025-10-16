@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Yatırımlık Evler - Türkiye'nin İlk Premium Konut Platformu",
-  description: "Yatırım değeri yüksek konutları hızlıca satın. Profesyonel pazarlama ve güvenli satış süreci. Sadece satış olursa %2+KDV.",
+  description: "Yatırımlık evleri keşfet & Evini hızlı sat",
   icons: {
     icon: '/logo.png',
     shortcut: '/logo.png',
