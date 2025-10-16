@@ -9,8 +9,18 @@ function s(v: unknown) {
 }
 
 function createTransport() {
-  // Test için JSON transport kullan
-  return nodemailer.createTransport({ jsonTransport: true });
+  if (process.env.MAIL_USE_JSON === "true") {
+    return nodemailer.createTransport({ jsonTransport: true });
+  }
+  return nodemailer.createTransport({
+    host: process.env.MAIL_HOST || "mail.privateemail.com",
+    port: parseInt(process.env.MAIL_PORT || "465"),
+    secure: process.env.MAIL_SECURE === "true",
+    auth: {
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASS,
+    },
+  });
 }
 
 export async function POST(req: NextRequest) {
@@ -83,7 +93,7 @@ export async function POST(req: NextRequest) {
            const to = "apply@yatirimlikevler.com";
 
     await transporter.sendMail({
-      from: `"Yatırımlık Evler" <${process.env.GMAIL_USER}>`,
+      from: `"Yatırımlık Evler" <${process.env.MAIL_USER}>`,
       to,
       subject,
       html,
