@@ -15,7 +15,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Yatırımlık Evler",
   description: "Yatırımlık evleri keşfet & Evini hızlı sat",
-  icons: { icon: "/favicon.ico" }
 };
 
 export default function RootLayout({
