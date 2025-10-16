@@ -15,11 +15,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Yatırımlık Evler - Türkiye'nin İlk Premium Konut Platformu",
   description: "Yatırımlık evleri keşfet & Evini hızlı sat",
-  icons: {
-    icon: '/logo.png',
-    shortcut: '/logo.png',
-    apple: '/logo.png',
-  },
 };
 
 export default function RootLayout({
