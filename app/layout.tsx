@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   title: "Yatırımlık Evler - Türkiye'nin İlk Premium Konut Platformu",
   description: "Yatırımlık evleri keşfet & Evini hızlı sat",
   icons: {
-    icon: '/logo.png',
-    shortcut: '/logo.png',
-    apple: '/logo.png',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
   },
 };
 
