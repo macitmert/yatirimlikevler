@@ -302,26 +302,26 @@ export default function Home() {
                    <div className="mt-6">
                      <h4 className="font-medium text-sm text-zinc-800 mb-4">Sık Sorulan Sorular</h4>
                      <div className="space-y-3">
-                       <details className="group border border-gray-200 rounded-lg">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors group-open:border-l-4 group-open:border-[#C40001]">
-                           1. Yatırımlık Evler tam olarak ne yapıyor?
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           1. Yatırımlık Evler aracılığıyla evimi nasıl satabilirim?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Yatırımlık Evler, Türkiye'nin ilk yatırım odaklı konut danışmanlık platformudur. Yatırımcıların kriterlerine göre, Türkiye genelindeki portföyümüzden yatırım değeri yüksek konutları ücretsiz olarak analiz eder ve öneririz.
+                           Yatırımlık Evler, Türkiye'nin ilk yatırım odaklı konut danışmanlık platformudur. Ev sahiplerinin gayrimenkullerini yatırım değeri yüksek alıcı kitlesine ulaştırır, sosyal medya ağlarımız ve yatırımcı portföyümüz üzerinden hızlı bir şekilde satışa sunarız.
                          </div>
                        </details>
                        
-                       <details className="group border border-gray-200 rounded-lg">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors group-open:border-l-4 group-open:border-[#C40001]">
-                           2. Hizmetiniz ücretli mi?
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           2. Hangi tür evleri kabul ediyorsunuz?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Hayır. Tüm danışmanlık sürecimiz tamamen ücretsizdir. Sadece size bizim tarafımızdan önerilen veya gösterilen bir evi satın alırsanız, satış bedeli üzerinden %2 + KDV hizmet bedeli ödedersiniz.
+                           Her ilanı kabul etmiyor. Sadece yatırım değeri yüksek olan konutları portföyümüze dahil ediyoruz. Bir evin yatırım değerinin yüksek olması için kira amortisman süresinin Anadolu şehirlerinde 12 yıldan kısa, büyük şehirlerde 15 yıldan kısa olması, veya bölgesel değer artış potansiyelinin yüksek olması gerekir.
                          </div>
                        </details>
                        
-                       <details className="group border border-gray-200 rounded-lg">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors group-open:border-l-4 group-open:border-[#C40001]">
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
                            3. Evimin yatırım değeri olup olmadığını siz mi belirliyorsunuz?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
@@ -329,21 +329,165 @@ export default function Home() {
                          </div>
                        </details>
                        
-                       <details className="group border border-gray-200 rounded-lg">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors group-open:border-l-4 group-open:border-[#C40001]">
-                           4. Sizinle çalışmanın maliyeti nedir?
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           4. Evin yatırım değerine uygun bulunmazsa ne oluyor?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Yatırım değeri düşük olan evleri ne yazık ki paylaşamıyoruz. Bu sayede hem yatırımcılarımızı koruyor, hem de platformda yer alan her evin yüksek talep görmesini sağlıyoruz.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           5. Sizinle çalışmanın maliyeti nedir?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
                            Hiçbir ön ödeme veya üyelik ücreti yoktur. Tüm değerlendirme, tanıtım ve danışmanlık süreci tamamen ücretsizdir. Yalnızca bizim yatırımcı portföyümüz veya sosyal medya aracılığımızla satış gerçekleşirse satış bedeli üzerinden %2 + KDV hizmet bedeli alınır.
                          </div>
                        </details>
                        
-                       <details className="group border border-gray-200 rounded-lg">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors group-open:border-l-4 group-open:border-[#C40001]">
-                           5. Evinizi nasıl pazarlıyorsunuz?
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           6. Evin ilanını siz mi paylaşıyorsunuz?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Hayır. Biz klasik ilan sitelerinde ilan paylaşmıyoruz. Evlerinizi kendi yatırımcı portföyümüze ve milyonlarca kişiye ulaşan sosyal medya hesaplarımızda tanıtıyoruz. Profesyonel görseller, videolar ve pazarlama metinleriyle evinizi yatırımcıya doğrudan ulaştırıyoruz.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           7. Sahibinden.com veya benzeri sitelere kendim ilan koyabilir miyim?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Evet, koyabilirsiniz. Biz yalnızca sizin adınıza pazarlama ve yatırımcı bulma sürecini yönetiyoruz. Kendi çevrenizden veya ilanlarınız üzerinden satış yaparsanız, bize herhangi bir ödeme yapma yükümlülüğünüz olmaz.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           8. Başka bir emlak ofisiyle çalışabilir miyim?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Hayır. Yatırımlık Evler olarak tek yetkili danışmanlık modeliyle çalışıyoruz. Bu nedenle bizimle çalışmaya başladığınızda diğer emlak ofisleriyle olan sözleşmelerinizi sonlandırmanız gerekir. Ancak sahibinden ilanınızı açık tutmanızda sakınca yoktur.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           9. Sizinle çalışmaya nasıl başlarım?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           "Evimi Satmak İstiyorum" formunu doldurun. Evinizin bilgilerini, fiyatını ve görsellerini paylaşın. Eğer yatırım değeriniz uygunsa, uzmanlarımız sizinle iletişime geçip onay sürecini tamamlar.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           10. Evinizi nasıl pazarlıyorsunuz?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
                            Evleri klasik ilan şeklinde değil, yatırımcıyı hedefleyen profesyonel sunumlarla tanıtıyoruz. Geniş yatırımcı portföyümüze özel listeleme, Instagram ve TikTok üzerinden haftalık milyonlara ulaşan tanıtımlar, kısa videolar ve reels formatında pazarlama içerikleri.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           11. Evinin sosyal medyada paylaşılmasını istemezsem ne olur?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Sorun değil. Talebiniz doğrultusunda paylaşım gizliliğini korur, yalnızca özel yatırımcı listemizde tanıtım yaparız. Tüm süreç sizin onayınızla yürütülür.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           12. Evinizi siz mi gösteriyorsunuz yoksa ben mi ilgileniyorum?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Genellikle yatırımcı ile ilk temas tarafımızdan kurulur. İlgi oluşursa, randevuyu organize ederiz. Dilerseniz siz de gösterime dahil olabilirsiniz; süreç tamamen sizin kontrolünüzdedir.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           13. Sizinle çalışmak bana ne kazandırır?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Halihazırda binlerce aktif yatırımcıya erişim sağlarsınız. Eviniz, milyonlarca kişiye ulaşan sosyal medya hesaplarımızda tanıtılır. Süreç profesyonel, hızlı ve şeffaf şekilde yürütülür. Hiçbir ön ödeme yoktur — yalnızca satış gerçekleşirse hizmet bedeli ödersiniz.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           14. Hizmet bedelini ne zaman ödüyorum?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Yalnızca satış tamamlandığında, yani tapuda işlem gerçekleştiğinde. Satış gerçekleşmezse hiçbir ödeme yapmazsınız.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           15. Sözleşme imzalamam gerekiyor mu?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Hayır, yazılı sözleşme şartı yok. Formun son aşamasında "Evim, Yatırımlık Evler aracılığıyla satılırsa %2 + KDV hizmet bedeli ödemeyi kabul ediyorum." kutucuğunu işaretlemeniz yeterlidir.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           16. Satış süreci genelde ne kadar sürer?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Bu tamamen evin konumu, fiyatı ve yatırım değerine bağlıdır. Ancak sosyal medya ve yatırımcı ağımız sayesinde, uygun fiyatlı evlerde satış süresi genellikle haftalar içinde sonuçlanmaktadır.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           17. Sizinle çalışmam çevreme satmamı engeller mi?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Hayır. Ev sahibi olarak siz kendi çevrenizden veya sahibinden ilanınız üzerinden satabilirsiniz. Bizim yatırımcı portföyümüzden biri satın alırsa hizmet bedeli ödersiniz; aksi halde ödeme yükümlülüğünüz yoktur.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           18. Evimi neden size vermeliyim?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Çünkü biz klasik emlak ofisi değiliz. Binlerce yatırımcıya doğrudan erişimimiz var. Milyonlara ulaşan sosyal medya hesaplarımızda profesyonel tanıtım yapıyoruz. Analiz, danışmanlık ve satış sürecini tamamen profesyonel biçimde yönetiyoruz.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           19. Sonraki adım ne?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           "Evimi Satmak İstiyorum" formunu doldurun. Evinizin bilgilerini paylaşın; yatırım değeri analizini ücretsiz olarak yapalım. Uygun bulunursa, profesyonel tanıtım sürecini başlatalım ve yatırımcı ağımızda yer verelim. Karar tamamen sizde.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           20. Evin satışında hukuki destek sağlıyor musunuz?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Evet. Tüm satış süreci alanında uzman hukukçularımızın denetiminde güvenli bir şekilde gerçekleşir. Alıcı tarafla ilgili tüm hukuki kontrolleri yapıyoruz. Konutunuzla ilgili tüm bilgileri karşı tarafa eksiksiz aktarıyoruz.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                           21. Premium servis ne demek?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Yatırımlık Evler, herkese açık bir ilan sitesi değildir. Sadece yatırım değeri yüksek ve kriterleri karşılayan sınırlı sayıdaki ev seçilir. Bu da portföyde yer almayı bir ayrıcalık haline getirir. Bizimle çalışmak, Türkiye'nin en görünür yatırımcı kitlesine ulaşmak demektir.
                          </div>
                        </details>
                      </div>
