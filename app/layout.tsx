@@ -25,6 +25,9 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <head>
+        <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="shortcut icon" href="/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
         <link rel="preload" href="/fonts/SFPRODISPLAYREGULAR.OTF" as="font" type="font/otf" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/SFPRODISPLAYMEDIUM.OTF" as="font" type="font/otf" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/SFPRODISPLAYBOLD.OTF" as="font" type="font/otf" crossOrigin="anonymous" />
