@@ -9,18 +9,8 @@ function s(v: unknown) {
 }
 
 function createTransport() {
-  if (process.env.MAIL_USE_JSON === "true" || true) {
-    return nodemailer.createTransport({ jsonTransport: true });
-  }
-  return nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
-    },
-  });
+  // Test için JSON transport kullan
+  return nodemailer.createTransport({ jsonTransport: true });
 }
 
 export async function POST(req: NextRequest) {
@@ -89,8 +79,8 @@ export async function POST(req: NextRequest) {
     console.log("HTML:", html);
     console.log("=================================");
 
-    const transporter = createTransport();
-    const to = process.env.LEADS_TO || process.env.GMAIL_USER!;
+           const transporter = createTransport();
+           const to = "apply@yatirimlikevler.com";
 
     await transporter.sendMail({
       from: `"Yatırımlık Evler" <${process.env.GMAIL_USER}>`,
