@@ -297,6 +297,57 @@ export default function Home() {
                        </a>
                      </div>
                    </div>
+                   
+                   {/* Sık Sorulan Sorular */}
+                   <div className="mt-6">
+                     <h4 className="font-medium text-sm text-zinc-800 mb-4">Sık Sorulan Sorular</h4>
+                     <div className="space-y-3">
+                       <details className="group border border-gray-200 rounded-lg">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors group-open:border-l-4 group-open:border-[#C40001]">
+                           1. Yatırımlık Evler tam olarak ne yapıyor?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Yatırımlık Evler, Türkiye'nin ilk yatırım odaklı konut danışmanlık platformudur. Yatırımcıların kriterlerine göre, Türkiye genelindeki portföyümüzden yatırım değeri yüksek konutları ücretsiz olarak analiz eder ve öneririz.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors group-open:border-l-4 group-open:border-[#C40001]">
+                           2. Hizmetiniz ücretli mi?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Hayır. Tüm danışmanlık sürecimiz tamamen ücretsizdir. Sadece size bizim tarafımızdan önerilen veya gösterilen bir evi satın alırsanız, satış bedeli üzerinden %2 + KDV hizmet bedeli ödedersiniz.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors group-open:border-l-4 group-open:border-[#C40001]">
+                           3. Evimin yatırım değeri olup olmadığını siz mi belirliyorsunuz?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Evet. Formu doldurduktan sonra ekibimiz evinizin konum, fiyat, potansiyel kira getirisi ve amortisman süresini analiz eder. Eğer yatırım kriterlerimize uygunsa, sizinle iletişime geçip süreci başlatırız.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors group-open:border-l-4 group-open:border-[#C40001]">
+                           4. Sizinle çalışmanın maliyeti nedir?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Hiçbir ön ödeme veya üyelik ücreti yoktur. Tüm değerlendirme, tanıtım ve danışmanlık süreci tamamen ücretsizdir. Yalnızca bizim yatırımcı portföyümüz veya sosyal medya aracılığımızla satış gerçekleşirse satış bedeli üzerinden %2 + KDV hizmet bedeli alınır.
+                         </div>
+                       </details>
+                       
+                       <details className="group border border-gray-200 rounded-lg">
+                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors group-open:border-l-4 group-open:border-[#C40001]">
+                           5. Evinizi nasıl pazarlıyorsunuz?
+                         </summary>
+                         <div className="px-3 pb-3 text-sm text-zinc-600">
+                           Evleri klasik ilan şeklinde değil, yatırımcıyı hedefleyen profesyonel sunumlarla tanıtıyoruz. Geniş yatırımcı portföyümüze özel listeleme, Instagram ve TikTok üzerinden haftalık milyonlara ulaşan tanıtımlar, kısa videolar ve reels formatında pazarlama içerikleri.
+                         </div>
+                       </details>
+                     </div>
+                   </div>
                  </div>
                </div>
              )}
