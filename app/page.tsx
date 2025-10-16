@@ -388,7 +388,7 @@ export default function Home() {
                            10. Yatırımlık Evler kimdir?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Yatırımlık Evler, Türkiye'nin ilk yatırım odaklı premium konut platformudur. Alanında uzman hukukçular, mühendisler ve yatırım danışmanlarından oluşan bir ekiple çalışır. Amacımız, yatırım değeri yüksek evleri doğru alıcılarla buluşturmaktır.
+                           Yatırımlık Evler, Türkiye'nin ilk premium konut platformudur. Alanında uzman hukukçular, mühendisler ve yatırım danışmanlarından oluşan bir ekiple çalışır. Amacımız, yatırım değeri yüksek evleri doğru alıcılarla buluşturmaktır.
                          </div>
                        </details>
                      </div>
