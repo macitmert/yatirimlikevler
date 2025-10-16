@@ -9,7 +9,7 @@ function s(v: unknown) {
 }
 
 function createTransport() {
-  if (process.env.MAIL_USE_JSON === "true" || true) {
+  if (process.env.MAIL_USE_JSON === "true") {
     return nodemailer.createTransport({ jsonTransport: true });
   }
   return nodemailer.createTransport({
