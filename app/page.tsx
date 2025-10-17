@@ -290,8 +290,8 @@ export default function Home() {
                              required
                            >
                              <option value="">İl seçiniz</option>
-                             <option value="istanbul-avrupa">İstanbul (Avrupa Yakası)</option>
-                             <option value="istanbul-anadolu">İstanbul (Anadolu Yakası)</option>
+                             <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
+                             <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
                              <option value="ankara">Ankara</option>
                              <option value="izmir">İzmir</option>
                              <option value="antalya">Antalya</option>
@@ -405,8 +405,8 @@ export default function Home() {
                            required
                          >
                            <option value="">Şehir seçiniz</option>
-                           <option value="istanbul-avrupa">İstanbul (Avrupa Yakası)</option>
-                           <option value="istanbul-anadolu">İstanbul (Anadolu Yakası)</option>
+                           <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
+                           <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
                            <option value="ankara">Ankara</option>
                            <option value="izmir">İzmir</option>
                            <option value="antalya">Antalya</option>
