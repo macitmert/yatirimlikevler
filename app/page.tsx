@@ -303,12 +303,12 @@ export default function Home() {
                        {/* Şehir Seçimi */}
                        <div className="mb-3">
                          <label className="block text-xs font-medium text-zinc-700 mb-2">
-                           Lütfen evinizin bulunduğu şehri seçiniz <span className="text-red-500">*</span>
+                           Şehir seçiniz (zorunlu) <span className="text-red-500">*</span>
                          </label>
                          <select
                            value={selectedCity}
                            onChange={(e) => setSelectedCity(e.target.value)}
-                           className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                           className="w-full border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none focus:border-[#C40001] bg-white"
                            required
                          >
                            <option value="">Şehir seçiniz</option>
