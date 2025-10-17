@@ -289,7 +289,7 @@ export default function Home() {
                              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
                              required
                            >
-                             <option value="">İl seçiniz</option>
+                             <option value="">Şehir seçiniz</option>
                              <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
                              <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
                              <option value="ankara">Ankara</option>
