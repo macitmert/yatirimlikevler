@@ -401,7 +401,7 @@ export default function Home() {
                          <select
                            value={selectedCity}
                            onChange={(e) => setSelectedCity(e.target.value)}
-                           className="w-full border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                           className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
                            required
                          >
                            <option value="">Şehir seçiniz</option>
