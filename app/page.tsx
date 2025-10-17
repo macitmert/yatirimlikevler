@@ -661,7 +661,7 @@ export default function Home() {
                        className="block w-full bg-[#C40001] text-white rounded-xl p-3 text-center font-medium hover:bg-[#C40001]/90 transition-all duration-300 text-sm flex items-center justify-center gap-2"
                      >
                        <span>📱</span>
-                       WhatsApp'tan İletişime Geç
+                       WhatsApp'tan Bize Ulaş
                      </a>
                      
                      <p className="text-sm text-zinc-600">
