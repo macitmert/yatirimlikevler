@@ -277,9 +277,9 @@ export default function Home() {
                          
                          {/* İl Seçimi */}
                          <div>
-                           <label className="block text-xs font-medium text-zinc-700 mb-1">
-                             İl seçiniz (zorunlu) <span className="text-red-500">*</span>
-                           </label>
+                         <label className="block text-xs font-medium text-zinc-700 mb-1">
+                           Evinizin bulunduğu şehri seçiniz (zorunlu) <span className="text-red-500">*</span>
+                         </label>
                            <select
                              value={selectedProvince}
                              onChange={(e) => {
@@ -396,7 +396,7 @@ export default function Home() {
                        {/* Şehir Seçimi */}
                        <div className="mb-3">
                          <label className="block text-xs font-medium text-zinc-700 mb-2">
-                           Şehir seçiniz (zorunlu) <span className="text-red-500">*</span>
+                           Evinizin bulunduğu şehri seçiniz (zorunlu) <span className="text-red-500">*</span>
                          </label>
                          <select
                            value={selectedCity}
