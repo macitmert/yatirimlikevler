@@ -85,9 +85,26 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const locationText = payload.province && payload.district 
-      ? `${payload.province.replace('-', ' ')} - ${payload.district}`
-      : payload.province || "Konum belirtilmemiş";
+    // Konum formatını düzenle
+    let locationText = "Konum belirtilmemiş";
+    if (payload.province && payload.district) {
+      if (payload.province.startsWith('istanbul-')) {
+        const side = payload.province === 'istanbul-avrupa' ? 'Avrupa' : 'Anadolu';
+        const district = payload.district.charAt(0).toUpperCase() + payload.district.slice(1);
+        locationText = `İstanbul (${side}) - ${district}`;
+      } else {
+        const province = payload.province.charAt(0).toUpperCase() + payload.province.slice(1);
+        const district = payload.district.charAt(0).toUpperCase() + payload.district.slice(1);
+        locationText = `${province} - ${district}`;
+      }
+    } else if (payload.province) {
+      if (payload.province.startsWith('istanbul-')) {
+        const side = payload.province === 'istanbul-avrupa' ? 'Avrupa' : 'Anadolu';
+        locationText = `İstanbul (${side})`;
+      } else {
+        locationText = payload.province.charAt(0).toUpperCase() + payload.province.slice(1);
+      }
+    }
     
     const subject = `[${locationText}] Sahibinden İlan No: ${payload.ilanNo} – ${payload.firstName} ${payload.lastName}`;
 
@@ -97,7 +114,7 @@ export async function POST(req: NextRequest) {
         <li><b>Ad Soyad:</b> ${payload.firstName} ${payload.lastName}</li>
         <li><b>Telefon:</b> ${fullPhone}</li>
         <li><b>Konum:</b> ${locationText}</li>
-        <li><b>Sahibinden İlan No:</b> ${payload.ilanNo}</li>
+        <li><b>Sahibinden İlan No:</b> <a href="https://www.sahibinden.com/ilan/${payload.ilanNo}" target="_blank">${payload.ilanNo}</a></li>
         <li><b>Onay:</b> ${payload.ilanNoAccepted}</li>
       </ul>
       <hr />
