@@ -12,6 +12,8 @@ export default function Home() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedCity, setSelectedCity] = useState("");
+  const [selectedProvince, setSelectedProvince] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
 
   const countryCodes = [
     { code: "+90", country: "Türkiye", maxLength: 10 },
@@ -96,6 +98,44 @@ export default function Home() {
     return messages[city as keyof typeof messages] || messages.diger;
   };
 
+  const getDistricts = (province: string) => {
+    const districts = {
+      "istanbul-avrupa": [
+        "Arnavutköy", "Avcılar", "Bağcılar", "Bahçelievler", "Bakırköy", "Başakşehir",
+        "Bayrampaşa", "Beşiktaş", "Beylikdüzü", "Beyoğlu", "Büyükçekmece", "Çatalca",
+        "Esenler", "Esenyurt", "Eyüpsultan", "Fatih", "Gaziosmanpaşa", "Güngören",
+        "Kâğıthane", "Küçükçekmece", "Sarıyer", "Silivri", "Sultangazi", "Şişli", "Zeytinburnu"
+      ],
+      "istanbul-anadolu": [
+        "Adalar", "Ataşehir", "Beykoz", "Çekmeköy", "Kadıköy", "Kartal", "Maltepe",
+        "Pendik", "Sancaktepe", "Sultanbeyli", "Şile", "Tuzla", "Ümraniye", "Üsküdar"
+      ],
+      "ankara": [
+        "Akyurt", "Altındağ", "Ayaş", "Bala", "Beypazarı", "Çamlıdere", "Çankaya",
+        "Çubuk", "Elmadağ", "Etimesgut", "Evren", "Gölbaşı", "Güdül", "Haymana",
+        "Kalecik", "Kazan", "Keçiören", "Kızılcahamam", "Mamak", "Nallıhan", "Polatlı",
+        "Pursaklar", "Sincan", "Şereflikoçhisar", "Yenimahalle"
+      ],
+      "izmir": [
+        "Aliağa", "Balçova", "Bayındır", "Bayraklı", "Bergama", "Beydağ", "Bornova",
+        "Buca", "Çeşme", "Çiğli", "Dikili", "Foça", "Gaziemir", "Güzelbahçe", "Karabağlar",
+        "Karaburun", "Karşıyaka", "Kemalpaşa", "Kınık", "Kiraz", "Konak", "Menderes",
+        "Menemen", "Narlıdere", "Ödemiş", "Seferihisar", "Selçuk", "Tire", "Torbalı", "Urla"
+      ],
+      "antalya": [
+        "Akseki", "Aksu", "Alanya", "Demre", "Döşemealtı", "Elmalı", "Finike",
+        "Gazipaşa", "Gündoğmuş", "İbradı", "Kaş", "Kemer", "Kepez", "Konyaaltı",
+        "Korkuteli", "Kumluca", "Manavgat", "Muratpaşa", "Serik"
+      ],
+      "samsun": [
+        "19 Mayıs", "Alaçam", "Asarcık", "Atakum", "Ayvacık", "Bafra", "Canik",
+        "Çarşamba", "Havza", "İlkadım", "Kavak", "Ladik", "Ondokuzmayıs", "Salıpazarı",
+        "Tekkeköy", "Terme", "Vezirköprü", "Yakakent"
+      ]
+    };
+    return districts[province as keyof typeof districts] || [];
+  };
+
   const handleIlanBasvuru = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
@@ -110,6 +150,8 @@ export default function Home() {
       formData.append("phoneCountryCode", phoneCountryCode);
       formData.append("ilanNo", ilanNo);
       formData.append("ilanNoAccepted", ilanNoAccepted ? "true" : "false");
+      formData.append("province", selectedProvince);
+      formData.append("district", selectedDistrict);
 
       const response = await fetch("/api/ilan-basvuru", {
         method: "POST",
@@ -122,6 +164,8 @@ export default function Home() {
         setIlanNo("");
         setIlanNoAccepted(false);
         setPhoneNumber("");
+        setSelectedProvince("");
+        setSelectedDistrict("");
         (e.target as any).firstName.value = "";
         (e.target as any).lastName.value = "";
       } else {
@@ -229,6 +273,54 @@ export default function Home() {
                              ⚠️ {getCurrentCountryMaxLength()} haneli olmalıdır
                            </p>
                          )}
+                         
+                         {/* İl Seçimi */}
+                         <div>
+                           <label className="block text-xs font-medium text-zinc-700 mb-1">
+                             İl seçiniz (zorunlu) <span className="text-red-500">*</span>
+                           </label>
+                           <select
+                             value={selectedProvince}
+                             onChange={(e) => {
+                               setSelectedProvince(e.target.value);
+                               setSelectedDistrict(""); // İl değişince ilçeyi sıfırla
+                             }}
+                             className="w-full border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                             required
+                           >
+                             <option value="">İl seçiniz</option>
+                             <option value="istanbul-avrupa">İstanbul (Avrupa Yakası)</option>
+                             <option value="istanbul-anadolu">İstanbul (Anadolu Yakası)</option>
+                             <option value="ankara">Ankara</option>
+                             <option value="izmir">İzmir</option>
+                             <option value="antalya">Antalya</option>
+                             <option value="samsun">Samsun</option>
+                             <option value="diger">Diğer</option>
+                           </select>
+                         </div>
+                         
+                         {/* İlçe Seçimi */}
+                         {selectedProvince && selectedProvince !== "diger" && (
+                           <div>
+                             <label className="block text-xs font-medium text-zinc-700 mb-1">
+                               İlçe seçiniz (zorunlu) <span className="text-red-500">*</span>
+                             </label>
+                             <select
+                               value={selectedDistrict}
+                               onChange={(e) => setSelectedDistrict(e.target.value)}
+                               className="w-full border border-gray-300 rounded-lg px-3 py-3 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                               required
+                             >
+                               <option value="">İlçe seçiniz</option>
+                               {getDistricts(selectedProvince).map((district) => (
+                                 <option key={district} value={district}>
+                                   {district}
+                                 </option>
+                               ))}
+                             </select>
+                           </div>
+                         )}
+                         
                          <div className="flex gap-2">
                            <input
                              type="text"

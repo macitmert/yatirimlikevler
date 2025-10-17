@@ -8,40 +8,59 @@ function s(v: unknown) {
   return typeof v === "string" ? v.trim() : "";
 }
 
+function bool(v: string | undefined, def = false) {
+  return (v ?? "").toLowerCase() === "true" ? true : def;
+}
+
 function createTransport() {
-  if (process.env.MAIL_USE_JSON === "true") {
+  // Test modu (JSON) – .env’de MAIL_USE_JSON="false" olduğundan devre dışı
+  if (bool(process.env.MAIL_USE_JSON)) {
     return nodemailer.createTransport({ jsonTransport: true });
   }
+
+  // Zorunlu env kontrolleri
+  const host = process.env.MAIL_HOST || "mail.privateemail.com";
+  const port = Number(process.env.MAIL_PORT || 465);
+  const user = process.env.MAIL_USER;
+  const pass = process.env.MAIL_PASS;
+
+  if (!user || !pass) {
+    throw new Error("MAIL_USER / MAIL_PASS eksik. Env değişkenlerini kontrol et.");
+  }
+
   return nodemailer.createTransport({
-    host: process.env.MAIL_HOST || "mail.privateemail.com",
-    port: parseInt(process.env.MAIL_PORT || "465"),
-    secure: process.env.MAIL_SECURE === "true",
-    auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
-    },
+    host,
+    port,
+    secure: true, // 465 kullanıyorsun: her zaman true
+    auth: { user, pass },
   });
 }
 
 export async function POST(req: NextRequest) {
   try {
     const form = await req.formData();
-    
+
     const payload: Record<string, string> = {
       firstName: s(form.get("firstName")),
       lastName: s(form.get("lastName")),
       phone: s(form.get("phone")),
-      phoneCountryCode: s(form.get("phoneCountryCode")),
+      phoneCountryCode: s(form.get("phoneCountryCode")), // "+90" gibi
       ilanNo: s(form.get("ilanNo")),
       ilanNoAccepted: s(form.get("ilanNoAccepted")) ? "✔️" : "❌",
+      province: s(form.get("province")),
+      district: s(form.get("district")),
       source: "sahibinden-ilan-no",
       ts: new Date().toISOString(),
     };
 
     // Validation
-    const missing = !payload.firstName || !payload.lastName || !payload.phone || 
-                   !payload.ilanNo || payload.ilanNoAccepted !== "✔️";
-    
+    const missing =
+      !payload.firstName ||
+      !payload.lastName ||
+      !payload.phone ||
+      !payload.ilanNo ||
+      payload.ilanNoAccepted !== "✔️";
+
     if (missing) {
       return NextResponse.json(
         { ok: false, error: "Eksik alanlar veya onay yok." },
@@ -49,65 +68,65 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // İlan numarası validation (10 haneli)
-    if (payload.ilanNo.length !== 10 || !/^\d{10}$/.test(payload.ilanNo)) {
+    // İlan no = 10 hane
+    if (!/^\d{10}$/.test(payload.ilanNo)) {
       return NextResponse.json(
         { ok: false, error: "İlan numarası 10 haneli olmalıdır." },
         { status: 400 }
       );
     }
 
-    // Telefon numarası validation
-    const fullPhone = payload.phoneCountryCode + payload.phone;
-    if (fullPhone.length < 10) {
+    // Telefon (ülke kodu + numara) temel kontrol
+    const fullPhone = `${payload.phoneCountryCode}${payload.phone}`.replace(/\s+/g, "");
+    if (fullPhone.replace(/\D/g, "").length < 10) {
       return NextResponse.json(
         { ok: false, error: "Telefon numarası eksik." },
         { status: 400 }
       );
     }
 
-    const subject = `[Sahibinden İlan No: ${payload.ilanNo}] Yeni Hızlı Başvuru – ${payload.firstName} ${payload.lastName}`;
+    const locationText = payload.province && payload.district 
+      ? `${payload.province.replace('-', ' ')} - ${payload.district}`
+      : payload.province || "Konum belirtilmemiş";
     
+    const subject = `[${locationText}] Sahibinden İlan No: ${payload.ilanNo} – ${payload.firstName} ${payload.lastName}`;
+
     const html = `
       <h2>🏠 Sahibinden İlan No ile Hızlı Başvuru</h2>
       <ul>
         <li><b>Ad Soyad:</b> ${payload.firstName} ${payload.lastName}</li>
         <li><b>Telefon:</b> ${fullPhone}</li>
+        <li><b>Konum:</b> ${locationText}</li>
         <li><b>Sahibinden İlan No:</b> ${payload.ilanNo}</li>
         <li><b>Onay:</b> ${payload.ilanNoAccepted}</li>
       </ul>
-      
       <hr />
-      <small>
-        Kaynak: ${payload.source} • 
-        Zaman: ${payload.ts}
-      </small>
+      <small>Kaynak: ${payload.source} • Zaman: ${payload.ts}</small>
     `;
 
-    console.log("=== SAHİBİNDEN İLAN NO BAŞVURU ===");
-    console.log("Konu:", subject);
-    console.log("HTML:", html);
-    console.log("=================================");
+    const transporter = createTransport();
+    const to = process.env.LEADS_TO || "apply@yatirimlikevler.com";
 
-           const transporter = createTransport();
-           const to = "apply@yatirimlikevler.com";
-
-    await transporter.sendMail({
-      from: `"Yatırımlık Evler" <${process.env.MAIL_USER}>`,
+    const info = await transporter.sendMail({
+      from: `"Yatırımlık Evler" <${process.env.MAIL_USER}>`, // domaininle uyumlu (DKIM/SPF için iyi)
       to,
       subject,
       html,
+      text: `Ad Soyad: ${payload.firstName} ${payload.lastName}
+Telefon: ${fullPhone}
+Sahibinden İlan No: ${payload.ilanNo}
+Onay: ${payload.ilanNoAccepted}
+Kaynak: ${payload.source}
+Zaman: ${payload.ts}`,
     });
 
-    console.log("Sahibinden ilan no başvuru maili başarıyla gönderildi!");
+    console.log("Mail gönderildi. MessageID:", info.messageId);
     return NextResponse.json({ ok: true });
-
-  } catch (error) {
-    console.error("Sahibinden ilan no başvuru hatası:", error);
+  } catch (error: any) {
+    console.error("Başvuru gönderim hatası:", error?.message || error);
     return NextResponse.json(
       { ok: false, error: "Başvuru gönderim hatası" },
       { status: 500 }
     );
   }
 }
-
