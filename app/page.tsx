@@ -508,29 +508,34 @@ export default function Home() {
             {openDetails.iletisim && (
               <div className="px-6 pb-6">
                  <div className="border-t border-[#C40001]/10 pt-4">
-                   <div className="space-y-3">
-                     <div className="space-y-2">
-                       <div className="flex items-center gap-3">
-                         <span className="text-[#C40001]">📱</span>
-                         <span className="text-sm text-zinc-600">Yatırımlık Evler Merkez: 0540 720 80 80</span>
-                       </div>
-                       <div className="flex items-center gap-3">
-                         <span className="text-[#C40001]">📱</span>
-                         <span className="text-sm text-zinc-600">Yatırımlık Evler İstanbul: 0540 720 80 34</span>
-                       </div>
-                       <div className="flex items-center gap-3">
-                         <span className="text-[#C40001]">📱</span>
-                         <span className="text-sm text-zinc-600">Yatırımlık Evler Ankara: 0540 720 80 06</span>
-                       </div>
-                       <div className="flex items-center gap-3">
-                         <span className="text-[#C40001]">📱</span>
-                         <span className="text-sm text-zinc-600">Yatırımlık Evler Denizli: 0540 720 80 20</span>
-                       </div>
-                     </div>
-                     <div className="flex items-center gap-3">
-                       <span className="text-[#C40001]">📧</span>
-                       <span className="text-sm text-zinc-600">info@yatirimlikevler.com</span>
-                     </div>
+                   <div className="space-y-4">
+                     <p className="text-sm text-zinc-600">
+                       Lütfen her türlü detaylı bilgi için bizlere WhatsApp hattımız üzerinden ulaşın:
+                     </p>
+                     
+                     {/* WhatsApp Butonu */}
+                     <a 
+                       href="https://wa.me/905407208080?text=Merhaba,+detaylı+bilgi+almak+istiyorum"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="block w-full bg-[#C40001] text-white rounded-xl p-3 text-center font-medium hover:bg-[#C40001]/90 transition-all duration-300 text-sm flex items-center justify-center gap-2"
+                     >
+                       <span>📱</span>
+                       WhatsApp'tan İletişime Geç
+                     </a>
+                     
+                     <p className="text-sm text-zinc-600">
+                       Kurumsal işbirlikleri için:
+                     </p>
+                     
+                     {/* Email Butonu */}
+                     <a 
+                       href="mailto:info@yatirimlikevler.com?subject=Kurumsal İşbirliği&body=Merhaba, kurumsal işbirliği konusunda bilgi almak istiyorum."
+                       className="block w-full bg-gray-100 text-zinc-700 rounded-xl p-3 text-center font-medium hover:bg-gray-200 transition-all duration-300 text-sm flex items-center justify-center gap-2"
+                     >
+                       <span>📧</span>
+                       Email Gönder
+                     </a>
                    </div>
                  </div>
               </div>
