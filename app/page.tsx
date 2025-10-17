@@ -639,7 +639,7 @@ export default function Home() {
             >
               <span className="flex items-center gap-3">
                 <span className="text-2xl">📞</span>
-                <span className="text-lg">İletişim</span>
+                <span className="text-lg">Bize Ulaş</span>
               </span>
               <span className={`transform transition-transform duration-200 ${openDetails.iletisim ? 'rotate-180' : ''}`}>
                 ▼
