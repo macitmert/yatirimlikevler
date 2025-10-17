@@ -88,7 +88,8 @@ export default function Home() {
 
   const getWhatsAppMessage = (city: string) => {
     const messages = {
-      "istanbul": "Merhaba, İstanbul'daki evimin detaylarını paylaşmak istiyorum",
+      "istanbul-avrupa": "Merhaba, İstanbul Avrupa yakasındaki evimin detaylarını paylaşmak istiyorum",
+      "istanbul-anadolu": "Merhaba, İstanbul Anadolu yakasındaki evimin detaylarını paylaşmak istiyorum",
       "ankara": "Merhaba, Ankara'daki evimin detaylarını paylaşmak istiyorum",
       "izmir": "Merhaba, İzmir'deki evimin detaylarını paylaşmak istiyorum",
       "antalya": "Merhaba, Antalya'daki evimin detaylarını paylaşmak istiyorum",
@@ -404,7 +405,8 @@ export default function Home() {
                            required
                          >
                            <option value="">Şehir seçiniz</option>
-                           <option value="istanbul">İstanbul</option>
+                           <option value="istanbul-avrupa">İstanbul (Avrupa Yakası)</option>
+                           <option value="istanbul-anadolu">İstanbul (Anadolu Yakası)</option>
                            <option value="ankara">Ankara</option>
                            <option value="izmir">İzmir</option>
                            <option value="antalya">Antalya</option>
