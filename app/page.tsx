@@ -11,6 +11,7 @@ export default function Home() {
   const [sending, setSending] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedCity, setSelectedCity] = useState("");
 
   const countryCodes = [
     { code: "+90", country: "Türkiye", maxLength: 10 },
@@ -82,6 +83,18 @@ export default function Home() {
 
   const isIlanNoValid = ilanNo.length === 10;
   const isPhoneValid = phoneNumber.length === getCurrentCountryMaxLength();
+
+  const getWhatsAppMessage = (city: string) => {
+    const messages = {
+      "istanbul": "Merhaba, İstanbul'daki evimin detaylarını paylaşmak istiyorum",
+      "ankara": "Merhaba, Ankara'daki evimin detaylarını paylaşmak istiyorum",
+      "izmir": "Merhaba, İzmir'deki evimin detaylarını paylaşmak istiyorum",
+      "antalya": "Merhaba, Antalya'daki evimin detaylarını paylaşmak istiyorum",
+      "samsun": "Merhaba, Samsun'daki evimin detaylarını paylaşmak istiyorum",
+      "diger": "Merhaba, evimin detaylarını paylaşmak istiyorum"
+    };
+    return messages[city as keyof typeof messages] || messages.diger;
+  };
 
   const handleIlanBasvuru = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -286,15 +299,48 @@ export default function Home() {
                            <p className="text-xs text-zinc-600">Evinizin görsellerini ve detaylarını bize WhatsApp'tan iletin, 48 saat içinde inceleyelim.</p>
                          </div>
                        </div>
+                       
+                       {/* Şehir Seçimi */}
+                       <div className="mb-3">
+                         <label className="block text-xs font-medium text-zinc-700 mb-2">
+                           Lütfen evinizin bulunduğu şehri seçiniz <span className="text-red-500">*</span>
+                         </label>
+                         <select
+                           value={selectedCity}
+                           onChange={(e) => setSelectedCity(e.target.value)}
+                           className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                           required
+                         >
+                           <option value="">Şehir seçiniz</option>
+                           <option value="istanbul">İstanbul</option>
+                           <option value="ankara">Ankara</option>
+                           <option value="izmir">İzmir</option>
+                           <option value="antalya">Antalya</option>
+                           <option value="samsun">Samsun</option>
+                           <option value="diger">Diğer</option>
+                         </select>
+                       </div>
+                       
                        <a 
-                         href="https://wa.me/905407208080?text=Merhaba,+evimin+detaylarını+paylaşmak+istiyorum"
+                         href={selectedCity ? `https://wa.me/905407208080?text=${encodeURIComponent(getWhatsAppMessage(selectedCity))}` : "#"}
                          target="_blank"
                          rel="noopener noreferrer"
-                         className="block w-full bg-[#C40001] text-white rounded-xl p-3 text-center font-medium hover:bg-[#C40001]/90 transition-all duration-300 text-sm flex items-center justify-center gap-2"
+                         className={`block w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm flex items-center justify-center gap-2 ${
+                           selectedCity 
+                             ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
+                             : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                         }`}
+                         onClick={!selectedCity ? (e) => e.preventDefault() : undefined}
                        >
                          <span>📱</span>
                          WhatsApp'tan Gönder
                        </a>
+                       
+                       {!selectedCity && (
+                         <p className="text-xs text-red-600 mt-2">
+                           ⚠️ Lütfen önce şehir seçimi yapın
+                         </p>
+                       )}
                      </div>
                    </div>
                    
