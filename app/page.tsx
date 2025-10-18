@@ -1022,7 +1022,7 @@ export default function Home() {
                  <div className="text-xs text-zinc-700 space-y-1">
                    <p>• Geçerli Taşınmaz Ticareti Yetki Belgesi'ne sahip olmak.</p>
                    <p>• Aktif bir emlak ofisine sahip olmak (fiziksel adres, vergi kaydı).</p>
-                   <p>• İlçede aktif şekilde konut satışı yapıyor olmak.</p>
+                   <p>• Türkiye'nin sosyo-kültürel olarak en gelişmiş 100 ilçesinden birinde (listede yer alan) faaliyet gösteriyor olmak.</p>
                  </div>
                </div>
 
@@ -1147,6 +1147,9 @@ export default function Home() {
                      <label className="block text-xs font-medium text-zinc-700 mb-1">
                        İl <span className="text-red-500">*</span>
                      </label>
+                     <p className="text-xs text-zinc-500 mb-2">
+                       Yalnızca Türkiye'nin sosyo-ekonomik olarak en gelişmiş 100 ilçesinde birinde faaliyet gösteriyorsanız başvuru yapabilirsiniz.
+                     </p>
                      <select
                        value={temsilciIl}
                        onChange={(e) => {
@@ -1237,18 +1240,18 @@ export default function Home() {
                    {/* Not/Mesaj */}
                    <div>
                      <label className="block text-xs font-medium text-zinc-700 mb-1">
-                       Not/Mesaj (opsiyonel, 200 karakter)
+                       Not/Mesaj (opsiyonel, 500 karakter)
                      </label>
                      <textarea
                        value={temsilciNot}
                        onChange={(e) => setTemsilciNot(e.target.value)}
                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                       placeholder="Ek bilgilerinizi buraya yazabilirsiniz..."
+                       placeholder="Lütfen sektördeki deneyimlerinizi kısaca anlatınız."
                        rows={3}
-                       maxLength={200}
+                       maxLength={500}
                      />
                      <p className="text-xs text-zinc-500 mt-1">
-                       {temsilciNot.length}/200 karakter
+                       {temsilciNot.length}/500 karakter
                      </p>
                    </div>
 

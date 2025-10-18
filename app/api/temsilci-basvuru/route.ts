@@ -11,14 +11,14 @@ function createTransport() {
     return nodemailer.createTransport({ jsonTransport: true });
   }
 
-  // Zorunlu env kontrolleri
-  const host = process.env.MAIL_HOST || "mail.privateemail.com";
-  const port = Number(process.env.MAIL_PORT || 465);
-  const user = process.env.MAIL_USER;
-  const pass = process.env.MAIL_PASS;
+  // İlçe Temsilcisi için özel email ayarları
+  const host = process.env.TEMSILCI_MAIL_HOST || process.env.MAIL_HOST || "mail.privateemail.com";
+  const port = Number(process.env.TEMSILCI_MAIL_PORT || process.env.MAIL_PORT || 465);
+  const user = process.env.TEMSILCI_MAIL_USER;
+  const pass = process.env.TEMSILCI_MAIL_PASS;
 
   if (!user || !pass) {
-    throw new Error("MAIL_USER / MAIL_PASS eksik. Env değişkenlerini kontrol et.");
+    throw new Error("TEMSILCI_MAIL_USER / TEMSILCI_MAIL_PASS eksik. Env değişkenlerini kontrol et.");
   }
 
   return nodemailer.createTransport({
@@ -103,7 +103,7 @@ Zaman: ${payload.timestamp}
     `;
 
     const info = await transporter.sendMail({
-      from: process.env.MAIL_USER,
+      from: process.env.TEMSILCI_MAIL_USER,
       to: process.env.LEADS_TO || 'apply@yatirimlikevler.com',
       subject,
       text,
