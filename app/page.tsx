@@ -693,7 +693,7 @@ export default function Home() {
                         onChange={(e) => setInterestAccepted(e.target.checked)}
                         className="mt-0.5"
                       />
-                      <span>İlandaki evi yatırımlık evler güvencesiyle satın almam halinde %2+KDV tutarındaki hizmet bedelini ödemeyi kabul ediyorum.</span>
+                      <span>İlandaki evi Yatırımlık Evler güvencesiyle satın almam halinde %2+KDV tutarındaki hizmet bedelini ödemeyi kabul ediyorum.</span>
                     </label>
                   </div>
                   
