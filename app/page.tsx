@@ -760,7 +760,7 @@ export default function Home() {
                     {/* Ofis Yöneticisi */}
                     <div className="bg-white border border-[#E7E9EC] rounded-xl p-4">
                       <div className="font-bold text-sm mb-1">1) Ofis yöneticisi pozisyonuna başvur</div>
-                      <div className="text-xs text-zinc-500 mb-3">Yalnızca gayrimenkul sektöründe 10 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
+                      <div className="text-xs text-zinc-500 mb-3">Yalnızca gayrimenkul sektöründe 15 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
                       
                       {/* KVKK Onay Kutucuğu */}
                       <div className="mb-3">
@@ -797,7 +797,7 @@ export default function Home() {
                     {/* Yönetici Yardımcısı */}
                     <div className="bg-white border border-[#E7E9EC] rounded-xl p-4">
                       <div className="font-bold text-sm mb-1">2) Yönetici yardımcısı pozisyonuna başvur</div>
-                      <div className="text-xs text-zinc-500 mb-3">Yalnızca gayrimenkul sektöründe 5 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
+                      <div className="text-xs text-zinc-500 mb-3">Yalnızca gayrimenkul sektöründe 7 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
                       
                       {/* KVKK Onay Kutucuğu */}
                       <div className="mb-3">
