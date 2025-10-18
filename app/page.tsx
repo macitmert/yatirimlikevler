@@ -184,7 +184,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#F8F9FB] text-zinc-900">
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-[#C40001]/10 sticky top-0 z-50">
-        <div className="max-w-md mx-auto px-6 py-4">
+        <div className="max-w-md md:max-w-2xl lg:max-w-4xl mx-auto px-6 py-4">
             <div className="text-center">
               <div className="w-12 h-12 mx-auto mb-2 bg-[#C40001] rounded-full flex items-center justify-center animate-fade-in overflow-hidden">
                 <img src="/logo.png" alt="Yatırımlık Evler" className="w-8 h-8 object-contain" />
@@ -196,7 +196,7 @@ export default function Home() {
 
       {/* All Cards */}
       <section className="px-6 py-8">
-        <div className="max-w-md mx-auto space-y-4">
+        <div className="max-w-md md:max-w-2xl lg:max-w-4xl mx-auto space-y-4">
            {/* Evini Bizimle Hızlı Sat */}
           <div className="border border-[#E7E9EC] rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 bg-white">
             <button
@@ -686,7 +686,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-white border-t border-[#C40001]/10 px-6 py-6">
-        <div className="max-w-md mx-auto text-center">
+        <div className="max-w-md md:max-w-2xl lg:max-w-4xl mx-auto text-center">
           <p className="text-zinc-500 text-xs leading-relaxed">
             Yatırımlık Evler © 2025 — Türkiye'nin İlk Premium Konut Platformu
           </p>
