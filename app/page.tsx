@@ -268,7 +268,7 @@ export default function Home() {
         "Merkez"
       ],
       "diyarbakır": [
-        "Yenişehir", "Kayapınar"
+        "Kayapınar"
       ]
     };
     return districts[province as keyof typeof districts] || [];
