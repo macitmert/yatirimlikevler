@@ -119,7 +119,7 @@ export default function Home() {
   const getCareerMessage = (position: string) => {
     const messages = {
       "ofis-yoneticisi": "Merhabalar, Ofis yöneticisi pozisyonuna başvurmak istiyorum. CV'im ektedir. Saygılarımla.",
-      "ofis-yoneticisi-yardimcisi": "Merhabalar, Ofis yöneticisi yardımcısı pozisyonuna başvurmak istiyorum. CV'im ektedir. Saygılarımla.",
+      "ofis-yoneticisi-yardimcisi": "Merhabalar, Yönetici yardımcısı pozisyonuna başvurmak istiyorum. CV'im ektedir. Saygılarımla.",
       "gayrimenkul-danismani": "Merhabalar, Gayrimenkul danışmanı pozisyonuna başvurmak istiyorum. CV'im ektedir. Saygılarımla."
     };
     return messages[position as keyof typeof messages] || "";
@@ -765,10 +765,10 @@ export default function Home() {
                     
                     {/* Ofis Yöneticisi Yardımcısı */}
                     <a 
-                      href={`mailto:apply@yatirimlikevler.com?subject=Ofis Yöneticisi Yardımcısı Başvurusu&body=${encodeURIComponent(getCareerMessage('ofis-yoneticisi-yardimcisi'))}`}
+                      href={`mailto:apply@yatirimlikevler.com?subject=Yönetici Yardımcısı Başvurusu&body=${encodeURIComponent(getCareerMessage('ofis-yoneticisi-yardimcisi'))}`}
                       className="block bg-white border border-[#E7E9EC] text-zinc-700 rounded-xl p-4 hover:bg-gray-50 hover:border-[#C40001] transition-all duration-300 shadow-sm hover:shadow-md"
                     >
-                      <div className="font-medium text-sm mb-1">2) Ofis yöneticisi yardımcısı pozisyonuna başvur</div>
+                      <div className="font-medium text-sm mb-1">2) Yönetici yardımcısı pozisyonuna başvur</div>
                       <div className="text-xs text-zinc-500">Yalnızca gayrimenkul sektöründe 5 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
                     </a>
                     
