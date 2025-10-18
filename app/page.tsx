@@ -25,6 +25,7 @@ export default function Home() {
   // İlçe Temsilcisi form state'leri
   const [temsilciAdSoyad, setTemsilciAdSoyad] = useState("");
   const [temsilciFirma, setTemsilciFirma] = useState("");
+  const [temsilciTelefonKodu, setTemsilciTelefonKodu] = useState("+90");
   const [temsilciTelefon, setTemsilciTelefon] = useState("");
   const [temsilciEmail, setTemsilciEmail] = useState("");
   const [temsilciIl, setTemsilciIl] = useState("");
@@ -110,10 +111,15 @@ export default function Home() {
 
   // İlçe Temsilcisi form validasyonları
   const isTemsilciAdSoyadValid = temsilciAdSoyad.trim().length >= 2;
-  const isTemsilciTelefonValid = /^[0-9]{10}$/.test(temsilciTelefon);
+  const isTemsilciFirmaValid = temsilciFirma.trim().length >= 2;
+  const getTemsilciTelefonMaxLength = () => {
+    const country = countryCodes.find(c => c.code === temsilciTelefonKodu);
+    return country ? country.maxLength : 10;
+  };
+  const isTemsilciTelefonValid = temsilciTelefon.length === getTemsilciTelefonMaxLength();
   const isTemsilciEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(temsilciEmail);
   const isTemsilciBelgeNoValid = /^[0-9]{13}$/.test(temsilciBelgeNo);
-  const isTemsilciFormValid = isTemsilciAdSoyadValid && isTemsilciTelefonValid && isTemsilciEmailValid && 
+  const isTemsilciFormValid = isTemsilciAdSoyadValid && isTemsilciFirmaValid && isTemsilciTelefonValid && isTemsilciEmailValid && 
                              temsilciIl && temsilciIlce && isTemsilciBelgeNoValid && temsilciKvkk;
 
   const getWhatsAppMessage = (city: string) => {
@@ -311,7 +317,7 @@ export default function Home() {
         body: JSON.stringify({
           adSoyad: temsilciAdSoyad,
           firma: temsilciFirma,
-          telefon: temsilciTelefon,
+          telefon: `${temsilciTelefonKodu}${temsilciTelefon}`,
           email: temsilciEmail,
           il: temsilciIl,
           ilce: temsilciIlce,
@@ -328,6 +334,7 @@ export default function Home() {
         // Form alanlarını sıfırla
         setTemsilciAdSoyad("");
         setTemsilciFirma("");
+        setTemsilciTelefonKodu("+90");
         setTemsilciTelefon("");
         setTemsilciEmail("");
         setTemsilciIl("");
@@ -1068,7 +1075,7 @@ export default function Home() {
                    {/* Firma/Ofis Adı */}
                    <div>
                      <label className="block text-xs font-medium text-zinc-700 mb-1">
-                       Firma/Ofis Adı (opsiyonel)
+                       Firma/Ofis Adı <span className="text-red-500">*</span>
                      </label>
                      <input
                        type="text"
@@ -1076,7 +1083,11 @@ export default function Home() {
                        onChange={(e) => setTemsilciFirma(e.target.value)}
                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
                        placeholder="Firma/Ofis Adı"
+                       required
                      />
+                     {temsilciFirma && !isTemsilciFirmaValid && (
+                       <p className="text-xs text-red-600 mt-1">En az 2 karakter olmalıdır</p>
+                     )}
                    </div>
 
                    {/* Telefon */}
@@ -1084,17 +1095,30 @@ export default function Home() {
                      <label className="block text-xs font-medium text-zinc-700 mb-1">
                        Telefon (WhatsApp) <span className="text-red-500">*</span>
                      </label>
-                     <input
-                       type="tel"
-                       value={temsilciTelefon}
-                       onChange={(e) => setTemsilciTelefon(e.target.value.replace(/\D/g, ''))}
-                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                       placeholder="5xx xxx xx xx"
-                       maxLength={10}
-                       required
-                     />
+                     <div className="flex gap-2">
+                       <select
+                         value={temsilciTelefonKodu}
+                         onChange={(e) => setTemsilciTelefonKodu(e.target.value)}
+                         className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                       >
+                         {countryCodes.map((country) => (
+                           <option key={country.code} value={country.code}>
+                             {country.code} {country.country}
+                           </option>
+                         ))}
+                       </select>
+                       <input
+                         type="tel"
+                         value={temsilciTelefon}
+                         onChange={(e) => setTemsilciTelefon(e.target.value.replace(/\D/g, ''))}
+                         className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                         placeholder="5xx xxx xx xx"
+                         maxLength={getTemsilciTelefonMaxLength()}
+                         required
+                       />
+                     </div>
                      {temsilciTelefon && !isTemsilciTelefonValid && (
-                       <p className="text-xs text-red-600 mt-1">10 haneli telefon numarası giriniz</p>
+                       <p className="text-xs text-red-600 mt-1">{getTemsilciTelefonMaxLength()} haneli telefon numarası giriniz</p>
                      )}
                    </div>
 
