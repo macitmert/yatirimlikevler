@@ -1039,7 +1039,7 @@ export default function Home() {
                    </div>
                    <div>
                      <p className="font-medium text-zinc-800">Marka gücü ve güven avantajı</p>
-                     <p>Türkiye'nin ilk yatırım odaklı konut platformunun temsilcisi olarak bölgenizde güvenle öne çıkarsınız.</p>
+                     <p>Türkiye'nin ilk premium konut platformunun temsilcisi olarak bölgenizde güvenle öne çıkarsınız.</p>
                    </div>
                    <div>
                      <p className="font-medium text-zinc-800">Şeffaf kazanç ve sürdürülebilir iş modeli</p>
