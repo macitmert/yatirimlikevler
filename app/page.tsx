@@ -985,10 +985,264 @@ export default function Home() {
                   )}
                 </div>
               </div>
-            )}
-          </div>
+         )}
+       </div>
 
-          {/* Kariyer */}
+       {/* İlçe Temsilcisi */}
+       <div className="border border-[#E7E9EC] rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 bg-white">
+         <button
+           onClick={() => toggleDetail('temsilci')}
+           className={`w-full text-left p-6 font-medium transition-colors duration-200 flex items-center justify-between ${openDetails.temsilci ? 'text-[#C40001]' : 'text-zinc-700 hover:text-[#C40001]'}`}
+         >
+           <span className="flex items-center gap-3">
+             <span className="text-2xl">🤝</span>
+             <span className="text-lg">İlçe Temsilciniz Olmak İstiyorum</span>
+           </span>
+           <span className={`transform transition-transform duration-200 ${openDetails.temsilci ? 'rotate-180' : ''}`}>
+             ▼
+           </span>
+         </button>
+         {openDetails.temsilci && (
+           <div className="px-6 pb-6">
+             <div className="border-t border-[#C40001]/10 pt-4">
+               {temsilciSuccess ? (
+                 <div className="text-center py-8">
+                   <div className="text-green-600 text-4xl mb-4">✅</div>
+                   <h3 className="text-lg font-medium text-green-600 mb-2">Teşekkürler! Ön başvurunuz alındı.</h3>
+                   <p className="text-sm text-zinc-600">48 saat içinde uygunluk değerlendirmesi yapıp sizinle iletişime geçeceğiz.</p>
+                 </div>
+               ) : (
+                 <form onSubmit={handleTemsilciBasvuru} className="space-y-4">
+                   {/* Ad Soyad */}
+                   <div>
+                     <label className="block text-xs font-medium text-zinc-700 mb-1">
+                       Ad Soyad <span className="text-red-500">*</span>
+                     </label>
+                     <input
+                       type="text"
+                       value={temsilciAdSoyad}
+                       onChange={(e) => setTemsilciAdSoyad(e.target.value)}
+                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                       placeholder="Ad Soyad"
+                       required
+                     />
+                     {temsilciAdSoyad && !isTemsilciAdSoyadValid && (
+                       <p className="text-xs text-red-600 mt-1">En az 2 karakter olmalıdır</p>
+                     )}
+                   </div>
+
+                   {/* Firma/Ofis Adı */}
+                   <div>
+                     <label className="block text-xs font-medium text-zinc-700 mb-1">
+                       Firma/Ofis Adı (opsiyonel)
+                     </label>
+                     <input
+                       type="text"
+                       value={temsilciFirma}
+                       onChange={(e) => setTemsilciFirma(e.target.value)}
+                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                       placeholder="Firma/Ofis Adı"
+                     />
+                   </div>
+
+                   {/* Telefon */}
+                   <div>
+                     <label className="block text-xs font-medium text-zinc-700 mb-1">
+                       Telefon (WhatsApp) <span className="text-red-500">*</span>
+                     </label>
+                     <input
+                       type="tel"
+                       value={temsilciTelefon}
+                       onChange={(e) => setTemsilciTelefon(e.target.value.replace(/\D/g, ''))}
+                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                       placeholder="5xx xxx xx xx"
+                       maxLength={10}
+                       required
+                     />
+                     {temsilciTelefon && !isTemsilciTelefonValid && (
+                       <p className="text-xs text-red-600 mt-1">10 haneli telefon numarası giriniz</p>
+                     )}
+                   </div>
+
+                   {/* E-posta */}
+                   <div>
+                     <label className="block text-xs font-medium text-zinc-700 mb-1">
+                       E-posta <span className="text-red-500">*</span>
+                     </label>
+                     <input
+                       type="email"
+                       value={temsilciEmail}
+                       onChange={(e) => setTemsilciEmail(e.target.value)}
+                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                       placeholder="ornek@email.com"
+                       required
+                     />
+                     {temsilciEmail && !isTemsilciEmailValid && (
+                       <p className="text-xs text-red-600 mt-1">Geçerli bir e-posta adresi giriniz</p>
+                     )}
+                   </div>
+
+                   {/* İl */}
+                   <div>
+                     <label className="block text-xs font-medium text-zinc-700 mb-1">
+                       İl <span className="text-red-500">*</span>
+                     </label>
+                     <select
+                       value={temsilciIl}
+                       onChange={(e) => {
+                         setTemsilciIl(e.target.value);
+                         setTemsilciIlce(""); // İl değişince ilçeyi sıfırla
+                       }}
+                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                       required
+                     >
+                       <option value="">İl seçiniz</option>
+                       <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
+                       <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
+                       <option value="ankara">Ankara</option>
+                       <option value="izmir">İzmir</option>
+                       <option value="antalya">Antalya</option>
+                       <option value="bursa">Bursa</option>
+                       <option value="konya">Konya</option>
+                       <option value="muğla">Muğla</option>
+                       <option value="denizli">Denizli</option>
+                       <option value="gaziantep">Gaziantep</option>
+                       <option value="kocaeli">Kocaeli</option>
+                       <option value="edirne">Edirne</option>
+                       <option value="adana">Adana</option>
+                       <option value="kayseri">Kayseri</option>
+                       <option value="eskişehir">Eskişehir</option>
+                       <option value="mersin">Mersin</option>
+                       <option value="çanakkale">Çanakkale</option>
+                       <option value="diyarbakır">Diyarbakır</option>
+                       <option value="trabzon">Trabzon</option>
+                       <option value="kırıkkale">Kırıkkale</option>
+                       <option value="samsun">Samsun</option>
+                       <option value="erzurum">Erzurum</option>
+                       <option value="manisa">Manisa</option>
+                       <option value="tekirdağ">Tekirdağ</option>
+                       <option value="sakarya">Sakarya</option>
+                       <option value="aydın">Aydın</option>
+                       <option value="bolu">Bolu</option>
+                       <option value="balıkesir">Balıkesir</option>
+                       <option value="kütahya">Kütahya</option>
+                       <option value="isparta">Isparta</option>
+                     </select>
+                   </div>
+
+                   {/* İlçe */}
+                   {temsilciIl && (
+                     <div>
+                       <label className="block text-xs font-medium text-zinc-700 mb-1">
+                         İlçe <span className="text-red-500">*</span>
+                       </label>
+                       <select
+                         value={temsilciIlce}
+                         onChange={(e) => setTemsilciIlce(e.target.value)}
+                         className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                         required
+                       >
+                         <option value="">İlçe seçiniz</option>
+                         {getDistricts(temsilciIl).map((district) => (
+                           <option key={district} value={district}>
+                             {district}
+                           </option>
+                         ))}
+                       </select>
+                     </div>
+                   )}
+
+                   {/* Taşınmaz Ticareti Yetki Belgesi No */}
+                   <div>
+                     <label className="block text-xs font-medium text-zinc-700 mb-1">
+                       Taşınmaz Ticareti Yetki Belgesi No <span className="text-red-500">*</span>
+                     </label>
+                     <input
+                       type="text"
+                       value={temsilciBelgeNo}
+                       onChange={(e) => setTemsilciBelgeNo(e.target.value.replace(/\D/g, ''))}
+                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                       placeholder="1234567890123"
+                       maxLength={13}
+                       required
+                     />
+                     <p className="text-xs text-zinc-500 mt-1">
+                       Örn: 1234567890123 — Ticaret Bakanlığı Taşınmaz Ticareti Yetki Belgesi numaranız.
+                     </p>
+                     {temsilciBelgeNo && !isTemsilciBelgeNoValid && (
+                       <p className="text-xs text-red-600 mt-1">13 haneli belge numarası giriniz</p>
+                     )}
+                   </div>
+
+                   {/* Not/Mesaj */}
+                   <div>
+                     <label className="block text-xs font-medium text-zinc-700 mb-1">
+                       Not/Mesaj (opsiyonel, 200 karakter)
+                     </label>
+                     <textarea
+                       value={temsilciNot}
+                       onChange={(e) => setTemsilciNot(e.target.value)}
+                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                       placeholder="Ek bilgilerinizi buraya yazabilirsiniz..."
+                       rows={3}
+                       maxLength={200}
+                     />
+                     <p className="text-xs text-zinc-500 mt-1">
+                       {temsilciNot.length}/200 karakter
+                     </p>
+                   </div>
+
+                   {/* Onay Kutuları */}
+                   <div className="space-y-3">
+                     <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
+                       <input
+                         type="checkbox"
+                         checked={temsilciKvkk}
+                         onChange={(e) => setTemsilciKvkk(e.target.checked)}
+                         className="mt-0.5"
+                         required
+                       />
+                       <span>KVKK ve Ön Başvuru Koşulları'nı okudum. <span className="text-red-500">*</span></span>
+                     </label>
+
+                     <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
+                       <input
+                         type="checkbox"
+                         checked={temsilciPazarlama}
+                         onChange={(e) => setTemsilciPazarlama(e.target.checked)}
+                         className="mt-0.5"
+                       />
+                       <span>Pazarlama iletişimi izni (opsiyonel)</span>
+                     </label>
+                   </div>
+
+                   {/* Hata Mesajı */}
+                   {temsilciError && (
+                     <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                       <p className="text-sm text-red-600">{temsilciError}</p>
+                     </div>
+                   )}
+
+                   {/* Gönder Butonu */}
+                   <button
+                     type="submit"
+                     disabled={!isTemsilciFormValid || temsilciSending}
+                     className={`w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm ${
+                       isTemsilciFormValid && !temsilciSending
+                         ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90'
+                         : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                     }`}
+                   >
+                     {temsilciSending ? 'Gönderiliyor...' : 'Ön Başvuru Gönder'}
+                   </button>
+                 </form>
+               )}
+             </div>
+           </div>
+         )}
+       </div>
+
+       {/* Kariyer */}
           <div className="border border-[#E7E9EC] rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 bg-white">
             <button
               onClick={() => toggleDetail('kariyer')}
@@ -1211,260 +1465,6 @@ export default function Home() {
                      </a>
                    </div>
                  </div>
-              </div>
-            )}
-          </div>
-
-          {/* İlçe Temsilcisi */}
-          <div className="border border-[#E7E9EC] rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 bg-white">
-            <button
-              onClick={() => toggleDetail('temsilci')}
-              className={`w-full text-left p-6 font-medium transition-colors duration-200 flex items-center justify-between ${openDetails.temsilci ? 'text-[#C40001]' : 'text-zinc-700 hover:text-[#C40001]'}`}
-            >
-              <span className="flex items-center gap-3">
-                <span className="text-2xl">🤝</span>
-                <span className="text-lg">İlçe Temsilciniz Olmak İstiyorum</span>
-              </span>
-              <span className={`transform transition-transform duration-200 ${openDetails.temsilci ? 'rotate-180' : ''}`}>
-                ▼
-              </span>
-            </button>
-            {openDetails.temsilci && (
-              <div className="px-6 pb-6">
-                <div className="border-t border-[#C40001]/10 pt-4">
-                  {temsilciSuccess ? (
-                    <div className="text-center py-8">
-                      <div className="text-green-600 text-4xl mb-4">✅</div>
-                      <h3 className="text-lg font-medium text-green-600 mb-2">Teşekkürler! Ön başvurunuz alındı.</h3>
-                      <p className="text-sm text-zinc-600">48 saat içinde uygunluk değerlendirmesi yapıp sizinle iletişime geçeceğiz.</p>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleTemsilciBasvuru} className="space-y-4">
-                      {/* Ad Soyad */}
-                      <div>
-                        <label className="block text-xs font-medium text-zinc-700 mb-1">
-                          Ad Soyad <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          value={temsilciAdSoyad}
-                          onChange={(e) => setTemsilciAdSoyad(e.target.value)}
-                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                          placeholder="Ad Soyad"
-                          required
-                        />
-                        {temsilciAdSoyad && !isTemsilciAdSoyadValid && (
-                          <p className="text-xs text-red-600 mt-1">En az 2 karakter olmalıdır</p>
-                        )}
-                      </div>
-
-                      {/* Firma/Ofis Adı */}
-                      <div>
-                        <label className="block text-xs font-medium text-zinc-700 mb-1">
-                          Firma/Ofis Adı (opsiyonel)
-                        </label>
-                        <input
-                          type="text"
-                          value={temsilciFirma}
-                          onChange={(e) => setTemsilciFirma(e.target.value)}
-                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                          placeholder="Firma/Ofis Adı"
-                        />
-                      </div>
-
-                      {/* Telefon */}
-                      <div>
-                        <label className="block text-xs font-medium text-zinc-700 mb-1">
-                          Telefon (WhatsApp) <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="tel"
-                          value={temsilciTelefon}
-                          onChange={(e) => setTemsilciTelefon(e.target.value.replace(/\D/g, ''))}
-                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                          placeholder="5xx xxx xx xx"
-                          maxLength={10}
-                          required
-                        />
-                        {temsilciTelefon && !isTemsilciTelefonValid && (
-                          <p className="text-xs text-red-600 mt-1">10 haneli telefon numarası giriniz</p>
-                        )}
-                      </div>
-
-                      {/* E-posta */}
-                      <div>
-                        <label className="block text-xs font-medium text-zinc-700 mb-1">
-                          E-posta <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          value={temsilciEmail}
-                          onChange={(e) => setTemsilciEmail(e.target.value)}
-                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                          placeholder="ornek@email.com"
-                          required
-                        />
-                        {temsilciEmail && !isTemsilciEmailValid && (
-                          <p className="text-xs text-red-600 mt-1">Geçerli bir e-posta adresi giriniz</p>
-                        )}
-                      </div>
-
-                      {/* İl */}
-                      <div>
-                        <label className="block text-xs font-medium text-zinc-700 mb-1">
-                          İl <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                          value={temsilciIl}
-                          onChange={(e) => {
-                            setTemsilciIl(e.target.value);
-                            setTemsilciIlce(""); // İl değişince ilçeyi sıfırla
-                          }}
-                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                          required
-                        >
-                          <option value="">İl seçiniz</option>
-                          <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
-                          <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
-                          <option value="ankara">Ankara</option>
-                          <option value="izmir">İzmir</option>
-                          <option value="antalya">Antalya</option>
-                          <option value="bursa">Bursa</option>
-                          <option value="konya">Konya</option>
-                          <option value="muğla">Muğla</option>
-                          <option value="denizli">Denizli</option>
-                          <option value="gaziantep">Gaziantep</option>
-                          <option value="kocaeli">Kocaeli</option>
-                          <option value="edirne">Edirne</option>
-                          <option value="adana">Adana</option>
-                          <option value="kayseri">Kayseri</option>
-                          <option value="eskişehir">Eskişehir</option>
-                          <option value="mersin">Mersin</option>
-                          <option value="çanakkale">Çanakkale</option>
-                          <option value="diyarbakır">Diyarbakır</option>
-                          <option value="trabzon">Trabzon</option>
-                          <option value="kırıkkale">Kırıkkale</option>
-                          <option value="samsun">Samsun</option>
-                          <option value="erzurum">Erzurum</option>
-                          <option value="manisa">Manisa</option>
-                          <option value="tekirdağ">Tekirdağ</option>
-                          <option value="sakarya">Sakarya</option>
-                          <option value="aydın">Aydın</option>
-                          <option value="bolu">Bolu</option>
-                          <option value="balıkesir">Balıkesir</option>
-                          <option value="kütahya">Kütahya</option>
-                          <option value="isparta">Isparta</option>
-                        </select>
-                      </div>
-
-                      {/* İlçe */}
-                      {temsilciIl && (
-                        <div>
-                          <label className="block text-xs font-medium text-zinc-700 mb-1">
-                            İlçe <span className="text-red-500">*</span>
-                          </label>
-                          <select
-                            value={temsilciIlce}
-                            onChange={(e) => setTemsilciIlce(e.target.value)}
-                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                            required
-                          >
-                            <option value="">İlçe seçiniz</option>
-                            {getDistricts(temsilciIl).map((district) => (
-                              <option key={district} value={district}>
-                                {district}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      )}
-
-                      {/* Taşınmaz Ticareti Yetki Belgesi No */}
-                      <div>
-                        <label className="block text-xs font-medium text-zinc-700 mb-1">
-                          Taşınmaz Ticareti Yetki Belgesi No <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          value={temsilciBelgeNo}
-                          onChange={(e) => setTemsilciBelgeNo(e.target.value.replace(/\D/g, ''))}
-                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                          placeholder="1234567890123"
-                          maxLength={13}
-                          required
-                        />
-                        <p className="text-xs text-zinc-500 mt-1">
-                          Örn: 1234567890123 — Ticaret Bakanlığı Taşınmaz Ticareti Yetki Belgesi numaranız.
-                        </p>
-                        {temsilciBelgeNo && !isTemsilciBelgeNoValid && (
-                          <p className="text-xs text-red-600 mt-1">13 haneli belge numarası giriniz</p>
-                        )}
-                      </div>
-
-                      {/* Not/Mesaj */}
-                      <div>
-                        <label className="block text-xs font-medium text-zinc-700 mb-1">
-                          Not/Mesaj (opsiyonel, 200 karakter)
-                        </label>
-                        <textarea
-                          value={temsilciNot}
-                          onChange={(e) => setTemsilciNot(e.target.value)}
-                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                          placeholder="Ek bilgilerinizi buraya yazabilirsiniz..."
-                          rows={3}
-                          maxLength={200}
-                        />
-                        <p className="text-xs text-zinc-500 mt-1">
-                          {temsilciNot.length}/200 karakter
-                        </p>
-                      </div>
-
-                      {/* Onay Kutuları */}
-                      <div className="space-y-3">
-                        <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={temsilciKvkk}
-                            onChange={(e) => setTemsilciKvkk(e.target.checked)}
-                            className="mt-0.5"
-                            required
-                          />
-                          <span>KVKK ve Ön Başvuru Koşulları'nı okudum. <span className="text-red-500">*</span></span>
-                        </label>
-
-                        <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={temsilciPazarlama}
-                            onChange={(e) => setTemsilciPazarlama(e.target.checked)}
-                            className="mt-0.5"
-                          />
-                          <span>Pazarlama iletişimi izni (opsiyonel)</span>
-                        </label>
-                      </div>
-
-                      {/* Hata Mesajı */}
-                      {temsilciError && (
-                        <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                          <p className="text-sm text-red-600">{temsilciError}</p>
-                        </div>
-                      )}
-
-                      {/* Gönder Butonu */}
-                      <button
-                        type="submit"
-                        disabled={!isTemsilciFormValid || temsilciSending}
-                        className={`w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm ${
-                          isTemsilciFormValid && !temsilciSending
-                            ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90'
-                            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                        }`}
-                      >
-                        {temsilciSending ? 'Gönderiliyor...' : 'Ön Başvuru Gönder'}
-                      </button>
-                    </form>
-                  )}
-                </div>
               </div>
             )}
           </div>
