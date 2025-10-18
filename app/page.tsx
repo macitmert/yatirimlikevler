@@ -1334,26 +1334,13 @@ export default function Home() {
                        4. Komisyon oranları nedir?
                      </summary>
                      <div className="px-3 pb-3 text-sm text-zinc-600">
-                       → Yatırım skoru 100 üzerinden 50 puanı geçen portföyler platformumuza kabul edilir.<br/>
-                       50–60 puan: Platform komisyonu %25<br/>
-                       60–70 puan: Platform komisyonu %30<br/>
-                       70–80 puan: Platform komisyonu %40<br/>
-                       80+ puan (çok nadir): Platform komisyonu %50
+                       → Konutun yatırım skoruna göre toplam komisyon oranı üzerinden %25 ile %50 arasında değişmektedir.
                      </div>
                    </details>
                    
                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                       5. Kendi portföylerimi sisteme ekleyebilir miyim?
-                     </summary>
-                     <div className="px-3 pb-3 text-sm text-zinc-600">
-                       → Evet. Kriterleri karşılayan ilanlar incelenip onaylandıktan sonra platformda yayınlanabilir; ancak bu durumda ilgili ilanların diğer platformlardan kaldırılması zorunludur.
-                     </div>
-                   </details>
-                   
-                   <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
-                     <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                       6. Aynı ilçede birden fazla temsilci olabilir mi?
+                       5. Aynı ilçede birden fazla temsilci olabilir mi?
                      </summary>
                      <div className="px-3 pb-3 text-sm text-zinc-600">
                        → Hayır. Her ilçede yalnızca bir resmi temsilcilik verilir.
@@ -1362,7 +1349,7 @@ export default function Home() {
                    
                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                       7. Atanan ilanları başka platformlarda paylaşabilir miyim?
+                       6. Atanan ilanları başka platformlarda paylaşabilir miyim?
                      </summary>
                      <div className="px-3 pb-3 text-sm text-zinc-600">
                        → Hayır. Atanan portföyler yalnızca Yatırımlık Evler mobil uygulamasında yayınlanabilir.
@@ -1371,7 +1358,7 @@ export default function Home() {
                    
                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                       8. Müşteri trafiğini kim sağlar?
+                       7. Müşteri trafiğini kim sağlar?
                      </summary>
                      <div className="px-3 pb-3 text-sm text-zinc-600">
                        → Tüm yatırımcı trafiği doğrudan Yatırımlık Evler mobil uygulaması üzerinden size yönlendirilir.
@@ -1380,7 +1367,7 @@ export default function Home() {
                    
                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                       9. Ödemeler nasıl yapılır?
+                       8. Ödemeler nasıl yapılır?
                      </summary>
                      <div className="px-3 pb-3 text-sm text-zinc-600">
                        → Satış işlemlerinde tüm tahsilat temsilci ofis tarafından yapılır. Ardından Yatırımlık Evler firmasına, platform payı kadar KDV'li fatura kesilerek ödeme yapılır.
@@ -1389,7 +1376,7 @@ export default function Home() {
                    
                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                       10. Komisyon oranı dışında ek ücret ödenir mi?
+                       9. Komisyon oranı dışında ek ücret ödenir mi?
                      </summary>
                      <div className="px-3 pb-3 text-sm text-zinc-600">
                        → Hayır. Başvuru veya temsilcilik ücreti yoktur; yalnızca gerçekleşen satışlar üzerinden pay alınır.
@@ -1398,7 +1385,7 @@ export default function Home() {
                    
                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                       11. Sözleşme hangi durumda feshedilebilir?
+                       10. Sözleşme hangi durumda feshedilebilir?
                      </summary>
                      <div className="px-3 pb-3 text-sm text-zinc-600">
                        → Taraflardan herhangi biri, dilediği zaman tek taraflı olarak sözleşmeyi feshedebilir. Fesih bildirimi yazılı veya e-posta yoluyla yapılır ve derhal geçerlilik kazanır.
