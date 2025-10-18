@@ -15,6 +15,8 @@ export default function Home() {
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [whatsappAccepted, setWhatsappAccepted] = useState(false);
+  const [selectedInterestCity, setSelectedInterestCity] = useState("");
+  const [interestAccepted, setInterestAccepted] = useState(false);
 
   const countryCodes = [
     { code: "+90", country: "Türkiye", maxLength: 10 },
@@ -96,6 +98,19 @@ export default function Home() {
       "antalya": "Merhaba, Antalya'daki evimin detaylarını paylaşmak istiyorum",
       "samsun": "Merhaba, Samsun'daki evimin detaylarını paylaşmak istiyorum",
       "diger": "Merhaba, evimin detaylarını paylaşmak istiyorum"
+    };
+    return messages[city as keyof typeof messages] || messages.diger;
+  };
+
+  const getInterestMessage = (city: string) => {
+    const messages = {
+      "istanbul-avrupa": "Merhaba, İstanbul Avrupa yakasındaki bir ilanınızla ilgileniyorum",
+      "istanbul-anadolu": "Merhaba, İstanbul Anadolu yakasındaki bir ilanınızla ilgileniyorum",
+      "ankara": "Merhaba, Ankara'daki bir ilanınızla ilgileniyorum",
+      "izmir": "Merhaba, İzmir'deki bir ilanınızla ilgileniyorum",
+      "antalya": "Merhaba, Antalya'daki bir ilanınızla ilgileniyorum",
+      "samsun": "Merhaba, Samsun'daki bir ilanınızla ilgileniyorum",
+      "diger": "Merhaba, ilanlarınızdan biriyle ilgileniyorum"
     };
     return messages[city as keyof typeof messages] || messages.diger;
   };
@@ -616,6 +631,91 @@ export default function Home() {
             )}
           </div>
 
+          {/* Bir İlanınızla İlgileniyorum */}
+          <div className="border border-[#E7E9EC] rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 bg-white">
+            <button
+              onClick={() => toggleDetail('interest')}
+              className={`w-full text-left p-6 font-medium transition-colors duration-200 flex items-center justify-between ${openDetails.interest ? 'text-[#C40001]' : 'text-zinc-700 hover:text-[#C40001]'}`}
+            >
+              <span className="flex items-center gap-3">
+                <span className="text-2xl">💼</span>
+                <span className="text-lg">Bir İlanınızla İlgileniyorum</span>
+              </span>
+              <span className={`transform transition-transform duration-200 ${openDetails.interest ? 'rotate-180' : ''}`}>
+                ▼
+              </span>
+            </button>
+            {openDetails.interest && (
+              <div className="px-6 pb-6">
+                <div className="border-t border-[#C40001]/10 pt-4">
+                  <p className="text-sm text-zinc-600 mb-4">
+                    Lütfen ilgilendiğiniz ilanın hangi şehirde olduğunu seçiniz.
+                  </p>
+                  
+                  {/* Şehir Seçimi */}
+                  <div className="mb-3">
+                    <label className="block text-xs font-medium text-zinc-700 mb-2">
+                      İlanın bulunduğu şehir (zorunlu) <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      value={selectedInterestCity}
+                      onChange={(e) => setSelectedInterestCity(e.target.value)}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                      required
+                    >
+                      <option value="">Şehir seçiniz</option>
+                      <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
+                      <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
+                      <option value="ankara">Ankara</option>
+                      <option value="izmir">İzmir</option>
+                      <option value="antalya">Antalya</option>
+                      <option value="samsun">Samsun</option>
+                      <option value="diger">Diğer</option>
+                    </select>
+                  </div>
+                  
+                  {/* Onay Kutucuğu */}
+                  <div className="mb-3">
+                    <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={interestAccepted}
+                        onChange={(e) => setInterestAccepted(e.target.checked)}
+                        className="mt-0.5"
+                      />
+                      <span>İlandaki evi yatırımlık evler güvencesiyle satın almam halinde %2+KDV tutarındaki hizmet bedelini ödemeyi kabul ediyorum.</span>
+                    </label>
+                  </div>
+                  
+                  <a 
+                    href={selectedInterestCity && interestAccepted ? `https://wa.me/905407208080?text=${encodeURIComponent(getInterestMessage(selectedInterestCity))}` : "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`block w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm flex items-center justify-center gap-2 ${
+                      selectedInterestCity && interestAccepted
+                        ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
+                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    }`}
+                    onClick={!(selectedInterestCity && interestAccepted) ? (e) => e.preventDefault() : undefined}
+                  >
+                    <span>📱</span>
+                    İlanla İlgili Bilgi Al
+                  </a>
+                  
+                  {!selectedInterestCity && (
+                    <p className="text-xs text-red-600 mt-2">
+                      ⚠️ Lütfen önce şehir seçimi yapın
+                    </p>
+                  )}
+                  {selectedInterestCity && !interestAccepted && (
+                    <p className="text-xs text-red-600 mt-2">
+                      ⚠️ Lütfen şartları kabul etmek için kutucuğu işaretleyin
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
 
           {/* Hakkımızda */}
           <div className="border border-[#E7E9EC] rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 bg-white">
