@@ -1023,8 +1023,6 @@ export default function Home() {
                    <p>• Geçerli Taşınmaz Ticareti Yetki Belgesi'ne sahip olmak.</p>
                    <p>• Aktif bir emlak ofisine sahip olmak (fiziksel adres, vergi kaydı).</p>
                    <p>• İlçede aktif şekilde konut satışı yapıyor olmak.</p>
-                   <p>• Gösterim, tapu ve satış süreçlerini yönetebilecek saha ekibi bulunması.</p>
-                   <p>• Yatırımlık Evler marka ve süreç kurallarına tam uyum taahhüdü.</p>
                  </div>
                </div>
 
