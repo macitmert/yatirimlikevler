@@ -18,7 +18,9 @@ export default function Home() {
   const [selectedInterestCity, setSelectedInterestCity] = useState("");
   const [interestAccepted, setInterestAccepted] = useState(false);
   const [selectedPosition, setSelectedPosition] = useState("");
-  const [kvkkAccepted, setKvkkAccepted] = useState(false);
+  const [kvkkOfisYoneticisi, setKvkkOfisYoneticisi] = useState(false);
+  const [kvkkYoneticiYardimcisi, setKvkkYoneticiYardimcisi] = useState(false);
+  const [kvkkGayrimenkulDanismani, setKvkkGayrimenkulDanismani] = useState(false);
 
   const countryCodes = [
     { code: "+90", country: "Türkiye", maxLength: 10 },
@@ -754,16 +756,35 @@ export default function Home() {
                     </p>
                   </div>
                   
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {/* Ofis Yöneticisi */}
                     <div className="bg-white border border-[#E7E9EC] rounded-xl p-4">
                       <div className="font-bold text-sm mb-1">1) Ofis yöneticisi pozisyonuna başvur</div>
                       <div className="text-xs text-zinc-500 mb-3">Yalnızca gayrimenkul sektöründe 10 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
+                      
+                      {/* KVKK Onay Kutucuğu */}
+                      <div className="mb-3">
+                        <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={kvkkOfisYoneticisi}
+                            onChange={(e) => setKvkkOfisYoneticisi(e.target.checked)}
+                            className="mt-0.5"
+                          />
+                          <span>Kişisel verilerimin saklanmasına ilişkin KVKK ile uyumlu olarak işlenmesini kabul ediyorum.</span>
+                        </label>
+                        {!kvkkOfisYoneticisi && (
+                          <p className="text-xs text-red-600 mt-1">
+                            ⚠️ Lütfen KVKK onayını verin
+                          </p>
+                        )}
+                      </div>
+                      
                       <a 
-                        href={kvkkAccepted ? `mailto:apply@yatirimlikevler.com?subject=Ofis Yöneticisi Başvurusu&body=${encodeURIComponent(getCareerMessage('ofis-yoneticisi'))}` : "#"}
-                        onClick={!kvkkAccepted ? (e) => e.preventDefault() : undefined}
+                        href={kvkkOfisYoneticisi ? `mailto:apply@yatirimlikevler.com?subject=Ofis Yöneticisi Başvurusu&body=${encodeURIComponent(getCareerMessage('ofis-yoneticisi'))}` : "#"}
+                        onClick={!kvkkOfisYoneticisi ? (e) => e.preventDefault() : undefined}
                         className={`block w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm flex items-center justify-center gap-2 ${
-                          kvkkAccepted 
+                          kvkkOfisYoneticisi 
                             ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
                             : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                         }`}
@@ -777,11 +798,30 @@ export default function Home() {
                     <div className="bg-white border border-[#E7E9EC] rounded-xl p-4">
                       <div className="font-bold text-sm mb-1">2) Yönetici yardımcısı pozisyonuna başvur</div>
                       <div className="text-xs text-zinc-500 mb-3">Yalnızca gayrimenkul sektöründe 5 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
+                      
+                      {/* KVKK Onay Kutucuğu */}
+                      <div className="mb-3">
+                        <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={kvkkYoneticiYardimcisi}
+                            onChange={(e) => setKvkkYoneticiYardimcisi(e.target.checked)}
+                            className="mt-0.5"
+                          />
+                          <span>Kişisel verilerimin saklanmasına ilişkin KVKK ile uyumlu olarak işlenmesini kabul ediyorum.</span>
+                        </label>
+                        {!kvkkYoneticiYardimcisi && (
+                          <p className="text-xs text-red-600 mt-1">
+                            ⚠️ Lütfen KVKK onayını verin
+                          </p>
+                        )}
+                      </div>
+                      
                       <a 
-                        href={kvkkAccepted ? `mailto:apply@yatirimlikevler.com?subject=Yönetici Yardımcısı Başvurusu&body=${encodeURIComponent(getCareerMessage('ofis-yoneticisi-yardimcisi'))}` : "#"}
-                        onClick={!kvkkAccepted ? (e) => e.preventDefault() : undefined}
+                        href={kvkkYoneticiYardimcisi ? `mailto:apply@yatirimlikevler.com?subject=Yönetici Yardımcısı Başvurusu&body=${encodeURIComponent(getCareerMessage('ofis-yoneticisi-yardimcisi'))}` : "#"}
+                        onClick={!kvkkYoneticiYardimcisi ? (e) => e.preventDefault() : undefined}
                         className={`block w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm flex items-center justify-center gap-2 ${
-                          kvkkAccepted 
+                          kvkkYoneticiYardimcisi 
                             ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
                             : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                         }`}
@@ -795,11 +835,30 @@ export default function Home() {
                     <div className="bg-white border border-[#E7E9EC] rounded-xl p-4">
                       <div className="font-bold text-sm mb-1">3) Gayrimenkul danışmanı pozisyonuna başvur</div>
                       <div className="text-xs text-zinc-500 mb-3">Yalnızca gayrimenkul sektöründe 2 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
+                      
+                      {/* KVKK Onay Kutucuğu */}
+                      <div className="mb-3">
+                        <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={kvkkGayrimenkulDanismani}
+                            onChange={(e) => setKvkkGayrimenkulDanismani(e.target.checked)}
+                            className="mt-0.5"
+                          />
+                          <span>Kişisel verilerimin saklanmasına ilişkin KVKK ile uyumlu olarak işlenmesini kabul ediyorum.</span>
+                        </label>
+                        {!kvkkGayrimenkulDanismani && (
+                          <p className="text-xs text-red-600 mt-1">
+                            ⚠️ Lütfen KVKK onayını verin
+                          </p>
+                        )}
+                      </div>
+                      
                       <a 
-                        href={kvkkAccepted ? `mailto:apply@yatirimlikevler.com?subject=Gayrimenkul Danışmanı Başvurusu&body=${encodeURIComponent(getCareerMessage('gayrimenkul-danismani'))}` : "#"}
-                        onClick={!kvkkAccepted ? (e) => e.preventDefault() : undefined}
+                        href={kvkkGayrimenkulDanismani ? `mailto:apply@yatirimlikevler.com?subject=Gayrimenkul Danışmanı Başvurusu&body=${encodeURIComponent(getCareerMessage('gayrimenkul-danismani'))}` : "#"}
+                        onClick={!kvkkGayrimenkulDanismani ? (e) => e.preventDefault() : undefined}
                         className={`block w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm flex items-center justify-center gap-2 ${
-                          kvkkAccepted 
+                          kvkkGayrimenkulDanismani 
                             ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
                             : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                         }`}
@@ -808,24 +867,6 @@ export default function Home() {
                         Başvur
                       </a>
                     </div>
-                  </div>
-                  
-                  {/* KVKK Onay Kutucuğu */}
-                  <div className="mt-4">
-                    <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={kvkkAccepted}
-                        onChange={(e) => setKvkkAccepted(e.target.checked)}
-                        className="mt-0.5"
-                      />
-                      <span>Kişisel verilerimin saklanmasına ilişkin KVKK ile uyumlu olarak işlenmesini kabul ediyorum.</span>
-                    </label>
-                    {!kvkkAccepted && (
-                      <p className="text-xs text-red-600 mt-2">
-                        ⚠️ Lütfen KVKK onayını verin
-                      </p>
-                    )}
                   </div>
                 </div>
               </div>
