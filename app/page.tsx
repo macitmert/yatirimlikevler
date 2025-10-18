@@ -648,7 +648,7 @@ export default function Home() {
               className={`w-full text-left p-6 font-medium transition-colors duration-200 flex items-center justify-between ${openDetails.interest ? 'text-[#C40001]' : 'text-zinc-700 hover:text-[#C40001]'}`}
             >
               <span className="flex items-center gap-3">
-                <span className="text-2xl">💼</span>
+                <span className="text-2xl">🔍</span>
                 <span className="text-lg">Bir İlanınızla İlgileniyorum</span>
               </span>
               <span className={`transform transition-transform duration-200 ${openDetails.interest ? 'rotate-180' : ''}`}>
