@@ -1027,6 +1027,28 @@ export default function Home() {
                    <p>• Yatırımlık Evler marka ve süreç kurallarına tam uyum taahhüdü.</p>
                  </div>
                </div>
+
+               {/* Neden İlçe Temsilcimiz Olmalısınız */}
+               <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-xl p-4 mb-6">
+                 <h3 className="text-sm font-bold text-zinc-800 mb-3 flex items-center gap-2">
+                   <span className="text-lg">💼</span>
+                   Neden İlçe Temsilcimiz Olmalısınız?
+                 </h3>
+                 <div className="text-xs text-zinc-700 space-y-2">
+                   <div>
+                     <p className="font-medium text-zinc-800">Hazır portföy ve müşteri trafiği</p>
+                     <p>Sosyal medya ve yatırım platformlarımızdan gelen talepler, doğrudan size yönlendirilir.</p>
+                   </div>
+                   <div>
+                     <p className="font-medium text-zinc-800">Marka gücü ve güven avantajı</p>
+                     <p>Türkiye'nin ilk yatırım odaklı konut platformunun temsilcisi olarak bölgenizde güvenle öne çıkarsınız.</p>
+                   </div>
+                   <div>
+                     <p className="font-medium text-zinc-800">Şeffaf kazanç ve sürdürülebilir iş modeli</p>
+                     <p>Net komisyon oranlarıyla sürekli portföy akışı ve uzun vadeli kazanç elde edersiniz.</p>
+                   </div>
+                 </div>
+               </div>
                
                {temsilciSuccess ? (
                  <div className="text-center py-8">
