@@ -122,7 +122,7 @@ export async function POST(req: NextRequest) {
     `;
 
     const transporter = createTransport();
-    const to = process.env.LEADS_TO || "apply@yatirimlikevler.com";
+    const to = process.env.LEADS_TO || "portfolio@yatirimlikevler.com";
 
     const info = await transporter.sendMail({
       from: `"Yatırımlık Evler" <${process.env.MAIL_USER}>`, // domaininle uyumlu (DKIM/SPF için iyi)
