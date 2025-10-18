@@ -231,6 +231,9 @@ export default function Home() {
       "çanakkale": [
         "Merkez", "Bozcaada"
       ],
+      "diyarbakır": [
+        "Kayapınar"
+      ],
       "trabzon": [
         "Ortahisar"
       ],
@@ -266,9 +269,6 @@ export default function Home() {
       ],
       "isparta": [
         "Merkez"
-      ],
-      "diyarbakır": [
-        "Kayapınar"
       ]
     };
     return districts[province as keyof typeof districts] || [];
