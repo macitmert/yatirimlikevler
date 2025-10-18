@@ -118,7 +118,7 @@ export default function Home() {
   };
   const isTemsilciTelefonValid = temsilciTelefon.length === getTemsilciTelefonMaxLength();
   const isTemsilciEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(temsilciEmail);
-  const isTemsilciBelgeNoValid = /^[0-9]{13}$/.test(temsilciBelgeNo);
+  const isTemsilciBelgeNoValid = /^[0-9]{7}$/.test(temsilciBelgeNo);
   const isTemsilciFormValid = isTemsilciAdSoyadValid && isTemsilciFirmaValid && isTemsilciTelefonValid && isTemsilciEmailValid && 
                              temsilciIl && temsilciIlce && isTemsilciBelgeNoValid && temsilciKvkk;
 
@@ -1220,15 +1220,15 @@ export default function Home() {
                        value={temsilciBelgeNo}
                        onChange={(e) => setTemsilciBelgeNo(e.target.value.replace(/\D/g, ''))}
                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                       placeholder="1234567890123"
-                       maxLength={13}
+                       placeholder="1234567"
+                       maxLength={7}
                        required
                      />
                      <p className="text-xs text-zinc-500 mt-1">
-                       Örn: 1234567890123 — Ticaret Bakanlığı Taşınmaz Ticareti Yetki Belgesi numaranız.
+                       Örn: 1234567 — Ticaret Bakanlığı Taşınmaz Ticareti Yetki Belgesi numaranız.
                      </p>
                      {temsilciBelgeNo && !isTemsilciBelgeNoValid && (
-                       <p className="text-xs text-red-600 mt-1">13 haneli belge numarası giriniz</p>
+                       <p className="text-xs text-red-600 mt-1">7 haneli belge numarası giriniz</p>
                      )}
                    </div>
 
