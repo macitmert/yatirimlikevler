@@ -95,7 +95,8 @@ export default function Home() {
 
   const getWhatsAppMessage = (city: string) => {
     const messages = {
-      "istanbul": "Merhaba, İstanbul'daki evimin detaylarını paylaşmak istiyorum",
+      "istanbul-avrupa": "Merhaba, İstanbul Avrupa yakasındaki evimin detaylarını paylaşmak istiyorum",
+      "istanbul-anadolu": "Merhaba, İstanbul Anadolu yakasındaki evimin detaylarını paylaşmak istiyorum",
       "ankara": "Merhaba, Ankara'daki evimin detaylarını paylaşmak istiyorum",
       "izmir": "Merhaba, İzmir'deki evimin detaylarını paylaşmak istiyorum",
       "antalya": "Merhaba, Antalya'daki evimin detaylarını paylaşmak istiyorum",
@@ -123,14 +124,15 @@ export default function Home() {
       "balıkesir": "Merhaba, Balıkesir'deki evimin detaylarını paylaşmak istiyorum",
       "kütahya": "Merhaba, Kütahya'daki evimin detaylarını paylaşmak istiyorum",
       "isparta": "Merhaba, Isparta'daki evimin detaylarını paylaşmak istiyorum",
-      "diger": "Merhaba, evimin detaylarını paylaşmak istiyorum"
+      "diyarbakır": "Merhaba, Diyarbakır'daki evimin detaylarını paylaşmak istiyorum"
     };
-    return messages[city as keyof typeof messages] || messages.diger;
+    return messages[city as keyof typeof messages] || "Merhaba, evimin detaylarını paylaşmak istiyorum";
   };
 
   const getInterestMessage = (city: string) => {
     const messages = {
-      "istanbul": "Merhaba, İstanbul'daki bir ilanınızla ilgileniyorum",
+      "istanbul-avrupa": "Merhaba, İstanbul Avrupa yakasındaki bir ilanınızla ilgileniyorum",
+      "istanbul-anadolu": "Merhaba, İstanbul Anadolu yakasındaki bir ilanınızla ilgileniyorum",
       "ankara": "Merhaba, Ankara'daki bir ilanınızla ilgileniyorum",
       "izmir": "Merhaba, İzmir'deki bir ilanınızla ilgileniyorum",
       "antalya": "Merhaba, Antalya'daki bir ilanınızla ilgileniyorum",
@@ -158,9 +160,9 @@ export default function Home() {
       "balıkesir": "Merhaba, Balıkesir'deki bir ilanınızla ilgileniyorum",
       "kütahya": "Merhaba, Kütahya'daki bir ilanınızla ilgileniyorum",
       "isparta": "Merhaba, Isparta'daki bir ilanınızla ilgileniyorum",
-      "diger": "Merhaba, ilanlarınızdan biriyle ilgileniyorum"
+      "diyarbakır": "Merhaba, Diyarbakır'daki bir ilanınızla ilgileniyorum"
     };
-    return messages[city as keyof typeof messages] || messages.diger;
+    return messages[city as keyof typeof messages] || "Merhaba, ilanlarınızdan biriyle ilgileniyorum";
   };
 
   const getCareerMessage = (position: string) => {
@@ -174,12 +176,14 @@ export default function Home() {
 
   const getDistricts = (province: string) => {
     const districts = {
-      "istanbul": [
-        "Şişli", "Beşiktaş", "Kadıköy", "Bakırköy", "Ataşehir", "Başakşehir", "Beyoğlu",
-        "Ümraniye", "Sarıyer", "Tuzla", "Maltepe", "Beylikdüzü", "Pendik", "Esenyurt",
-        "Bahçelievler", "Zeytinburnu", "Bağcılar", "Kartal", "Bayrampaşa", "Kağıthane",
-        "Küçükçekmece", "Güngören", "Büyükçekmece", "Eyüpsultan", "Adalar", "Avcılar",
-        "Gaziosmanpaşa", "Çekmeköy", "Esenler", "Silivri", "Sancaktepe"
+      "istanbul-avrupa": [
+        "Şişli", "Beşiktaş", "Bakırköy", "Başakşehir", "Beyoğlu", "Beylikdüzü", "Esenyurt",
+        "Bahçelievler", "Zeytinburnu", "Bağcılar", "Bayrampaşa", "Kağıthane", "Küçükçekmece",
+        "Güngören", "Büyükçekmece", "Eyüpsultan", "Avcılar", "Gaziosmanpaşa", "Esenler", "Silivri"
+      ],
+      "istanbul-anadolu": [
+        "Kadıköy", "Ataşehir", "Ümraniye", "Sarıyer", "Tuzla", "Maltepe", "Pendik",
+        "Kartal", "Adalar", "Çekmeköy", "Sancaktepe"
       ],
       "ankara": [
         "Çankaya", "Yenimahalle", "Altındağ", "Etimesgut", "Gölbaşı", "Kahramankazan", "Keçiören"
@@ -262,6 +266,9 @@ export default function Home() {
       ],
       "isparta": [
         "Merkez"
+      ],
+      "diyarbakır": [
+        "Yenişehir", "Kayapınar"
       ]
     };
     return districts[province as keyof typeof districts] || [];
@@ -410,6 +417,9 @@ export default function Home() {
                          <label className="block text-xs font-medium text-zinc-700 mb-1">
                            Evinizin bulunduğu şehri seçiniz (zorunlu) <span className="text-red-500">*</span>
                          </label>
+                         <p className="text-xs text-zinc-500 mb-2">
+                           Maalesef listemizde yer almayan il ve ilçelerden başvuru kabul edemiyoruz. Anlayışınız için teşekkür ederiz.
+                         </p>
                            <select
                              value={selectedProvince}
                              onChange={(e) => {
@@ -420,7 +430,8 @@ export default function Home() {
                              required
                            >
                              <option value="">Şehir seçiniz</option>
-                             <option value="istanbul">İstanbul</option>
+                             <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
+                             <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
                              <option value="ankara">Ankara</option>
                              <option value="izmir">İzmir</option>
                              <option value="antalya">Antalya</option>
@@ -448,7 +459,7 @@ export default function Home() {
                              <option value="balıkesir">Balıkesir</option>
                              <option value="kütahya">Kütahya</option>
                              <option value="isparta">Isparta</option>
-                             <option value="diger">Diğer</option>
+                             <option value="diyarbakır">Diyarbakır</option>
                            </select>
                          </div>
                          
@@ -550,6 +561,9 @@ export default function Home() {
                          <label className="block text-xs font-medium text-zinc-700 mb-2">
                            Evinizin bulunduğu şehri seçiniz (zorunlu) <span className="text-red-500">*</span>
                          </label>
+                         <p className="text-xs text-zinc-500 mb-2">
+                           Maalesef listemizde yer almayan il ve ilçelerden başvuru kabul edemiyoruz. Anlayışınız için teşekkür ederiz.
+                         </p>
                          <select
                            value={selectedCity}
                            onChange={(e) => setSelectedCity(e.target.value)}
@@ -557,7 +571,8 @@ export default function Home() {
                            required
                          >
                            <option value="">Şehir seçiniz</option>
-                           <option value="istanbul">İstanbul</option>
+                           <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
+                           <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
                            <option value="ankara">Ankara</option>
                            <option value="izmir">İzmir</option>
                            <option value="antalya">Antalya</option>
@@ -585,7 +600,7 @@ export default function Home() {
                            <option value="balıkesir">Balıkesir</option>
                            <option value="kütahya">Kütahya</option>
                            <option value="isparta">Isparta</option>
-                           <option value="diger">Diğer</option>
+                           <option value="diyarbakır">Diyarbakır</option>
                          </select>
                        </div>
                        
@@ -815,6 +830,9 @@ export default function Home() {
                     <label className="block text-xs font-medium text-zinc-700 mb-2">
                       İlanın bulunduğu şehir (zorunlu) <span className="text-red-500">*</span>
                     </label>
+                    <p className="text-xs text-zinc-500 mb-2">
+                      Maalesef listemizde yer almayan il ve ilçelerden başvuru kabul edemiyoruz. Anlayışınız için teşekkür ederiz.
+                    </p>
                     <select
                       value={selectedInterestCity}
                       onChange={(e) => setSelectedInterestCity(e.target.value)}
@@ -822,7 +840,8 @@ export default function Home() {
                       required
                     >
                       <option value="">Şehir seçiniz</option>
-                      <option value="istanbul">İstanbul</option>
+                      <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
+                      <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
                       <option value="ankara">Ankara</option>
                       <option value="izmir">İzmir</option>
                       <option value="antalya">Antalya</option>
@@ -850,7 +869,7 @@ export default function Home() {
                       <option value="balıkesir">Balıkesir</option>
                       <option value="kütahya">Kütahya</option>
                       <option value="isparta">Isparta</option>
-                      <option value="diger">Diğer</option>
+                      <option value="diyarbakır">Diyarbakır</option>
                     </select>
                   </div>
                   
