@@ -1015,7 +1015,7 @@ export default function Home() {
              <div className="border-t border-[#C40001]/10 pt-4">
                {/* İlçe Temsilcisi Şartları */}
                <div className="bg-gradient-to-r from-[#C40001]/5 to-[#C40001]/10 border border-[#C40001]/20 rounded-xl p-4 mb-6">
-                 <h3 className="text-sm font-bold text-[#C40001] mb-3 flex items-center gap-2">
+                 <h3 className="text-sm font-bold text-zinc-800 mb-3 flex items-center gap-2">
                    <span className="text-lg">🏙️</span>
                    İlçe Temsilcimiz Olmak İçin Gerekli Şartlar
                  </h3>
