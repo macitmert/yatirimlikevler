@@ -95,12 +95,34 @@ export default function Home() {
 
   const getWhatsAppMessage = (city: string) => {
     const messages = {
-      "istanbul-avrupa": "Merhaba, İstanbul Avrupa yakasındaki evimin detaylarını paylaşmak istiyorum",
-      "istanbul-anadolu": "Merhaba, İstanbul Anadolu yakasındaki evimin detaylarını paylaşmak istiyorum",
+      "istanbul": "Merhaba, İstanbul'daki evimin detaylarını paylaşmak istiyorum",
       "ankara": "Merhaba, Ankara'daki evimin detaylarını paylaşmak istiyorum",
       "izmir": "Merhaba, İzmir'deki evimin detaylarını paylaşmak istiyorum",
       "antalya": "Merhaba, Antalya'daki evimin detaylarını paylaşmak istiyorum",
+      "bursa": "Merhaba, Bursa'daki evimin detaylarını paylaşmak istiyorum",
+      "konya": "Merhaba, Konya'daki evimin detaylarını paylaşmak istiyorum",
+      "muğla": "Merhaba, Muğla'daki evimin detaylarını paylaşmak istiyorum",
+      "denizli": "Merhaba, Denizli'deki evimin detaylarını paylaşmak istiyorum",
+      "gaziantep": "Merhaba, Gaziantep'teki evimin detaylarını paylaşmak istiyorum",
+      "kocaeli": "Merhaba, Kocaeli'deki evimin detaylarını paylaşmak istiyorum",
+      "edirne": "Merhaba, Edirne'deki evimin detaylarını paylaşmak istiyorum",
+      "adana": "Merhaba, Adana'daki evimin detaylarını paylaşmak istiyorum",
+      "kayseri": "Merhaba, Kayseri'deki evimin detaylarını paylaşmak istiyorum",
+      "eskişehir": "Merhaba, Eskişehir'deki evimin detaylarını paylaşmak istiyorum",
+      "mersin": "Merhaba, Mersin'deki evimin detaylarını paylaşmak istiyorum",
+      "çanakkale": "Merhaba, Çanakkale'deki evimin detaylarını paylaşmak istiyorum",
+      "trabzon": "Merhaba, Trabzon'daki evimin detaylarını paylaşmak istiyorum",
+      "kırıkkale": "Merhaba, Kırıkkale'deki evimin detaylarını paylaşmak istiyorum",
       "samsun": "Merhaba, Samsun'daki evimin detaylarını paylaşmak istiyorum",
+      "erzurum": "Merhaba, Erzurum'daki evimin detaylarını paylaşmak istiyorum",
+      "manisa": "Merhaba, Manisa'daki evimin detaylarını paylaşmak istiyorum",
+      "tekirdağ": "Merhaba, Tekirdağ'daki evimin detaylarını paylaşmak istiyorum",
+      "sakarya": "Merhaba, Sakarya'daki evimin detaylarını paylaşmak istiyorum",
+      "aydın": "Merhaba, Aydın'daki evimin detaylarını paylaşmak istiyorum",
+      "bolu": "Merhaba, Bolu'daki evimin detaylarını paylaşmak istiyorum",
+      "balıkesir": "Merhaba, Balıkesir'deki evimin detaylarını paylaşmak istiyorum",
+      "kütahya": "Merhaba, Kütahya'daki evimin detaylarını paylaşmak istiyorum",
+      "isparta": "Merhaba, Isparta'daki evimin detaylarını paylaşmak istiyorum",
       "diger": "Merhaba, evimin detaylarını paylaşmak istiyorum"
     };
     return messages[city as keyof typeof messages] || messages.diger;
@@ -108,12 +130,34 @@ export default function Home() {
 
   const getInterestMessage = (city: string) => {
     const messages = {
-      "istanbul-avrupa": "Merhaba, İstanbul Avrupa yakasındaki bir ilanınızla ilgileniyorum",
-      "istanbul-anadolu": "Merhaba, İstanbul Anadolu yakasındaki bir ilanınızla ilgileniyorum",
+      "istanbul": "Merhaba, İstanbul'daki bir ilanınızla ilgileniyorum",
       "ankara": "Merhaba, Ankara'daki bir ilanınızla ilgileniyorum",
       "izmir": "Merhaba, İzmir'deki bir ilanınızla ilgileniyorum",
       "antalya": "Merhaba, Antalya'daki bir ilanınızla ilgileniyorum",
+      "bursa": "Merhaba, Bursa'daki bir ilanınızla ilgileniyorum",
+      "konya": "Merhaba, Konya'daki bir ilanınızla ilgileniyorum",
+      "muğla": "Merhaba, Muğla'daki bir ilanınızla ilgileniyorum",
+      "denizli": "Merhaba, Denizli'deki bir ilanınızla ilgileniyorum",
+      "gaziantep": "Merhaba, Gaziantep'teki bir ilanınızla ilgileniyorum",
+      "kocaeli": "Merhaba, Kocaeli'deki bir ilanınızla ilgileniyorum",
+      "edirne": "Merhaba, Edirne'deki bir ilanınızla ilgileniyorum",
+      "adana": "Merhaba, Adana'daki bir ilanınızla ilgileniyorum",
+      "kayseri": "Merhaba, Kayseri'deki bir ilanınızla ilgileniyorum",
+      "eskişehir": "Merhaba, Eskişehir'deki bir ilanınızla ilgileniyorum",
+      "mersin": "Merhaba, Mersin'deki bir ilanınızla ilgileniyorum",
+      "çanakkale": "Merhaba, Çanakkale'deki bir ilanınızla ilgileniyorum",
+      "trabzon": "Merhaba, Trabzon'daki bir ilanınızla ilgileniyorum",
+      "kırıkkale": "Merhaba, Kırıkkale'deki bir ilanınızla ilgileniyorum",
       "samsun": "Merhaba, Samsun'daki bir ilanınızla ilgileniyorum",
+      "erzurum": "Merhaba, Erzurum'daki bir ilanınızla ilgileniyorum",
+      "manisa": "Merhaba, Manisa'daki bir ilanınızla ilgileniyorum",
+      "tekirdağ": "Merhaba, Tekirdağ'daki bir ilanınızla ilgileniyorum",
+      "sakarya": "Merhaba, Sakarya'daki bir ilanınızla ilgileniyorum",
+      "aydın": "Merhaba, Aydın'daki bir ilanınızla ilgileniyorum",
+      "bolu": "Merhaba, Bolu'daki bir ilanınızla ilgileniyorum",
+      "balıkesir": "Merhaba, Balıkesir'deki bir ilanınızla ilgileniyorum",
+      "kütahya": "Merhaba, Kütahya'daki bir ilanınızla ilgileniyorum",
+      "isparta": "Merhaba, Isparta'daki bir ilanınızla ilgileniyorum",
       "diger": "Merhaba, ilanlarınızdan biriyle ilgileniyorum"
     };
     return messages[city as keyof typeof messages] || messages.diger;
@@ -130,37 +174,94 @@ export default function Home() {
 
   const getDistricts = (province: string) => {
     const districts = {
-      "istanbul-avrupa": [
-        "Arnavutköy", "Avcılar", "Bağcılar", "Bahçelievler", "Bakırköy", "Başakşehir",
-        "Bayrampaşa", "Beşiktaş", "Beylikdüzü", "Beyoğlu", "Büyükçekmece", "Çatalca",
-        "Esenler", "Esenyurt", "Eyüpsultan", "Fatih", "Gaziosmanpaşa", "Güngören",
-        "Kâğıthane", "Küçükçekmece", "Sarıyer", "Silivri", "Sultangazi", "Şişli", "Zeytinburnu"
-      ],
-      "istanbul-anadolu": [
-        "Adalar", "Ataşehir", "Beykoz", "Çekmeköy", "Kadıköy", "Kartal", "Maltepe",
-        "Pendik", "Sancaktepe", "Sultanbeyli", "Şile", "Tuzla", "Ümraniye", "Üsküdar"
+      "istanbul": [
+        "Şişli", "Beşiktaş", "Kadıköy", "Bakırköy", "Ataşehir", "Başakşehir", "Beyoğlu",
+        "Ümraniye", "Sarıyer", "Tuzla", "Maltepe", "Beylikdüzü", "Pendik", "Esenyurt",
+        "Bahçelievler", "Zeytinburnu", "Bağcılar", "Kartal", "Bayrampaşa", "Kağıthane",
+        "Küçükçekmece", "Güngören", "Büyükçekmece", "Eyüpsultan", "Adalar", "Avcılar",
+        "Gaziosmanpaşa", "Çekmeköy", "Esenler", "Silivri", "Sancaktepe"
       ],
       "ankara": [
-        "Akyurt", "Altındağ", "Ayaş", "Bala", "Beypazarı", "Çamlıdere", "Çankaya",
-        "Çubuk", "Elmadağ", "Etimesgut", "Evren", "Gölbaşı", "Güdül", "Haymana",
-        "Kalecik", "Kazan", "Keçiören", "Kızılcahamam", "Mamak", "Nallıhan", "Polatlı",
-        "Pursaklar", "Sincan", "Şereflikoçhisar", "Yenimahalle"
+        "Çankaya", "Yenimahalle", "Altındağ", "Etimesgut", "Gölbaşı", "Kahramankazan", "Keçiören"
       ],
       "izmir": [
-        "Aliağa", "Balçova", "Bayındır", "Bayraklı", "Bergama", "Beydağ", "Bornova",
-        "Buca", "Çeşme", "Çiğli", "Dikili", "Foça", "Gaziemir", "Güzelbahçe", "Karabağlar",
-        "Karaburun", "Karşıyaka", "Kemalpaşa", "Kınık", "Kiraz", "Konak", "Menderes",
-        "Menemen", "Narlıdere", "Ödemiş", "Seferihisar", "Selçuk", "Tire", "Torbalı", "Urla"
+        "Konak", "Bornova", "Balçova", "Karşıyaka", "Çiğli", "Gaziemir", "Çeşme",
+        "Güzelbahçe", "Narlıdere", "Urla", "Bayraklı", "Buca"
       ],
       "antalya": [
-        "Akseki", "Aksu", "Alanya", "Demre", "Döşemealtı", "Elmalı", "Finike",
-        "Gazipaşa", "Gündoğmuş", "İbradı", "Kaş", "Kemer", "Kepez", "Konyaaltı",
-        "Korkuteli", "Kumluca", "Manavgat", "Muratpaşa", "Serik"
+        "Muratpaşa", "Konyaaltı", "Alanya", "Marmaris", "Manavgat", "Kemer", "Kepez", "Döşemealtı"
+      ],
+      "bursa": [
+        "Nilüfer", "Osmangazi"
+      ],
+      "konya": [
+        "Selçuklu", "Karatay"
+      ],
+      "muğla": [
+        "Bodrum", "Menteşe", "Fethiye"
+      ],
+      "denizli": [
+        "Merkezefendi", "Pamukkale"
+      ],
+      "gaziantep": [
+        "Şehitkamil"
+      ],
+      "kocaeli": [
+        "Gebze", "İzmit", "Başiskele"
+      ],
+      "edirne": [
+        "Merkez"
+      ],
+      "adana": [
+        "Seyhan", "Çukurova"
+      ],
+      "kayseri": [
+        "Melikgazi", "Kocasinan"
+      ],
+      "eskişehir": [
+        "Odunpazarı", "Tepebaşı"
+      ],
+      "mersin": [
+        "Yenişehir"
+      ],
+      "çanakkale": [
+        "Merkez", "Bozcaada"
+      ],
+      "trabzon": [
+        "Ortahisar"
+      ],
+      "kırıkkale": [
+        "Yahşihan"
       ],
       "samsun": [
-        "19 Mayıs", "Alaçam", "Asarcık", "Atakum", "Ayvacık", "Bafra", "Canik",
-        "Çarşamba", "Havza", "İlkadım", "Kavak", "Ladik", "Ondokuzmayıs", "Salıpazarı",
-        "Tekkeköy", "Terme", "Vezirköprü", "Yakakent"
+        "Atakum", "İlkadım"
+      ],
+      "erzurum": [
+        "Yakutiye"
+      ],
+      "manisa": [
+        "Yunusemre"
+      ],
+      "tekirdağ": [
+        "Çorlu", "Süleymanpaşa"
+      ],
+      "sakarya": [
+        "Serdivan", "Adapazarı"
+      ],
+      "aydın": [
+        "Efeler", "Kuşadası"
+      ],
+      "bolu": [
+        "Merkez"
+      ],
+      "balıkesir": [
+        "Altıeylül"
+      ],
+      "kütahya": [
+        "Merkez"
+      ],
+      "isparta": [
+        "Merkez"
       ]
     };
     return districts[province as keyof typeof districts] || [];
@@ -319,12 +420,34 @@ export default function Home() {
                              required
                            >
                              <option value="">Şehir seçiniz</option>
-                             <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
-                             <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
+                             <option value="istanbul">İstanbul</option>
                              <option value="ankara">Ankara</option>
                              <option value="izmir">İzmir</option>
                              <option value="antalya">Antalya</option>
+                             <option value="bursa">Bursa</option>
+                             <option value="konya">Konya</option>
+                             <option value="muğla">Muğla</option>
+                             <option value="denizli">Denizli</option>
+                             <option value="gaziantep">Gaziantep</option>
+                             <option value="kocaeli">Kocaeli</option>
+                             <option value="edirne">Edirne</option>
+                             <option value="adana">Adana</option>
+                             <option value="kayseri">Kayseri</option>
+                             <option value="eskişehir">Eskişehir</option>
+                             <option value="mersin">Mersin</option>
+                             <option value="çanakkale">Çanakkale</option>
+                             <option value="trabzon">Trabzon</option>
+                             <option value="kırıkkale">Kırıkkale</option>
                              <option value="samsun">Samsun</option>
+                             <option value="erzurum">Erzurum</option>
+                             <option value="manisa">Manisa</option>
+                             <option value="tekirdağ">Tekirdağ</option>
+                             <option value="sakarya">Sakarya</option>
+                             <option value="aydın">Aydın</option>
+                             <option value="bolu">Bolu</option>
+                             <option value="balıkesir">Balıkesir</option>
+                             <option value="kütahya">Kütahya</option>
+                             <option value="isparta">Isparta</option>
                              <option value="diger">Diğer</option>
                            </select>
                          </div>
@@ -434,12 +557,34 @@ export default function Home() {
                            required
                          >
                            <option value="">Şehir seçiniz</option>
-                           <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
-                           <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
+                           <option value="istanbul">İstanbul</option>
                            <option value="ankara">Ankara</option>
                            <option value="izmir">İzmir</option>
                            <option value="antalya">Antalya</option>
+                           <option value="bursa">Bursa</option>
+                           <option value="konya">Konya</option>
+                           <option value="muğla">Muğla</option>
+                           <option value="denizli">Denizli</option>
+                           <option value="gaziantep">Gaziantep</option>
+                           <option value="kocaeli">Kocaeli</option>
+                           <option value="edirne">Edirne</option>
+                           <option value="adana">Adana</option>
+                           <option value="kayseri">Kayseri</option>
+                           <option value="eskişehir">Eskişehir</option>
+                           <option value="mersin">Mersin</option>
+                           <option value="çanakkale">Çanakkale</option>
+                           <option value="trabzon">Trabzon</option>
+                           <option value="kırıkkale">Kırıkkale</option>
                            <option value="samsun">Samsun</option>
+                           <option value="erzurum">Erzurum</option>
+                           <option value="manisa">Manisa</option>
+                           <option value="tekirdağ">Tekirdağ</option>
+                           <option value="sakarya">Sakarya</option>
+                           <option value="aydın">Aydın</option>
+                           <option value="bolu">Bolu</option>
+                           <option value="balıkesir">Balıkesir</option>
+                           <option value="kütahya">Kütahya</option>
+                           <option value="isparta">Isparta</option>
                            <option value="diger">Diğer</option>
                          </select>
                        </div>
@@ -677,12 +822,34 @@ export default function Home() {
                       required
                     >
                       <option value="">Şehir seçiniz</option>
-                      <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
-                      <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
+                      <option value="istanbul">İstanbul</option>
                       <option value="ankara">Ankara</option>
                       <option value="izmir">İzmir</option>
                       <option value="antalya">Antalya</option>
+                      <option value="bursa">Bursa</option>
+                      <option value="konya">Konya</option>
+                      <option value="muğla">Muğla</option>
+                      <option value="denizli">Denizli</option>
+                      <option value="gaziantep">Gaziantep</option>
+                      <option value="kocaeli">Kocaeli</option>
+                      <option value="edirne">Edirne</option>
+                      <option value="adana">Adana</option>
+                      <option value="kayseri">Kayseri</option>
+                      <option value="eskişehir">Eskişehir</option>
+                      <option value="mersin">Mersin</option>
+                      <option value="çanakkale">Çanakkale</option>
+                      <option value="trabzon">Trabzon</option>
+                      <option value="kırıkkale">Kırıkkale</option>
                       <option value="samsun">Samsun</option>
+                      <option value="erzurum">Erzurum</option>
+                      <option value="manisa">Manisa</option>
+                      <option value="tekirdağ">Tekirdağ</option>
+                      <option value="sakarya">Sakarya</option>
+                      <option value="aydın">Aydın</option>
+                      <option value="bolu">Bolu</option>
+                      <option value="balıkesir">Balıkesir</option>
+                      <option value="kütahya">Kütahya</option>
+                      <option value="isparta">Isparta</option>
                       <option value="diger">Diğer</option>
                     </select>
                   </div>
