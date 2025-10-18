@@ -410,39 +410,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* İlçe Temsilcisi Şartları */}
-      <section className="px-6 py-4">
-        <div className="max-w-md md:max-w-2xl lg:max-w-2xl mx-auto">
-          <div className="bg-gradient-to-r from-[#C40001]/5 to-[#C40001]/10 border border-[#C40001]/20 rounded-2xl p-6">
-            <h2 className="text-lg font-bold text-[#C40001] mb-4 flex items-center gap-2">
-              <span className="text-xl">🏙️</span>
-              İlçe Temsilcimiz Olmak İçin Gerekli Şartlar
-            </h2>
-            <ul className="space-y-2 text-sm text-zinc-700">
-              <li className="flex items-start gap-2">
-                <span className="text-[#C40001] mt-1">•</span>
-                <span>Geçerli Taşınmaz Ticareti Yetki Belgesi'ne sahip olmak.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#C40001] mt-1">•</span>
-                <span>Aktif bir emlak ofisine sahip olmak (fiziksel adres, vergi kaydı).</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#C40001] mt-1">•</span>
-                <span>İlçede aktif şekilde konut satışı yapıyor olmak.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#C40001] mt-1">•</span>
-                <span>Gösterim, tapu ve satış süreçlerini yönetebilecek saha ekibi bulunması.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#C40001] mt-1">•</span>
-                <span>Yatırımlık Evler marka ve süreç kurallarına tam uyum taahhüdü.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
 
       {/* All Cards */}
       <section className="px-6 py-8">
@@ -1046,6 +1013,21 @@ export default function Home() {
          {openDetails.temsilci && (
            <div className="px-6 pb-6">
              <div className="border-t border-[#C40001]/10 pt-4">
+               {/* İlçe Temsilcisi Şartları */}
+               <div className="bg-gradient-to-r from-[#C40001]/5 to-[#C40001]/10 border border-[#C40001]/20 rounded-xl p-4 mb-6">
+                 <h3 className="text-sm font-bold text-[#C40001] mb-3 flex items-center gap-2">
+                   <span className="text-lg">🏙️</span>
+                   İlçe Temsilcimiz Olmak İçin Gerekli Şartlar
+                 </h3>
+                 <div className="text-xs text-zinc-700 space-y-1">
+                   <p>• Geçerli Taşınmaz Ticareti Yetki Belgesi'ne sahip olmak.</p>
+                   <p>• Aktif bir emlak ofisine sahip olmak (fiziksel adres, vergi kaydı).</p>
+                   <p>• İlçede aktif şekilde konut satışı yapıyor olmak.</p>
+                   <p>• Gösterim, tapu ve satış süreçlerini yönetebilecek saha ekibi bulunması.</p>
+                   <p>• Yatırımlık Evler marka ve süreç kurallarına tam uyum taahhüdü.</p>
+                 </div>
+               </div>
+               
                {temsilciSuccess ? (
                  <div className="text-center py-8">
                    <div className="text-green-600 text-4xl mb-4">✅</div>
