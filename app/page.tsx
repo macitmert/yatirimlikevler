@@ -206,7 +206,7 @@ export default function Home() {
             >
               <span className="flex items-center gap-3">
                 <span className="text-2xl">🏠</span>
-                <span className="text-lg">Evini Bizimle Hızlı Sat</span>
+                <span className="text-lg">Evimi Satmak İstiyorum</span>
               </span>
               <span className={`transform transition-transform duration-200 ${openDetails.satici ? 'rotate-180' : ''}`}>
                 ▼
@@ -565,7 +565,7 @@ export default function Home() {
             >
               <span className="flex items-center gap-3">
                 <span className="text-2xl">👥</span>
-                <span className="text-lg">Yatırımcı Gruplarına Katıl</span>
+                <span className="text-lg">Yatırımlık Ev Arıyorum</span>
               </span>
               <span className={`transform transition-transform duration-200 ${openDetails.groups ? 'rotate-180' : ''}`}>
                 ▼
