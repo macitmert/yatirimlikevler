@@ -14,6 +14,7 @@ export default function Home() {
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [whatsappAccepted, setWhatsappAccepted] = useState(false);
 
   const countryCodes = [
     { code: "+90", country: "Türkiye", maxLength: 10 },
@@ -415,16 +416,29 @@ export default function Home() {
                          </select>
                        </div>
                        
+                       {/* Onay Kutucuğu */}
+                       <div className="mb-3">
+                         <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
+                           <input
+                             type="checkbox"
+                             checked={whatsappAccepted}
+                             onChange={(e) => setWhatsappAccepted(e.target.checked)}
+                             className="mt-0.5"
+                           />
+                           <span>Evimin satışı konusunda Yatırımlık Evler'e 3 ay süreyle tam yetki vermeyi ve bu süreçte evimin satılması durumunda %2+KDV'lik bir satış bedeli ödemeyi kabul ediyorum.</span>
+                         </label>
+                       </div>
+                       
                        <a 
-                         href={selectedCity ? `https://wa.me/905407208080?text=${encodeURIComponent(getWhatsAppMessage(selectedCity))}` : "#"}
+                         href={selectedCity && whatsappAccepted ? `https://wa.me/905407208080?text=${encodeURIComponent(getWhatsAppMessage(selectedCity))}` : "#"}
                          target="_blank"
                          rel="noopener noreferrer"
                          className={`block w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm flex items-center justify-center gap-2 ${
-                           selectedCity 
+                           selectedCity && whatsappAccepted
                              ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
                              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                          }`}
-                         onClick={!selectedCity ? (e) => e.preventDefault() : undefined}
+                         onClick={!(selectedCity && whatsappAccepted) ? (e) => e.preventDefault() : undefined}
                        >
                          <span>📱</span>
                          WhatsApp'tan Gönder
@@ -433,6 +447,11 @@ export default function Home() {
                        {!selectedCity && (
                          <p className="text-xs text-red-600 mt-2">
                            ⚠️ Lütfen önce şehir seçimi yapın
+                         </p>
+                       )}
+                       {selectedCity && !whatsappAccepted && (
+                         <p className="text-xs text-red-600 mt-2">
+                           ⚠️ Lütfen şartları kabul etmek için kutucuğu işaretleyin
                          </p>
                        )}
                      </div>
