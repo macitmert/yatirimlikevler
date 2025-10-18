@@ -17,6 +17,7 @@ export default function Home() {
   const [whatsappAccepted, setWhatsappAccepted] = useState(false);
   const [selectedInterestCity, setSelectedInterestCity] = useState("");
   const [interestAccepted, setInterestAccepted] = useState(false);
+  const [selectedPosition, setSelectedPosition] = useState("");
 
   const countryCodes = [
     { code: "+90", country: "Türkiye", maxLength: 10 },
@@ -113,6 +114,15 @@ export default function Home() {
       "diger": "Merhaba, ilanlarınızdan biriyle ilgileniyorum"
     };
     return messages[city as keyof typeof messages] || messages.diger;
+  };
+
+  const getCareerMessage = (position: string) => {
+    const messages = {
+      "ofis-yoneticisi": "Merhabalar, Ofis yöneticisi pozisyonuna başvurmak istiyorum. CV'im ektedir. Saygılarımla.",
+      "ofis-yoneticisi-yardimcisi": "Merhabalar, Ofis yöneticisi yardımcısı pozisyonuna başvurmak istiyorum. CV'im ektedir. Saygılarımla.",
+      "gayrimenkul-danismani": "Merhabalar, Gayrimenkul danışmanı pozisyonuna başvurmak istiyorum. CV'im ektedir. Saygılarımla."
+    };
+    return messages[position as keyof typeof messages] || "";
   };
 
   const getDistricts = (province: string) => {
@@ -712,6 +722,65 @@ export default function Home() {
                       ⚠️ Lütfen şartları kabul etmek için kutucuğu işaretleyin
                     </p>
                   )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Kariyer */}
+          <div className="border border-[#E7E9EC] rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 bg-white">
+            <button
+              onClick={() => toggleDetail('kariyer')}
+              className={`w-full text-left p-6 font-medium transition-colors duration-200 flex items-center justify-between ${openDetails.kariyer ? 'text-[#C40001]' : 'text-zinc-700 hover:text-[#C40001]'}`}
+            >
+              <span className="flex items-center gap-3">
+                <span className="text-2xl">💼</span>
+                <span className="text-lg">Kariyer</span>
+              </span>
+              <span className={`transform transition-transform duration-200 ${openDetails.kariyer ? 'rotate-180' : ''}`}>
+                ▼
+              </span>
+            </button>
+            {openDetails.kariyer && (
+              <div className="px-6 pb-6">
+                <div className="border-t border-[#C40001]/10 pt-4">
+                  <div className="text-sm text-zinc-600 mb-6 space-y-3">
+                    <p>
+                      Türkiye'nin ilk premium konut platformunda, gayrimenkul danışmanı veya ofis yöneticisi olarak yer almak ister misin?
+                    </p>
+                    <p>
+                      Eğer neyi hedeflediğimizi anlıyor, vizyonumuzu paylaşıyor ve satış konusunda kendine güveniyorsan, özgeçmişini bizimle paylaş. Kazanırken büyüyen bir ailenin parçası ol.
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {/* Ofis Yöneticisi */}
+                    <a 
+                      href={`mailto:apply@yatirimlikevler.com?subject=Ofis Yöneticisi Başvurusu&body=${encodeURIComponent(getCareerMessage('ofis-yoneticisi'))}`}
+                      className="block bg-white border border-[#E7E9EC] text-zinc-700 rounded-xl p-4 hover:bg-gray-50 hover:border-[#C40001] transition-all duration-300 shadow-sm hover:shadow-md"
+                    >
+                      <div className="font-medium text-sm mb-1">1) Ofis yöneticisi pozisyonuna başvur</div>
+                      <div className="text-xs text-zinc-500">Yalnızca gayrimenkul sektöründe 10 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
+                    </a>
+                    
+                    {/* Ofis Yöneticisi Yardımcısı */}
+                    <a 
+                      href={`mailto:apply@yatirimlikevler.com?subject=Ofis Yöneticisi Yardımcısı Başvurusu&body=${encodeURIComponent(getCareerMessage('ofis-yoneticisi-yardimcisi'))}`}
+                      className="block bg-white border border-[#E7E9EC] text-zinc-700 rounded-xl p-4 hover:bg-gray-50 hover:border-[#C40001] transition-all duration-300 shadow-sm hover:shadow-md"
+                    >
+                      <div className="font-medium text-sm mb-1">2) Ofis yöneticisi yardımcısı pozisyonuna başvur</div>
+                      <div className="text-xs text-zinc-500">Yalnızca gayrimenkul sektöründe 5 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
+                    </a>
+                    
+                    {/* Gayrimenkul Danışmanı */}
+                    <a 
+                      href={`mailto:apply@yatirimlikevler.com?subject=Gayrimenkul Danışmanı Başvurusu&body=${encodeURIComponent(getCareerMessage('gayrimenkul-danismani'))}`}
+                      className="block bg-white border border-[#E7E9EC] text-zinc-700 rounded-xl p-4 hover:bg-gray-50 hover:border-[#C40001] transition-all duration-300 shadow-sm hover:shadow-md"
+                    >
+                      <div className="font-medium text-sm mb-1">3) Gayrimenkul danışmanı pozisyonuna başvur</div>
+                      <div className="text-xs text-zinc-500">Yalnızca gayrimenkul sektöründe 2 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
+                    </a>
+                  </div>
                 </div>
               </div>
             )}
