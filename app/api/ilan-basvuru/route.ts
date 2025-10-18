@@ -114,7 +114,7 @@ export async function POST(req: NextRequest) {
         <li><b>Ad Soyad:</b> ${payload.firstName} ${payload.lastName}</li>
         <li><b>Telefon:</b> ${fullPhone}</li>
         <li><b>Konum:</b> ${locationText}</li>
-        <li><b>Sahibinden İlan No:</b> <a href="https://www.sahibinden.com/ilan/detay/${payload.ilanNo}" target="_blank">${payload.ilanNo}</a></li>
+        <li><b>Sahibinden İlan No:</b> <a href="https://www.sahibinden.com/ilan/${payload.ilanNo}" target="_blank">${payload.ilanNo}</a></li>
         <li><b>Onay:</b> ${payload.ilanNoAccepted}</li>
       </ul>
       <hr />
