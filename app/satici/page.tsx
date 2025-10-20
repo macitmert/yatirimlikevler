@@ -489,9 +489,10 @@ export default function Satici() {
               className="w-full border rounded-lg p-3"
             >
               <option value="">İl Seçin</option>
-              <option>İstanbul</option><option>Ankara</option><option>İzmir</option>
-              <option>Samsun</option><option>Trabzon</option><option>Sinop</option>
-              <option>Diyarbakır</option><option>Van</option><option>Erzurum</option><option>Denizli</option>
+              <option>İstanbul (Avrupa)</option><option>İstanbul (Anadolu)</option><option>Ankara</option><option>İzmir</option>
+              <option>Antalya</option><option>Bursa</option><option>Konya</option><option>Muğla</option>
+              <option>Mersin</option><option>Adana</option><option>Samsun</option><option>Trabzon</option>
+              <option>Gaziantep</option><option>Diyarbakır</option><option>Erzurum</option><option>Van</option>
             </select>
 
             <input
