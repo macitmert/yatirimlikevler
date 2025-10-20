@@ -473,28 +473,14 @@ export default function Home() {
                              <option value="bursa">Bursa</option>
                              <option value="konya">Konya</option>
                              <option value="muğla">Muğla</option>
-                             <option value="denizli">Denizli</option>
-                             <option value="gaziantep">Gaziantep</option>
-                             <option value="kocaeli">Kocaeli</option>
-                             <option value="edirne">Edirne</option>
-                             <option value="adana">Adana</option>
-                             <option value="kayseri">Kayseri</option>
-                             <option value="eskişehir">Eskişehir</option>
                              <option value="mersin">Mersin</option>
-                             <option value="çanakkale">Çanakkale</option>
-                             <option value="trabzon">Trabzon</option>
-                             <option value="kırıkkale">Kırıkkale</option>
+                             <option value="adana">Adana</option>
                              <option value="samsun">Samsun</option>
-                             <option value="erzurum">Erzurum</option>
-                             <option value="manisa">Manisa</option>
-                             <option value="tekirdağ">Tekirdağ</option>
-                             <option value="sakarya">Sakarya</option>
-                             <option value="aydın">Aydın</option>
-                             <option value="bolu">Bolu</option>
-                             <option value="balıkesir">Balıkesir</option>
-                             <option value="kütahya">Kütahya</option>
-                             <option value="isparta">Isparta</option>
+                             <option value="trabzon">Trabzon</option>
+                             <option value="gaziantep">Gaziantep</option>
                              <option value="diyarbakır">Diyarbakır</option>
+                             <option value="erzurum">Erzurum</option>
+                             <option value="van">Van</option>
                            </select>
                          </div>
                          
