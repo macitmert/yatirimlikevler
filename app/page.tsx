@@ -126,20 +126,34 @@ export default function Home() {
     const messages = {
       "istanbul-avrupa": "Merhaba, İstanbul Avrupa yakasındaki evimin detaylarını paylaşmak istiyorum",
       "istanbul-anadolu": "Merhaba, İstanbul Anadolu yakasındaki evimin detaylarını paylaşmak istiyorum",
-      "bursa": "Merhaba, Bursa'daki evimin detaylarını paylaşmak istiyorum",
       "ankara": "Merhaba, Ankara'daki evimin detaylarını paylaşmak istiyorum",
-      "konya": "Merhaba, Konya'daki evimin detaylarını paylaşmak istiyorum",
       "izmir": "Merhaba, İzmir'deki evimin detaylarını paylaşmak istiyorum",
-      "muğla": "Merhaba, Muğla'daki evimin detaylarını paylaşmak istiyorum",
       "antalya": "Merhaba, Antalya'daki evimin detaylarını paylaşmak istiyorum",
-      "mersin": "Merhaba, Mersin'deki evimin detaylarını paylaşmak istiyorum",
-      "adana": "Merhaba, Adana'daki evimin detaylarını paylaşmak istiyorum",
-      "samsun": "Merhaba, Samsun'daki evimin detaylarını paylaşmak istiyorum",
-      "trabzon": "Merhaba, Trabzon'daki evimin detaylarını paylaşmak istiyorum",
+      "bursa": "Merhaba, Bursa'daki evimin detaylarını paylaşmak istiyorum",
+      "konya": "Merhaba, Konya'daki evimin detaylarını paylaşmak istiyorum",
+      "muğla": "Merhaba, Muğla'daki evimin detaylarını paylaşmak istiyorum",
+      "denizli": "Merhaba, Denizli'deki evimin detaylarını paylaşmak istiyorum",
       "gaziantep": "Merhaba, Gaziantep'teki evimin detaylarını paylaşmak istiyorum",
-      "diyarbakır": "Merhaba, Diyarbakır'daki evimin detaylarını paylaşmak istiyorum",
+      "kocaeli": "Merhaba, Kocaeli'deki evimin detaylarını paylaşmak istiyorum",
+      "edirne": "Merhaba, Edirne'deki evimin detaylarını paylaşmak istiyorum",
+      "adana": "Merhaba, Adana'daki evimin detaylarını paylaşmak istiyorum",
+      "kayseri": "Merhaba, Kayseri'deki evimin detaylarını paylaşmak istiyorum",
+      "eskişehir": "Merhaba, Eskişehir'deki evimin detaylarını paylaşmak istiyorum",
+      "mersin": "Merhaba, Mersin'deki evimin detaylarını paylaşmak istiyorum",
+      "çanakkale": "Merhaba, Çanakkale'deki evimin detaylarını paylaşmak istiyorum",
+      "trabzon": "Merhaba, Trabzon'daki evimin detaylarını paylaşmak istiyorum",
+      "kırıkkale": "Merhaba, Kırıkkale'deki evimin detaylarını paylaşmak istiyorum",
+      "samsun": "Merhaba, Samsun'daki evimin detaylarını paylaşmak istiyorum",
       "erzurum": "Merhaba, Erzurum'daki evimin detaylarını paylaşmak istiyorum",
-      "van": "Merhaba, Van'daki evimin detaylarını paylaşmak istiyorum"
+      "manisa": "Merhaba, Manisa'daki evimin detaylarını paylaşmak istiyorum",
+      "tekirdağ": "Merhaba, Tekirdağ'daki evimin detaylarını paylaşmak istiyorum",
+      "sakarya": "Merhaba, Sakarya'daki evimin detaylarını paylaşmak istiyorum",
+      "aydın": "Merhaba, Aydın'daki evimin detaylarını paylaşmak istiyorum",
+      "bolu": "Merhaba, Bolu'daki evimin detaylarını paylaşmak istiyorum",
+      "balıkesir": "Merhaba, Balıkesir'deki evimin detaylarını paylaşmak istiyorum",
+      "kütahya": "Merhaba, Kütahya'daki evimin detaylarını paylaşmak istiyorum",
+      "isparta": "Merhaba, Isparta'daki evimin detaylarını paylaşmak istiyorum",
+      "diyarbakır": "Merhaba, Diyarbakır'daki evimin detaylarını paylaşmak istiyorum"
     };
     return messages[city as keyof typeof messages] || "Merhaba, evimin detaylarını paylaşmak istiyorum";
   };
@@ -148,20 +162,34 @@ export default function Home() {
     const messages = {
       "istanbul-avrupa": "Merhaba, İstanbul Avrupa yakasındaki bir ilanınızla ilgileniyorum",
       "istanbul-anadolu": "Merhaba, İstanbul Anadolu yakasındaki bir ilanınızla ilgileniyorum",
-      "bursa": "Merhaba, Bursa'daki bir ilanınızla ilgileniyorum",
       "ankara": "Merhaba, Ankara'daki bir ilanınızla ilgileniyorum",
-      "konya": "Merhaba, Konya'daki bir ilanınızla ilgileniyorum",
       "izmir": "Merhaba, İzmir'deki bir ilanınızla ilgileniyorum",
-      "muğla": "Merhaba, Muğla'daki bir ilanınızla ilgileniyorum",
       "antalya": "Merhaba, Antalya'daki bir ilanınızla ilgileniyorum",
-      "mersin": "Merhaba, Mersin'deki bir ilanınızla ilgileniyorum",
-      "adana": "Merhaba, Adana'daki bir ilanınızla ilgileniyorum",
-      "samsun": "Merhaba, Samsun'daki bir ilanınızla ilgileniyorum",
-      "trabzon": "Merhaba, Trabzon'daki bir ilanınızla ilgileniyorum",
+      "bursa": "Merhaba, Bursa'daki bir ilanınızla ilgileniyorum",
+      "konya": "Merhaba, Konya'daki bir ilanınızla ilgileniyorum",
+      "muğla": "Merhaba, Muğla'daki bir ilanınızla ilgileniyorum",
+      "denizli": "Merhaba, Denizli'deki bir ilanınızla ilgileniyorum",
       "gaziantep": "Merhaba, Gaziantep'teki bir ilanınızla ilgileniyorum",
-      "diyarbakır": "Merhaba, Diyarbakır'daki bir ilanınızla ilgileniyorum",
+      "kocaeli": "Merhaba, Kocaeli'deki bir ilanınızla ilgileniyorum",
+      "edirne": "Merhaba, Edirne'deki bir ilanınızla ilgileniyorum",
+      "adana": "Merhaba, Adana'daki bir ilanınızla ilgileniyorum",
+      "kayseri": "Merhaba, Kayseri'deki bir ilanınızla ilgileniyorum",
+      "eskişehir": "Merhaba, Eskişehir'deki bir ilanınızla ilgileniyorum",
+      "mersin": "Merhaba, Mersin'deki bir ilanınızla ilgileniyorum",
+      "çanakkale": "Merhaba, Çanakkale'deki bir ilanınızla ilgileniyorum",
+      "trabzon": "Merhaba, Trabzon'daki bir ilanınızla ilgileniyorum",
+      "kırıkkale": "Merhaba, Kırıkkale'deki bir ilanınızla ilgileniyorum",
+      "samsun": "Merhaba, Samsun'daki bir ilanınızla ilgileniyorum",
       "erzurum": "Merhaba, Erzurum'daki bir ilanınızla ilgileniyorum",
-      "van": "Merhaba, Van'daki bir ilanınızla ilgileniyorum"
+      "manisa": "Merhaba, Manisa'daki bir ilanınızla ilgileniyorum",
+      "tekirdağ": "Merhaba, Tekirdağ'daki bir ilanınızla ilgileniyorum",
+      "sakarya": "Merhaba, Sakarya'daki bir ilanınızla ilgileniyorum",
+      "aydın": "Merhaba, Aydın'daki bir ilanınızla ilgileniyorum",
+      "bolu": "Merhaba, Bolu'daki bir ilanınızla ilgileniyorum",
+      "balıkesir": "Merhaba, Balıkesir'deki bir ilanınızla ilgileniyorum",
+      "kütahya": "Merhaba, Kütahya'daki bir ilanınızla ilgileniyorum",
+      "isparta": "Merhaba, Isparta'daki bir ilanınızla ilgileniyorum",
+      "diyarbakır": "Merhaba, Diyarbakır'daki bir ilanınızla ilgileniyorum"
     };
     return messages[city as keyof typeof messages] || "Merhaba, ilanlarınızdan biriyle ilgileniyorum";
   };
@@ -177,6 +205,7 @@ export default function Home() {
 
   const getDistricts = (province: string) => {
     const districts = {
+      // MARMARA BÖLGESİ
       "istanbul-anadolu": [
         "Üsküdar", "Ataşehir", "Kadıköy", "Maltepe", "Kartal", "Pendik", "Ümraniye", "Beykoz"
       ],
@@ -186,18 +215,24 @@ export default function Home() {
       "bursa": [
         "Nilüfer", "Osmangazi"
       ],
+      
+      // İÇ ANADOLU BÖLGESİ
       "ankara": [
         "Çankaya", "Yenimahalle", "Etimesgut", "Gölbaşı"
       ],
       "konya": [
         "Selçuklu", "Meram"
       ],
+      
+      // EGE BÖLGESİ
       "izmir": [
         "Konak", "Karşıyaka", "Bornova", "Bayraklı", "Balçova", "Narlıdere", "Güzelbahçe", "Urla", "Çeşme"
       ],
       "muğla": [
         "Bodrum", "Fethiye", "Marmaris"
       ],
+      
+      // AKDENİZ BÖLGESİ
       "antalya": [
         "Muratpaşa", "Konyaaltı", "Kepez", "Alanya", "Kemer"
       ],
@@ -207,18 +242,24 @@ export default function Home() {
       "adana": [
         "Çukurova", "Seyhan"
       ],
+      
+      // KARADENİZ BÖLGESİ
       "samsun": [
         "Atakum"
       ],
       "trabzon": [
         "Ortahisar"
       ],
+      
+      // GÜNEYDOĞU ANADOLU BÖLGESİ
       "gaziantep": [
         "Şehitkamil"
       ],
       "diyarbakır": [
         "Kayapınar"
       ],
+      
+      // DOĞU ANADOLU BÖLGESİ
       "erzurum": [
         "Yakutiye"
       ],
