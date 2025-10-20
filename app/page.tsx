@@ -204,101 +204,55 @@ export default function Home() {
   };
 
   const getDistricts = (province: string) => {
-    // FAZ 1 - 50 İlçe Listesi (Sosyo-ekonomik gelişmişlik sırasına göre) - YENİ LİSTE
+    // FAZ 1 - Yeni İlçe Listesi (Bölgesel Organizasyon)
     const districts = {
       "istanbul-avrupa": [
-        "Şişli", "Beşiktaş", "Bakırköy", "Başakşehir", "Beyoğlu", "Beylikdüzü", "Esenyurt",
-        "Bahçelievler", "Zeytinburnu", "Bağcılar", "Bayrampaşa", "Kağıthane", "Küçükçekmece",
-        "Güngören", "Büyükçekmece", "Eyüpsultan", "Avcılar", "Gaziosmanpaşa", "Esenler", "Silivri"
+        "Şişli", "Beşiktaş", "Bakırköy", "Sarıyer", "Kağıthane", "Beyoğlu", "Fatih"
       ],
       "istanbul-anadolu": [
-        "Kadıköy", "Ataşehir", "Ümraniye", "Sarıyer", "Tuzla", "Maltepe", "Pendik",
-        "Kartal", "Adalar", "Çekmeköy", "Sancaktepe"
+        "Üsküdar", "Ataşehir", "Kadıköy", "Maltepe", "Kartal", "Pendik", "Ümraniye", "Beykoz"
       ],
       "ankara": [
-        "Çankaya", "Yenimahalle", "Altındağ", "Etimesgut", "Gölbaşı", "Kahramankazan", "Keçiören"
+        "Çankaya", "Yenimahalle", "Etimesgut", "Gölbaşı"
       ],
       "izmir": [
-        "Konak", "Bornova", "Balçova", "Karşıyaka", "Çiğli", "Gaziemir", "Çeşme",
-        "Güzelbahçe", "Narlıdere", "Urla", "Bayraklı", "Buca"
+        "Konak", "Karşıyaka", "Bornova", "Bayraklı", "Balçova", "Narlıdere", "Güzelbahçe", "Urla", "Çeşme"
       ],
       "antalya": [
-        "Muratpaşa", "Konyaaltı", "Alanya", "Marmaris", "Manavgat", "Kemer", "Kepez", "Döşemealtı"
+        "Muratpaşa", "Konyaaltı", "Kepez", "Alanya", "Kemer"
       ],
       "bursa": [
         "Nilüfer", "Osmangazi"
       ],
       "konya": [
-        "Selçuklu", "Karatay"
+        "Selçuklu", "Meram"
       ],
       "muğla": [
-        "Bodrum", "Menteşe", "Fethiye"
-      ],
-      "denizli": [
-        "Merkezefendi", "Pamukkale"
-      ],
-      "gaziantep": [
-        "Şehitkamil"
-      ],
-      "kocaeli": [
-        "Gebze", "İzmit", "Başiskele"
-      ],
-      "edirne": [
-        "Merkez"
-      ],
-      "adana": [
-        "Seyhan", "Çukurova"
-      ],
-      "kayseri": [
-        "Melikgazi", "Kocasinan"
-      ],
-      "eskişehir": [
-        "Odunpazarı", "Tepebaşı"
+        "Bodrum", "Fethiye", "Marmaris"
       ],
       "mersin": [
-        "Yenişehir"
+        "Yenişehir", "Mezitli"
       ],
-      "çanakkale": [
-        "Merkez", "Bozcaada"
+      "adana": [
+        "Çukurova", "Seyhan"
       ],
-      "diyarbakır": [
-        "Kayapınar"
+      "samsun": [
+        "Atakum"
       ],
       "trabzon": [
         "Ortahisar"
       ],
-      "kırıkkale": [
-        "Yahşihan"
+      "gaziantep": [
+        "Şehitkamil"
       ],
-      "samsun": [
-        "Atakum", "İlkadım"
+      "diyarbakır": [
+        "Kayapınar"
       ],
       "erzurum": [
         "Yakutiye"
       ],
-      "manisa": [
-        "Yunusemre"
-      ],
-      "tekirdağ": [
-        "Çorlu", "Süleymanpaşa"
-      ],
-      "sakarya": [
-        "Serdivan", "Adapazarı"
-      ],
-      "aydın": [
-        "Efeler", "Kuşadası"
-      ],
-      "bolu": [
-        "Merkez"
-      ],
-      "balıkesir": [
-        "Altıeylül"
-      ],
-      "kütahya": [
-        "Merkez"
-      ],
-      "isparta": [
-        "Merkez"
+      "van": [
+        "İpekyolu"
       ]
     };
     return districts[province as keyof typeof districts] || [];
@@ -1169,28 +1123,14 @@ export default function Home() {
                        <option value="bursa">Bursa</option>
                        <option value="konya">Konya</option>
                        <option value="muğla">Muğla</option>
-                       <option value="denizli">Denizli</option>
-                       <option value="gaziantep">Gaziantep</option>
-                       <option value="kocaeli">Kocaeli</option>
-                       <option value="edirne">Edirne</option>
-                       <option value="adana">Adana</option>
-                       <option value="kayseri">Kayseri</option>
-                       <option value="eskişehir">Eskişehir</option>
                        <option value="mersin">Mersin</option>
-                       <option value="çanakkale">Çanakkale</option>
-                       <option value="diyarbakır">Diyarbakır</option>
-                       <option value="trabzon">Trabzon</option>
-                       <option value="kırıkkale">Kırıkkale</option>
+                       <option value="adana">Adana</option>
                        <option value="samsun">Samsun</option>
+                       <option value="trabzon">Trabzon</option>
+                       <option value="gaziantep">Gaziantep</option>
+                       <option value="diyarbakır">Diyarbakır</option>
                        <option value="erzurum">Erzurum</option>
-                       <option value="manisa">Manisa</option>
-                       <option value="tekirdağ">Tekirdağ</option>
-                       <option value="sakarya">Sakarya</option>
-                       <option value="aydın">Aydın</option>
-                       <option value="bolu">Bolu</option>
-                       <option value="balıkesir">Balıkesir</option>
-                       <option value="kütahya">Kütahya</option>
-                       <option value="isparta">Isparta</option>
+                       <option value="van">Van</option>
                      </select>
                    </div>
 
