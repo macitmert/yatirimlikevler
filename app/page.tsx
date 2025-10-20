@@ -453,7 +453,7 @@ export default function Home() {
                            Evinizin bulunduğu şehri seçiniz (zorunlu) <span className="text-red-500">*</span>
                          </label>
                          <p className="text-xs text-zinc-500 mb-2">
-                           Maalesef listemizde yer almayan il ve ilçelerden başvuru kabul edemiyoruz. Anlayışınız için teşekkür ederiz.
+                           Listemizde yer alan 7 bölgeden 15 il ve 50 ilçe dışında başvuru kabul edemiyoruz.
                          </p>
                            <select
                              value={selectedProvince}
@@ -583,7 +583,7 @@ export default function Home() {
                            Evinizin bulunduğu şehri seçiniz (zorunlu) <span className="text-red-500">*</span>
                          </label>
                          <p className="text-xs text-zinc-500 mb-2">
-                           Maalesef listemizde yer almayan il ve ilçelerden başvuru kabul edemiyoruz. Anlayışınız için teşekkür ederiz.
+                           Listemizde yer alan 7 bölgeden 15 il ve 50 ilçe dışında başvuru kabul edemiyoruz.
                          </p>
                          <select
                            value={selectedCity}
