@@ -1061,7 +1061,7 @@ export default function Home() {
                        İl <span className="text-red-500">*</span>
                      </label>
                      <p className="text-xs text-zinc-500 mb-2">
-                       Yalnızca Türkiye'nin sosyo-ekonomik olarak en gelişmiş 100 ilçesinde birinde faaliyet gösteriyorsanız başvuru yapabilirsiniz.
+                       Yalnızca listedeki 15 il 50 ilçede faaliyet gösteriyorsanız başvuru yapabilirsiniz.
                      </p>
                      <select
                        value={temsilciIl}
