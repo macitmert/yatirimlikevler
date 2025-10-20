@@ -132,7 +132,8 @@ export default function Home() {
       "izmir": "Merhaba, İzmir'deki evimin detaylarını paylaşmak istiyorum",
       "muğla": "Merhaba, Muğla'daki evimin detaylarını paylaşmak istiyorum",
       "antalya": "Merhaba, Antalya'daki evimin detaylarını paylaşmak istiyorum",
-      "adana-mersin": "Merhaba, Adana-Mersin bölgesindeki evimin detaylarını paylaşmak istiyorum",
+      "mersin": "Merhaba, Mersin'deki evimin detaylarını paylaşmak istiyorum",
+      "adana": "Merhaba, Adana'daki evimin detaylarını paylaşmak istiyorum",
       "samsun": "Merhaba, Samsun'daki evimin detaylarını paylaşmak istiyorum",
       "trabzon": "Merhaba, Trabzon'daki evimin detaylarını paylaşmak istiyorum",
       "gaziantep": "Merhaba, Gaziantep'teki evimin detaylarını paylaşmak istiyorum",
@@ -153,7 +154,8 @@ export default function Home() {
       "izmir": "Merhaba, İzmir'deki bir ilanınızla ilgileniyorum",
       "muğla": "Merhaba, Muğla'daki bir ilanınızla ilgileniyorum",
       "antalya": "Merhaba, Antalya'daki bir ilanınızla ilgileniyorum",
-      "adana-mersin": "Merhaba, Adana-Mersin bölgesindeki bir ilanınızla ilgileniyorum",
+      "mersin": "Merhaba, Mersin'deki bir ilanınızla ilgileniyorum",
+      "adana": "Merhaba, Adana'daki bir ilanınızla ilgileniyorum",
       "samsun": "Merhaba, Samsun'daki bir ilanınızla ilgileniyorum",
       "trabzon": "Merhaba, Trabzon'daki bir ilanınızla ilgileniyorum",
       "gaziantep": "Merhaba, Gaziantep'teki bir ilanınızla ilgileniyorum",
@@ -176,37 +178,37 @@ export default function Home() {
   const getDistricts = (province: string) => {
     const districts = {
       "istanbul-anadolu": [
-        "Üsküdar", "Ataşehir", "Kadıköy", "Maltepe", "Kartal", "Pendik", "Ümraniye",
-        "Beykoz", "Çekmeköy", "Adalar", "Şile"
+        "Üsküdar", "Ataşehir", "Kadıköy", "Maltepe", "Kartal", "Pendik", "Ümraniye", "Beykoz"
       ],
       "istanbul-avrupa": [
-        "Şişli", "Beşiktaş", "Bakırköy", "Sarıyer", "Kağıthane", "Beyoğlu", "Fatih",
-        "Bahçelievler", "Başakşehir", "Zeytinburnu", "Eyüpsultan", "Arnavutköy", "Silivri", "Büyükçekmece"
+        "Şişli", "Beşiktaş", "Bakırköy", "Sarıyer", "Kağıthane", "Beyoğlu", "Fatih"
       ],
       "bursa": [
         "Nilüfer", "Osmangazi"
       ],
       "ankara": [
-        "Çankaya", "Yenimahalle", "Etimesgut", "Gölbaşı", "Sincan", "Altındağ"
+        "Çankaya", "Yenimahalle", "Etimesgut", "Gölbaşı"
       ],
       "konya": [
-        "Selçuklu", "Meram", "Karatay"
+        "Selçuklu", "Meram"
       ],
       "izmir": [
-        "Konak", "Karşıyaka", "Bornova", "Bayraklı", "Balçova", "Narlıdere", "Güzelbahçe",
-        "Çeşme", "Urla", "Gaziemir", "Buca", "Seferihisar"
+        "Konak", "Karşıyaka", "Bornova", "Bayraklı", "Balçova", "Narlıdere", "Güzelbahçe", "Urla", "Çeşme"
       ],
       "muğla": [
-        "Bodrum", "Fethiye", "Marmaris", "Menteşe"
+        "Bodrum", "Fethiye", "Marmaris"
       ],
       "antalya": [
-        "Muratpaşa", "Konyaaltı", "Kepez", "Alanya", "Kemer", "Kaş", "Manavgat"
+        "Muratpaşa", "Konyaaltı", "Kepez", "Alanya", "Kemer"
       ],
-      "adana-mersin": [
-        "Çukurova", "Seyhan", "Sarıçam", "Yenişehir", "Mezitli"
+      "mersin": [
+        "Yenişehir", "Mezitli"
+      ],
+      "adana": [
+        "Çukurova", "Seyhan"
       ],
       "samsun": [
-        "Atakum", "İlkadım"
+        "Atakum"
       ],
       "trabzon": [
         "Ortahisar"
@@ -449,7 +451,8 @@ export default function Home() {
                              </optgroup>
                              <optgroup label="AKDENİZ BÖLGESİ">
                                <option value="antalya">Antalya</option>
-                               <option value="adana-mersin">Adana-Mersin</option>
+                               <option value="mersin">Mersin</option>
+                               <option value="adana">Adana</option>
                              </optgroup>
                              <optgroup label="KARADENİZ BÖLGESİ">
                                <option value="samsun">Samsun</option>
@@ -589,7 +592,8 @@ export default function Home() {
                            </optgroup>
                            <optgroup label="AKDENİZ BÖLGESİ">
                              <option value="antalya">Antalya</option>
-                             <option value="adana-mersin">Adana-Mersin</option>
+                             <option value="mersin">Mersin</option>
+                             <option value="adana">Adana</option>
                            </optgroup>
                            <optgroup label="KARADENİZ BÖLGESİ">
                              <option value="samsun">Samsun</option>
@@ -857,7 +861,8 @@ export default function Home() {
                       </optgroup>
                       <optgroup label="AKDENİZ BÖLGESİ">
                         <option value="antalya">Antalya</option>
-                        <option value="adana-mersin">Adana-Mersin</option>
+                        <option value="mersin">Mersin</option>
+                        <option value="adana">Adana</option>
                       </optgroup>
                       <optgroup label="KARADENİZ BÖLGESİ">
                         <option value="samsun">Samsun</option>
@@ -1096,7 +1101,8 @@ export default function Home() {
                        </optgroup>
                        <optgroup label="AKDENİZ BÖLGESİ">
                          <option value="antalya">Antalya</option>
-                         <option value="adana-mersin">Adana-Mersin</option>
+                         <option value="mersin">Mersin</option>
+                         <option value="adana">Adana</option>
                        </optgroup>
                        <optgroup label="KARADENİZ BÖLGESİ">
                          <option value="samsun">Samsun</option>
