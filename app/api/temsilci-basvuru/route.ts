@@ -14,11 +14,11 @@ function createTransport() {
   // İlçe Temsilcisi için özel email ayarları
   const host = process.env.TEMSILCI_MAIL_HOST || process.env.MAIL_HOST || "mail.privateemail.com";
   const port = Number(process.env.TEMSILCI_MAIL_PORT || process.env.MAIL_PORT || 465);
-  const user = process.env.TEMSILCI_MAIL_USER;
-  const pass = process.env.TEMSILCI_MAIL_PASS;
+  const user = process.env.TEMSILCI_MAIL_USER || process.env.MAIL_USER;
+  const pass = process.env.TEMSILCI_MAIL_PASS || process.env.MAIL_PASS;
 
   if (!user || !pass) {
-    throw new Error("TEMSILCI_MAIL_USER / TEMSILCI_MAIL_PASS eksik. Env değişkenlerini kontrol et.");
+    throw new Error("TEMSILCI_MAIL_USER / TEMSILCI_MAIL_PASS veya MAIL_USER / MAIL_PASS eksik. Env değişkenlerini kontrol et.");
   }
 
   return nodemailer.createTransport({
