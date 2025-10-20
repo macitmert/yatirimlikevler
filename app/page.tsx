@@ -837,9 +837,6 @@ export default function Home() {
                     <label className="block text-xs font-medium text-zinc-700 mb-2">
                       İlanın bulunduğu şehir (zorunlu) <span className="text-red-500">*</span>
                     </label>
-                    <p className="text-xs text-zinc-500 mb-2">
-                      Maalesef listemizde yer almayan il ve ilçelerden başvuru kabul edemiyoruz. Anlayışınız için teşekkür ederiz.
-                    </p>
                     <select
                       value={selectedInterestCity}
                       onChange={(e) => setSelectedInterestCity(e.target.value)}
