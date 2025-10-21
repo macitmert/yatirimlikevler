@@ -658,7 +658,7 @@ export default function Home() {
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
                            Sadece satış olursa %4 + KDV hizmet bedeli alınır.<br />
-                           (Siz elinize geçecek net rakamı belirlersiniz, biz evi bu rakam üzerine %4 dahil brüt fiyatla pazarlarız.)<br />
+                           (Siz net satış rakamını belirlersiniz, eviniz %4 eklenmiş brüt satış fiyatı üzerinden pazarlanır)<br />
                            Alıcıdan hiçbir bedel alınmaz; bu da satışı hızlandırır ve şeffaflık sağlar.
                          </div>
                        </details>
