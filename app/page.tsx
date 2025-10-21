@@ -644,73 +644,84 @@ export default function Home() {
                      <div className="space-y-3">
                        <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                          <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           1. Evimi neden Yatırımlık Evler'e göndermeliyim?
+                           1. Siz emlakçı mısınız?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Yatırımlık Evler yalnızca yatırım değeri yüksek konutları kabul eder. Kabul edilen evler genellikle haftalar içinde satılır. Süreç tamamen ücretsizdir — sadece satış olursa %2 + KDV hizmet bedeli alınır.
+                           Hayır. Biz bir dijital pazarlama ajansıyız.<br />
+                           Evinizi emlakçı değil, iyi pazarlama satar — biz de bu konuda oldukça iyiyiz.
                          </div>
                        </details>
                        
                        <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                          <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           2. Her ev portföye kabul ediliyor mu?
+                           2. Hizmet bedeliniz nedir?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Hayır. Sadece yatırım değeri yüksek konutlar kabul edilir. Bu sayede yatırımcılarımız yalnızca gerçek fırsatları görür.
+                           Sadece satış olursa %4 + KDV hizmet bedeli alınır.<br />
+                           (Siz elinize geçecek net rakamı belirlersiniz, biz evi bu rakam üzerine %4 dahil brüt fiyatla pazarlarız.)<br />
+                           Alıcıdan hiçbir bedel alınmaz; bu da satışı hızlandırır ve şeffaflık sağlar.
                          </div>
                        </details>
                        
                        <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                          <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           3. Süreç nasıl işliyor?
+                           3. Süreç nasıl başlıyor?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Evinizi bize buradan iletin. Ekibimiz 48 saat içinde yatırım analizini yapar. Uygunsa 3 ay süreli tam yetki sözleşmesi yapılır. Eviniz profesyonel içeriklerle pazarlanır. Satış gerçekleşirse %2 + KDV alınır.
+                           Evinizi bize iletin, ekibimiz 48 saat içinde yatırım analizini tamamlar.<br />
+                           Uygun görülürse 3 ay süreli dijital pazarlama sözleşmesi imzalanır ve süreç başlar.
                          </div>
                        </details>
                        
                        <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                          <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           4. Neden tam yetkili satış yapıyorsunuz?
+                           4. Ne hizmet veriyorsunuz?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Tek elden yönetilen ilanlar daha hızlı ve güvenilir satılır. Farklı fiyatlarla birden fazla yerde olması güveni azaltır. Bu yüzden satış süresi boyunca ilan sadece bizde olur.
+                           Biz yalnızca dijital pazarlama ve müşteri yönlendirme hizmeti sunarız.<br />
+                           Satış aracılığı yapmayız; tapu işlemleri ev sahibine aittir.
                          </div>
                        </details>
                        
                        <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                          <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           5. Başka ilanlarım varsa ne olacak?
+                           5. Diğer ilanlarımı yayında tutabilir miyim?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Bizimle çalışırsanız, diğer ilanlarınızı geçici olarak yayından kaldırmanız gerekir. Satılmazsa 3 ay sonunda yetki kendiliğinden biter, ücret ödemezsiniz.
+                           Evet, bu sizin tercihinizdir.<br />
+                           Ancak 3 ay boyunca Yatırımlık Evler tam yetkili olur.<br />
+                           Bu sürede satış gerçekleşirse, alıcının nereden geldiğine bakılmaksızın hizmet bedeline hak kazanırız.
                          </div>
                        </details>
                        
                        <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                          <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           6. Süreç gerçekten ücretsiz mi?
+                           6. Kabul kriterleri nelerdir?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Evet. Değerlendirme ve pazarlama tamamen ücretsizdir. Sadece satış olursa %2 + KDV alınır.
+                           Yalnızca yatırım değeri yüksek konutlar kabul edilir.<br />
+                           Değer artış potansiyeli ve amortisman süresi gibi kriterler, yapay zekâ destekli bir sistem ile analiz edilir.<br />
+                           100 üzerinden 50 puan ve üzeri alan konutlar platforma kabul edilir.<br />
+                           Başvurunuz kabul edilirse şanslısınız demektir.
                          </div>
                        </details>
                        
                        <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                          <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           7. Satış ne kadar sürüyor?
+                           7. Süreç gerçekten ücretsiz mi?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Kabul edilen evler genellikle 1–4 hafta içinde satılır. Bazı ilanlar aynı gün bile yatırımcı bulabilir.
+                           Evet. Değerlendirme, içerik hazırlığı ve pazarlama tamamen ücretsizdir.<br />
+                           Yalnızca satış gerçekleştiğinde hizmet bedeli doğar.
                          </div>
                        </details>
                        
                        <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                          <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           8. Evin yatırım değeri nasıl belirleniyor?
+                           8. Satış ne kadar sürer?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Yapay zekâ destekli analiz sistemiyle yatırım potansiyeli hesaplanır. Kira getirisi, amortisman ve bölgesel değer artışı gibi veriler değerlendirilir. Son karar alanında uzman ekibimiz tarafından verilir.
+                           Kabul edilen evler genellikle 4 hafta içinde yatırımcı bulur.
                          </div>
                        </details>
                        
@@ -719,16 +730,17 @@ export default function Home() {
                            9. Satış süreci güvenli mi?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Evet. Tüm işlemler alanında uzman hukuk ekibimiz tarafından yürütülür. Siz sadece tapu gününde hazır bulunursunuz.
+                           Evet. Potansiyel alıcılar size yönlendirilmeden önce gerekli kontroller hukuk departmanımız tarafından yapılır.
                          </div>
                        </details>
                        
                        <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
                          <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           10. Yatırımlık Evler kimdir?
+                           10. Neden Yatırımlık Evler'i seçmeliyim?
                          </summary>
                          <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Yatırımlık Evler, Türkiye'nin ilk premium konut platformudur. Alanında uzman hukukçular, mühendisler ve yatırım danışmanlarından oluşan bir ekiple çalışır. Amacımız, yatırım değeri yüksek evleri doğru alıcılarla buluşturmaktır.
+                           Çünkü biz 40 binden fazla takipçi ve aylık 5 milyondan fazla görüntülenme ile Türkiye'nin en güçlü dijital görünürlüğüne sahibiz.<br />
+                           Evinizi binlerce yatırımcının önüne ücretsiz çıkarıyor, yalnızca satış olursa kazanıyoruz.
                          </div>
                        </details>
                      </div>
