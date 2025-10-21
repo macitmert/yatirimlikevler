@@ -365,28 +365,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Açıklama Bölümü */}
-      <section className="px-6 py-6 bg-white">
-        <div className="max-w-md md:max-w-2xl lg:max-w-2xl mx-auto">
-          <div className="text-center space-y-4">
-            <p className="text-sm text-zinc-700 leading-relaxed">
-              Yatırımlık Evler, Türkiye'nin ilk premium konut platformudur. Amacımız, yatırımcıları doğru yatırımlık evlerle buluşturmaktır.
-            </p>
-            <p className="text-sm text-zinc-700 leading-relaxed">
-              Platformumuzda yalnızca yatırım değeri yüksek evler yer alır. Aradığınız evi bizimle bulacağınıza eminiz.
-            </p>
-            <p className="text-sm text-zinc-700 leading-relaxed">
-              Ev sahibiyseniz, evinizi güvenli ve hızlı satmak için
-              "Evimi Satmak İstiyorum" sekmesinde yer alan başvuru formunu doldurabilirsiniz.
-            </p>
-            <p className="text-sm text-zinc-700 leading-relaxed">
-              Başvurunuz kabul edilirse şanslısınız demektir.
-              Çünkü evi emlakçı değil, iyi pazarlama satar — biz ise bu konuda oldukça iyiyiz. 😎
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* All Cards */}
       <section className="px-6 py-8">
         <div className="max-w-md md:max-w-2xl lg:max-w-2xl mx-auto space-y-4">
