@@ -862,29 +862,17 @@ export default function Home() {
                     </select>
                   </div>
                   
-                  {/* Onay Kutucuğu */}
-                  <div className="mb-3">
-                    <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={interestAccepted}
-                        onChange={(e) => setInterestAccepted(e.target.checked)}
-                        className="mt-0.5"
-                      />
-                      <span>İlandaki evi Yatırımlık Evler güvencesiyle satın almam halinde %2+KDV tutarındaki hizmet bedelini ödemeyi kabul ediyorum.</span>
-                    </label>
-                  </div>
                   
                   <a 
-                    href={selectedInterestCity && interestAccepted ? `https://wa.me/905407208080?text=${encodeURIComponent(getInterestMessage(selectedInterestCity))}` : "#"}
+                    href={selectedInterestCity ? `https://wa.me/905407208080?text=${encodeURIComponent(getInterestMessage(selectedInterestCity))}` : "#"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`block w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm flex items-center justify-center gap-2 ${
-                      selectedInterestCity && interestAccepted
+                      selectedInterestCity
                         ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
                         : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     }`}
-                    onClick={!(selectedInterestCity && interestAccepted) ? (e) => e.preventDefault() : undefined}
+                    onClick={!selectedInterestCity ? (e) => e.preventDefault() : undefined}
                   >
                     <span>📱</span>
                     İlanla İlgili Bilgi Al
@@ -893,11 +881,6 @@ export default function Home() {
                   {!selectedInterestCity && (
                     <p className="text-xs text-red-600 mt-2">
                       ⚠️ Lütfen önce şehir seçimi yapın
-                    </p>
-                  )}
-                  {selectedInterestCity && !interestAccepted && (
-                    <p className="text-xs text-red-600 mt-2">
-                      ⚠️ Lütfen şartları kabul etmek için kutucuğu işaretleyin
                     </p>
                   )}
                 </div>
