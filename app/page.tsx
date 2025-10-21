@@ -1220,7 +1220,7 @@ export default function Home() {
                        4. Komisyon oranları nedir?
                      </summary>
                      <div className="px-3 pb-3 text-sm text-zinc-600">
-                       → Konutun yatırım skoruna göre toplam komisyon oranı üzerinden %25 ile %50 arasında değişmektedir.
+                       → Platformumuzun komisyon oranı konutun yatırım skoruna göre toplam komisyon oranı üzerinden %25 ile %50 arasında değişmektedir.
                      </div>
                    </details>
                    
