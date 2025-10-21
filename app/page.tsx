@@ -912,8 +912,8 @@ export default function Home() {
            className={`w-full text-left p-4 sm:p-6 font-medium transition-colors duration-200 flex items-center justify-between ${openDetails.temsilci ? 'text-[#C40001]' : 'text-zinc-700 hover:text-[#C40001]'}`}
          >
            <span className="flex items-center gap-3">
-             <span className="text-2xl">🤝</span>
-             <span className="text-lg leading-tight">Temsilciniz<br />Olmak İstiyorum</span>
+             <span className="text-2xl ml-1">🤝</span>
+             <span className="text-lg">Temsilciniz Olmak İstiyorum</span>
            </span>
            <span className={`transform transition-transform duration-200 ${openDetails.temsilci ? 'rotate-180' : ''}`}>
              ▼
