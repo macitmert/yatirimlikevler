@@ -1458,13 +1458,16 @@ export default function Home() {
                  <div className="border-t border-[#C40001]/10 pt-4">
                    <div className="text-sm text-zinc-600 mb-4 space-y-3">
                      <p>
-                       Yatırımlık Evler, Türkiye'nin ilk premium konut platformudur.
+                       Yatırımlık Evler, Türkiye'nin ilk premium konut platformudur. Amacımız, yatırımcıları doğru yatırımlık evlerle buluşturmaktır.
                      </p>
                      <p>
-                       Bizlere gelen binlerce başvuru arasından yalnızca yatırım değeri yüksek konutlar platformumuza kabul edilir.
+                       Platformumuzda yalnızca yatırım değeri yüksek evler yer alır. Aradığınız evi bizimle bulacağınıza eminiz.
                      </p>
                      <p>
-                       Bu sayede yatırımcılarımıza her zaman en iyi yatırımlık ev fırsatları sunulmuş olur.
+                       Ev sahibiyseniz, evinizi güvenli ve hızlı satmak için "Evimi Satmak İstiyorum" sekmesinde yer alan başvuru formunu doldurabilirsiniz.
+                     </p>
+                     <p>
+                       Başvurunuz kabul edilirse şanslısınız demektir. Çünkü evi emlakçı değil, iyi pazarlama satar — biz ise bu konuda oldukça iyiyiz. 😎
                      </p>
                    </div>
                  </div>
