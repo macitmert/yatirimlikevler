@@ -1268,7 +1268,7 @@ export default function Home() {
                        8. Ödemeler nasıl yapılır?
                      </summary>
                      <div className="px-3 pb-3 text-sm text-zinc-600">
-                       → Satış işlemlerinde tüm tahsilat temsilci ofis tarafından yapılır. Ardından Yatırımlık Evler firmasına, platform payı kadar KDV'li fatura kesilerek ödeme yapılır.
+                       → Satış tamamlandıktan sonra sözleşme gereği ev sahibi hizmet bedelini Yatırımlık Evler'e öder. Yatırımlık Evler ise kendi payını keserek ödemeyi Yerel Temsilciliğin hesabına gerçekleştirir.
                      </div>
                    </details>
                    
