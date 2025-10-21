@@ -909,7 +909,7 @@ export default function Home() {
        <div className="border border-[#E7E9EC] rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 bg-white">
          <button
            onClick={() => toggleDetail('temsilci')}
-           className={`w-full text-left p-6 font-medium transition-colors duration-200 flex items-center justify-between ${openDetails.temsilci ? 'text-[#C40001]' : 'text-zinc-700 hover:text-[#C40001]'}`}
+           className={`w-full text-left p-4 sm:p-6 font-medium transition-colors duration-200 flex items-center justify-between ${openDetails.temsilci ? 'text-[#C40001]' : 'text-zinc-700 hover:text-[#C40001]'}`}
          >
            <span className="flex items-center gap-3">
              <span className="text-2xl">🤝</span>
