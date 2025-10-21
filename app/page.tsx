@@ -522,7 +522,7 @@ export default function Home() {
                              checked={ilanNoAccepted}
                              onChange={(e) => setIlanNoAccepted(e.target.checked)}
                            />
-                           <span>Evimin satışı konusunda Yatırımlık Evler'e 3 ay süreyle tam yetki vermeyi ve bu süreçte evimin satılması durumunda %4+KDV'lik bir satış bedeli ödemeyi kabul ediyorum.</span>
+                           <span>Evimin satışı konusunda Yatırımlık Evler'e 3 ay süreyle tam yetki vermeyi ve bu süreçte evimin satılması durumunda %4+KDV'lik bir hizmet bedeli ödemeyi kabul ediyorum.</span>
                          </label>
                          {ilanNo && !isIlanNoValid && (
                            <p className="text-xs text-red-600">
@@ -606,7 +606,7 @@ export default function Home() {
                              onChange={(e) => setWhatsappAccepted(e.target.checked)}
                              className="mt-0.5"
                            />
-                           <span>Evimin satışı konusunda Yatırımlık Evler'e 3 ay süreyle tam yetki vermeyi ve bu süreçte evimin satılması durumunda %4+KDV'lik bir satış bedeli ödemeyi kabul ediyorum.</span>
+                           <span>Evimin satışı konusunda Yatırımlık Evler'e 3 ay süreyle tam yetki vermeyi ve bu süreçte evimin satılması durumunda %4+KDV'lik bir hizmet bedeli ödemeyi kabul ediyorum.</span>
                          </label>
                        </div>
                        
