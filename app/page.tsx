@@ -931,7 +931,7 @@ export default function Home() {
                  <div className="text-xs text-zinc-700 space-y-1">
                    <p>• Geçerli Taşınmaz Ticareti Yetki Belgesi'ne sahip olmak.</p>
                    <p>• Aktif bir emlak ofisine sahip olmak (fiziksel adres, vergi kaydı).</p>
-                   <p>• "Evimi Satmak İstiyorum" sayfasında yer alan 7 bölge 15 şehir'deki 70 ilçeden birinde faaliyet göstermek.</p>
+                   <p>• 15 şehir'deki 70 ilçeden birinde faaliyet göstermek.</p>
                  </div>
                </div>
 
