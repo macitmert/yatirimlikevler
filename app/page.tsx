@@ -919,7 +919,7 @@ export default function Home() {
                  <div className="text-xs text-zinc-700 space-y-1">
                    <p>• Geçerli Taşınmaz Ticareti Yetki Belgesi'ne sahip olmak.</p>
                    <p>• Aktif bir emlak ofisine sahip olmak (fiziksel adres, vergi kaydı).</p>
-                   <p>• 15 şehir'deki 70 ilçeden birinde faaliyet göstermek.</p>
+                   <p>• Aşağıdaki il seçimi alanında yer alan 15 ildeki 70 ilçeden birinde faaliyet gösteriyor olmak.</p>
                  </div>
                </div>
 
