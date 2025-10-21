@@ -168,28 +168,15 @@ export default function Home() {
       "bursa": "Merhaba, Bursa'daki bir ilanınızla ilgileniyorum",
       "konya": "Merhaba, Konya'daki bir ilanınızla ilgileniyorum",
       "muğla": "Merhaba, Muğla'daki bir ilanınızla ilgileniyorum",
-      "denizli": "Merhaba, Denizli'deki bir ilanınızla ilgileniyorum",
-      "gaziantep": "Merhaba, Gaziantep'teki bir ilanınızla ilgileniyorum",
-      "kocaeli": "Merhaba, Kocaeli'deki bir ilanınızla ilgileniyorum",
-      "edirne": "Merhaba, Edirne'deki bir ilanınızla ilgileniyorum",
-      "adana": "Merhaba, Adana'daki bir ilanınızla ilgileniyorum",
-      "kayseri": "Merhaba, Kayseri'deki bir ilanınızla ilgileniyorum",
-      "eskişehir": "Merhaba, Eskişehir'deki bir ilanınızla ilgileniyorum",
       "mersin": "Merhaba, Mersin'deki bir ilanınızla ilgileniyorum",
-      "çanakkale": "Merhaba, Çanakkale'deki bir ilanınızla ilgileniyorum",
-      "trabzon": "Merhaba, Trabzon'daki bir ilanınızla ilgileniyorum",
-      "kırıkkale": "Merhaba, Kırıkkale'deki bir ilanınızla ilgileniyorum",
+      "adana": "Merhaba, Adana'daki bir ilanınızla ilgileniyorum",
       "samsun": "Merhaba, Samsun'daki bir ilanınızla ilgileniyorum",
+      "trabzon": "Merhaba, Trabzon'daki bir ilanınızla ilgileniyorum",
+      "gaziantep": "Merhaba, Gaziantep'teki bir ilanınızla ilgileniyorum",
+      "diyarbakır": "Merhaba, Diyarbakır'daki bir ilanınızla ilgileniyorum",
       "erzurum": "Merhaba, Erzurum'daki bir ilanınızla ilgileniyorum",
-      "manisa": "Merhaba, Manisa'daki bir ilanınızla ilgileniyorum",
-      "tekirdağ": "Merhaba, Tekirdağ'daki bir ilanınızla ilgileniyorum",
-      "sakarya": "Merhaba, Sakarya'daki bir ilanınızla ilgileniyorum",
-      "aydın": "Merhaba, Aydın'daki bir ilanınızla ilgileniyorum",
-      "bolu": "Merhaba, Bolu'daki bir ilanınızla ilgileniyorum",
-      "balıkesir": "Merhaba, Balıkesir'deki bir ilanınızla ilgileniyorum",
-      "kütahya": "Merhaba, Kütahya'daki bir ilanınızla ilgileniyorum",
-      "isparta": "Merhaba, Isparta'daki bir ilanınızla ilgileniyorum",
-      "diyarbakır": "Merhaba, Diyarbakır'daki bir ilanınızla ilgileniyorum"
+      "van": "Merhaba, Van'daki bir ilanınızla ilgileniyorum",
+      "diger": "Merhaba, ilanlarınızdan biriyle ilgileniyorum"
     };
     return messages[city as keyof typeof messages] || "Merhaba, ilanlarınızdan biriyle ilgileniyorum";
   };
@@ -859,6 +846,7 @@ export default function Home() {
                       <option value="diyarbakır">Diyarbakır</option>
                       <option value="erzurum">Erzurum</option>
                       <option value="van">Van</option>
+                      <option value="diger">Diğer</option>
                     </select>
                   </div>
                   
