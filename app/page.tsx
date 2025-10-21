@@ -913,7 +913,7 @@ export default function Home() {
          >
            <span className="flex items-center gap-3">
              <span className="text-2xl">🤝</span>
-             <span className="text-lg leading-tight">İlçe Temsilciniz<br />Olmak İstiyorum</span>
+             <span className="text-lg leading-tight">Temsilciniz<br />Olmak İstiyorum</span>
            </span>
            <span className={`transform transition-transform duration-200 ${openDetails.temsilci ? 'rotate-180' : ''}`}>
              ▼
