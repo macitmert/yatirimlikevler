@@ -1268,7 +1268,7 @@ export default function Home() {
                        8. Ödemeler nasıl yapılır?
                      </summary>
                      <div className="px-3 pb-3 text-sm text-zinc-600">
-                       → Satış tamamlandıktan sonra sözleşme gereği ev sahibi hizmet bedelini Yatırımlık Evler'e öder. Yatırımlık Evler ise kendi payını keserek ödemeyi Yerel Temsilciliğin hesabına gerçekleştirir.
+                       → Satış tamamlandığında, ev sahibi sözleşme gereği hizmet bedelini Yatırımlık Evler'e öder. Yatırımlık Evler, kendi payını ayırdıktan sonra kalan tutarı ilgili Yerel Temsilcilik hesabına aktarır.
                      </div>
                    </details>
                    
