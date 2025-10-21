@@ -17,12 +17,16 @@ export const metadata: Metadata = {
   description: "Yatırımlık evleri keşfet & Evini hızlı sat",
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon.ico', type: 'image/x-icon' }
+      { url: '/favicon.ico?v=4', sizes: 'any' },
+      { url: '/favicon.ico?v=4', type: 'image/x-icon' },
+      { url: '/favicon.ico?v=4', sizes: '16x16', type: 'image/x-icon' },
+      { url: '/favicon.ico?v=4', sizes: '32x32', type: 'image/x-icon' },
+      { url: '/favicon.ico?v=4', sizes: '48x48', type: 'image/x-icon' }
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180' }
-    ]
+      { url: '/apple-touch-icon.png?v=4', sizes: '180x180' }
+    ],
+    shortcut: '/favicon.ico?v=4'
   }
 };
 
@@ -34,8 +38,10 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <head>
-        <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/favicon.ico?v=4" sizes="any" />
+        <link rel="icon" href="/favicon.ico?v=4" type="image/x-icon" />
+        <link rel="shortcut icon" href="/favicon.ico?v=4" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="preload" href="/fonts/SFPRODISPLAYREGULAR.OTF" as="font" type="font/otf" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/SFPRODISPLAYMEDIUM.OTF" as="font" type="font/otf" crossOrigin="anonymous" />
