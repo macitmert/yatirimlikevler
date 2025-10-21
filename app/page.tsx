@@ -1010,7 +1010,7 @@ export default function Home() {
                        <select
                          value={temsilciTelefonKodu}
                          onChange={(e) => setTemsilciTelefonKodu(e.target.value)}
-                         className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                         className="w-20 sm:w-24 border border-gray-300 rounded-lg px-2 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
                        >
                          {countryCodes.map((country) => (
                            <option key={country.code} value={country.code}>
@@ -1022,7 +1022,7 @@ export default function Home() {
                          type="tel"
                          value={temsilciTelefon}
                          onChange={(e) => setTemsilciTelefon(e.target.value.replace(/\D/g, ''))}
-                         className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                         className="flex-1 min-w-0 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
                          placeholder="5xx xxx xx xx"
                          maxLength={getTemsilciTelefonMaxLength()}
                          required
