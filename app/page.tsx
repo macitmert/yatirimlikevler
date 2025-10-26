@@ -391,17 +391,20 @@ export default function Home() {
                          )}
                          
                   {/* WhatsApp Butonu */}
-                  {isFormValid() && (
-                         <a
-                           href={`https://wa.me/905407208080?text=${encodeURIComponent(getWhatsAppMessage())}`}
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className="block w-full bg-[#C40001] hover:bg-[#C40001]/90 text-white text-center py-3 px-4 rounded-lg transition-colors text-sm font-medium flex items-center justify-center gap-2"
-                         >
-                           <span>📱</span>
-                           <span>WhatsApp'tan Başvurunu Tamamla</span>
-                         </a>
-                         )}
+                  <a
+                    href={isFormValid() ? `https://wa.me/905407208080?text=${encodeURIComponent(getWhatsAppMessage())}` : "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`block w-full text-center py-3 px-4 rounded-lg transition-colors text-sm font-medium flex items-center justify-center gap-2 ${
+                      isFormValid()
+                        ? 'bg-[#C40001] hover:bg-[#C40001]/90 text-white cursor-pointer'
+                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    }`}
+                    onClick={!isFormValid() ? (e) => e.preventDefault() : undefined}
+                  >
+                    <span>📱</span>
+                    <span>WhatsApp'tan Başvur</span>
+                  </a>
                 </div>
                 
                 {/* Sık Sorulan Sorular */}
