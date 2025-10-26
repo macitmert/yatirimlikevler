@@ -17,10 +17,6 @@ export default function Home() {
   const [whatsappAccepted, setWhatsappAccepted] = useState(false);
   const [selectedInterestCity, setSelectedInterestCity] = useState("");
   const [interestAccepted, setInterestAccepted] = useState(false);
-  const [selectedPosition, setSelectedPosition] = useState("");
-  const [kvkkOfisYoneticisi, setKvkkOfisYoneticisi] = useState(false);
-  const [kvkkYoneticiYardimcisi, setKvkkYoneticiYardimcisi] = useState(false);
-  const [kvkkGayrimenkulDanismani, setKvkkGayrimenkulDanismani] = useState(false);
 
   // İlçe Temsilcisi form state'leri
   const [temsilciAdSoyad, setTemsilciAdSoyad] = useState("");
@@ -181,14 +177,6 @@ export default function Home() {
     return messages[city as keyof typeof messages] || "Merhaba, ilanlarınızdan biriyle ilgileniyorum";
   };
 
-  const getCareerMessage = (position: string) => {
-    const messages = {
-      "ofis-yoneticisi": "Merhabalar, Ofis yöneticisi pozisyonuna başvurmak istiyorum. CV'im ektedir. Saygılarımla.",
-      "ofis-yoneticisi-yardimcisi": "Merhabalar, Yönetici yardımcısı pozisyonuna başvurmak istiyorum. CV'im ektedir. Saygılarımla.",
-      "gayrimenkul-danismani": "Merhabalar, Gayrimenkul danışmanı pozisyonuna başvurmak istiyorum. CV'im ektedir. Saygılarımla."
-    };
-    return messages[position as keyof typeof messages] || "";
-  };
 
   const getDistricts = (province: string) => {
     // FAZ 1 - Yeni İlçe Listesi (Bölgesel Organizasyon)
@@ -1279,150 +1267,7 @@ export default function Home() {
          )}
        </div>
 
-       {/* Kariyer */}
-          <div className="border border-[#E7E9EC] rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 bg-white">
-            <button
-              onClick={() => toggleDetail('kariyer')}
-              className={`w-full text-left p-6 font-medium transition-colors duration-200 flex items-center justify-between ${openDetails.kariyer ? 'text-[#C40001]' : 'text-zinc-700 hover:text-[#C40001]'}`}
-            >
-              <span className="flex items-center gap-3">
-                <span className="text-2xl">💼</span>
-                <span className="text-lg">Kariyer</span>
-              </span>
-              <span className={`transform transition-transform duration-200 ${openDetails.kariyer ? 'rotate-180' : ''}`}>
-                ▼
-              </span>
-            </button>
-            {openDetails.kariyer && (
-              <div className="px-6 pb-6">
-                <div className="border-t border-[#C40001]/10 pt-4">
-                  <div className="text-sm text-zinc-600 mb-6 space-y-3">
-                    <p>
-                      Türkiye'nin ilk premium konut platformunda, gayrimenkul danışmanı veya ofis yöneticisi olarak yer almak ister misin?
-                    </p>
-                    <p>
-                      Eğer neyi hedeflediğimizi anlıyor, vizyonumuzu paylaşıyor ve satış konusunda kendine güveniyorsan, özgeçmişini bizimle paylaş. Kazanırken büyüyen bir ailenin parçası ol.
-                    </p>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    {/* Ofis Yöneticisi */}
-                    <div className="bg-white border border-[#E7E9EC] rounded-xl p-4">
-                      <div className="font-bold text-sm mb-1">1) Ofis yöneticisi pozisyonuna başvur</div>
-                      <div className="text-xs text-zinc-500 mb-3">Yalnızca gayrimenkul sektöründe 15 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
-                      
-                      {/* KVKK Onay Kutucuğu */}
-                      <div className="mb-3">
-                        <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={kvkkOfisYoneticisi}
-                            onChange={(e) => setKvkkOfisYoneticisi(e.target.checked)}
-                            className="mt-0.5"
-                          />
-                          <span>Kişisel verilerimin saklanmasına ilişkin KVKK ile uyumlu olarak işlenmesini kabul ediyorum.</span>
-                        </label>
-                        {!kvkkOfisYoneticisi && (
-                          <p className="text-xs text-red-600 mt-1">
-                            ⚠️ Lütfen KVKK onayını verin
-                          </p>
-                        )}
-                      </div>
-                      
-                      <a 
-                        href={kvkkOfisYoneticisi ? `mailto:apply@yatirimlikevler.com?subject=Ofis Yöneticisi Başvurusu&body=${encodeURIComponent(getCareerMessage('ofis-yoneticisi'))}` : "#"}
-                        onClick={!kvkkOfisYoneticisi ? (e) => e.preventDefault() : undefined}
-                        className={`block w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm flex items-center justify-center gap-2 ${
-                          kvkkOfisYoneticisi 
-                            ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
-                            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                        }`}
-                      >
-                        <span>📧</span>
-                        Başvur
-                      </a>
-                    </div>
-                    
-                    {/* Yönetici Yardımcısı */}
-                    <div className="bg-white border border-[#E7E9EC] rounded-xl p-4">
-                      <div className="font-bold text-sm mb-1">2) Yönetici yardımcısı pozisyonuna başvur</div>
-                      <div className="text-xs text-zinc-500 mb-3">Yalnızca gayrimenkul sektöründe 7 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
-                      
-                      {/* KVKK Onay Kutucuğu */}
-                      <div className="mb-3">
-                        <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={kvkkYoneticiYardimcisi}
-                            onChange={(e) => setKvkkYoneticiYardimcisi(e.target.checked)}
-                            className="mt-0.5"
-                          />
-                          <span>Kişisel verilerimin saklanmasına ilişkin KVKK ile uyumlu olarak işlenmesini kabul ediyorum.</span>
-                        </label>
-                        {!kvkkYoneticiYardimcisi && (
-                          <p className="text-xs text-red-600 mt-1">
-                            ⚠️ Lütfen KVKK onayını verin
-                          </p>
-                        )}
-                      </div>
-                      
-                      <a 
-                        href={kvkkYoneticiYardimcisi ? `mailto:apply@yatirimlikevler.com?subject=Yönetici Yardımcısı Başvurusu&body=${encodeURIComponent(getCareerMessage('ofis-yoneticisi-yardimcisi'))}` : "#"}
-                        onClick={!kvkkYoneticiYardimcisi ? (e) => e.preventDefault() : undefined}
-                        className={`block w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm flex items-center justify-center gap-2 ${
-                          kvkkYoneticiYardimcisi 
-                            ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
-                            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                        }`}
-                      >
-                        <span>📧</span>
-                        Başvur
-                      </a>
-                    </div>
-                    
-                    {/* Gayrimenkul Danışmanı */}
-                    <div className="bg-white border border-[#E7E9EC] rounded-xl p-4">
-                      <div className="font-bold text-sm mb-1">3) Gayrimenkul danışmanı pozisyonuna başvur</div>
-                      <div className="text-xs text-zinc-500 mb-3">Yalnızca gayrimenkul sektöründe 2 yıl ve üzeri deneyime sahip kişiler değerlendirmeye alınacaktır.</div>
-                      
-                      {/* KVKK Onay Kutucuğu */}
-                      <div className="mb-3">
-                        <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={kvkkGayrimenkulDanismani}
-                            onChange={(e) => setKvkkGayrimenkulDanismani(e.target.checked)}
-                            className="mt-0.5"
-                          />
-                          <span>Kişisel verilerimin saklanmasına ilişkin KVKK ile uyumlu olarak işlenmesini kabul ediyorum.</span>
-                        </label>
-                        {!kvkkGayrimenkulDanismani && (
-                          <p className="text-xs text-red-600 mt-1">
-                            ⚠️ Lütfen KVKK onayını verin
-                          </p>
-                        )}
-                      </div>
-                      
-                      <a 
-                        href={kvkkGayrimenkulDanismani ? `mailto:apply@yatirimlikevler.com?subject=Gayrimenkul Danışmanı Başvurusu&body=${encodeURIComponent(getCareerMessage('gayrimenkul-danismani'))}` : "#"}
-                        onClick={!kvkkGayrimenkulDanismani ? (e) => e.preventDefault() : undefined}
-                        className={`block w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm flex items-center justify-center gap-2 ${
-                          kvkkGayrimenkulDanismani 
-                            ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
-                            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                        }`}
-                      >
-                        <span>📧</span>
-                        Başvur
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Hakkımızda */}
+       {/* Hakkımızda */}
           <div className="border border-[#E7E9EC] rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 bg-white">
             <button
               onClick={() => toggleDetail('hakkimizda')}
