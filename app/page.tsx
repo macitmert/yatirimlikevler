@@ -385,7 +385,7 @@ export default function Home() {
                                  className="mt-0.5"
                                  required
                                />
-                               <span>Lütfen hizmet şartlarımızı kabul etmek için kutucuğu işaretleyiniz.</span>
+                               <span>Evimin satışı konusunda Yatırımlık Evler'e 3 ay süreyle tam yetki vermeyi ve bu süreçte evimin satılması durumunda %4+KDV'lik bir hizmet bedeli ödemeyi kabul ediyorum.</span>
                              </label>
                          </div>
                          )}
