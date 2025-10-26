@@ -525,40 +525,24 @@ export default function Home() {
               <div className="px-6 pb-6">
                 <div className="border-t border-[#C40001]/10 pt-4">
                   <p className="text-sm text-zinc-600 mb-4 text-justify">
-                    Telegram gruplarımıza tamamen ücretsiz katıl, yatırımlık ev fırsatlarını kaçırma! Şehrini seç ve hemen başla.
+                    Yatırımcı gruplarımıza tamamen ücretsiz katıl, yatırımlık ev fırsatlarını kaçırma!
                   </p>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-3">
                     <a
-                      href="https://t.me/istanbul_yatirimlikevler"
+                      href="https://t.me/yatirimlikevler"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block bg-white border border-[#E7E9EC] text-zinc-700 rounded-xl p-4 text-center font-medium hover:bg-gray-50 hover:border-[#C40001] transition-all duration-300 shadow-sm hover:shadow-md"
+                      className="block bg-blue-600 hover:bg-blue-700 text-white text-center py-3 px-4 rounded-lg transition-all duration-200 text-sm font-medium"
                     >
-                      📍 İstanbul
-        </a>
-        <a
-                      href="https://t.me/ankara_yatirimlikevler"
+                      📱 Telegram Grubumuza Katıl
+                    </a>
+                    <a
+                      href="https://wa.me/905407208080"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block bg-white border border-[#E7E9EC] text-zinc-700 rounded-xl p-4 text-center font-medium hover:bg-gray-50 hover:border-[#C40001] transition-all duration-300 shadow-sm hover:shadow-md"
-        >
-                      📍 Ankara
-        </a>
-        <a
-                      href="https://t.me/izmir_yatirimlikevler"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block bg-white border border-[#E7E9EC] text-zinc-700 rounded-xl p-4 text-center font-medium hover:bg-gray-50 hover:border-[#C40001] transition-all duration-300 shadow-sm hover:shadow-md"
-        >
-                      📍 İzmir
-        </a>
-        <a
-                      href="https://t.me/antalya_yatirimlikevler"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block bg-white border border-[#E7E9EC] text-zinc-700 rounded-xl p-4 text-center font-medium hover:bg-gray-50 hover:border-[#C40001] transition-all duration-300 shadow-sm hover:shadow-md"
+                      className="block bg-green-600 hover:bg-green-700 text-white text-center py-3 px-4 rounded-lg transition-all duration-200 text-sm font-medium"
                     >
-                      📍 Antalya
+                      📱 WhatsApp Grubumuza Katıl
                     </a>
                   </div>
                 </div>
