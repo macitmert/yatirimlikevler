@@ -216,48 +216,6 @@ export default function Home() {
     }
   };
 
-  const handleIlanBasvuru = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSending(true);
-    setError(null);
-    setSuccess(false);
-
-    try {
-      const formData = new FormData();
-      formData.append("firstName", (e.target as any).firstName.value);
-      formData.append("lastName", (e.target as any).lastName.value);
-      formData.append("phone", phoneNumber);
-      formData.append("phoneCountryCode", phoneCountryCode);
-      formData.append("ilanNo", ilanNo);
-      formData.append("ilanNoAccepted", ilanNoAccepted ? "true" : "false");
-      formData.append("province", selectedProvince);
-      formData.append("district", selectedDistrict);
-
-      const response = await fetch("/api/ilan-basvuru", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        setSuccess(true);
-        // Form'u temizle
-        setIlanNo("");
-        setIlanNoAccepted(false);
-        setPhoneNumber("");
-        setSelectedProvince("");
-        setSelectedDistrict("");
-        (e.target as any).firstName.value = "";
-        (e.target as any).lastName.value = "";
-      } else {
-        const data = await response.json();
-        setError(data.error || "Başvuru gönderim hatası");
-      }
-    } catch (err) {
-      setError("Bağlantı hatası");
-    } finally {
-      setSending(false);
-    }
-  };
 
   return (
     <main className="min-h-screen bg-[#F8F9FB] text-zinc-900">
@@ -712,11 +670,7 @@ export default function Home() {
                          onChange={(e) => setTemsilciTelefonKodu(e.target.value)}
                          className="w-32 sm:w-36 border border-gray-300 rounded-lg px-2 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
                        >
-                         {countryCodes.map((country) => (
-                           <option key={country.code} value={country.code}>
-                             {country.code} {country.country}
-                           </option>
-                         ))}
+                         <option value="+90">+90 Türkiye</option>
                        </select>
                        <input
                          type="tel"
