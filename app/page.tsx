@@ -4,17 +4,11 @@ import { useState } from "react";
 
 export default function Home() {
   const [openDetails, setOpenDetails] = useState<Record<string, boolean>>({});
-  const [ilanNo, setIlanNo] = useState("");
-  const [ilanNoAccepted, setIlanNoAccepted] = useState(false);
-  const [phoneCountryCode, setPhoneCountryCode] = useState("+90");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [sending, setSending] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [selectedCity, setSelectedCity] = useState("");
-  const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
-  const [whatsappAccepted, setWhatsappAccepted] = useState(false);
+  const [hasSahibindenListing, setHasSahibindenListing] = useState<boolean | null>(null);
+  const [listingNumber, setListingNumber] = useState("");
+  const [acceptedCommission, setAcceptedCommission] = useState(false);
 
   // İlçe Temsilcisi form state'leri
   const [temsilciAdSoyad, setTemsilciAdSoyad] = useState("");
@@ -32,35 +26,18 @@ export default function Home() {
   const [temsilciSuccess, setTemsilciSuccess] = useState(false);
   const [temsilciError, setTemsilciError] = useState<string | null>(null);
 
-  const countryCodes = [
-    { code: "+90", country: "Türkiye", maxLength: 10 },
-    { code: "+1", country: "ABD/Kanada", maxLength: 10 },
-    { code: "+44", country: "İngiltere", maxLength: 10 },
-    { code: "+49", country: "Almanya", maxLength: 11 },
-    { code: "+33", country: "Fransa", maxLength: 9 },
-    { code: "+39", country: "İtalya", maxLength: 10 },
-    { code: "+34", country: "İspanya", maxLength: 9 },
-    { code: "+31", country: "Hollanda", maxLength: 9 },
-    { code: "+41", country: "İsviçre", maxLength: 9 },
-    { code: "+43", country: "Avusturya", maxLength: 10 },
-    { code: "+45", country: "Danimarka", maxLength: 8 },
-    { code: "+46", country: "İsveç", maxLength: 9 },
-    { code: "+47", country: "Norveç", maxLength: 8 },
-    { code: "+358", country: "Finlandiya", maxLength: 9 },
-    { code: "+7", country: "Rusya", maxLength: 10 },
-    { code: "+86", country: "Çin", maxLength: 11 },
-    { code: "+81", country: "Japonya", maxLength: 10 },
-    { code: "+82", country: "Güney Kore", maxLength: 10 },
-    { code: "+91", country: "Hindistan", maxLength: 10 },
-    { code: "+971", country: "BAE", maxLength: 9 },
-    { code: "+966", country: "Suudi Arabistan", maxLength: 9 },
-    { code: "+20", country: "Mısır", maxLength: 10 },
-    { code: "+27", country: "Güney Afrika", maxLength: 9 },
-    { code: "+55", country: "Brezilya", maxLength: 11 },
-    { code: "+54", country: "Arjantin", maxLength: 10 },
-    { code: "+52", country: "Meksika", maxLength: 10 },
-    { code: "+61", country: "Avustralya", maxLength: 9 },
-    { code: "+64", country: "Yeni Zelanda", maxLength: 9 }
+  // Tüm Türkiye şehirleri - özel sıralama
+  const cities = [
+    "İstanbul (Avrupa)", "İstanbul (Anadolu)", "Ankara", "İzmir", "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Antalya", "Artvin",
+    "Aydın", "Balıkesir", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale",
+    "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Edirne", "Elazığ", "Erzincan", "Erzurum",
+    "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkâri", "Hatay", "Isparta", "Mersin",
+    "Kars", "Kastamonu", "Kayseri", "Kırklareli", "Kırşehir", "Kocaeli",
+    "Konya", "Kütahya", "Malatya", "Manisa", "Kahramanmaraş", "Mardin", "Muğla", "Muş",
+    "Nevşehir", "Niğde", "Ordu", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas",
+    "Tekirdağ", "Tokat", "Trabzon", "Tunceli", "Şanlıurfa", "Uşak", "Van", "Yozgat", "Zonguldak",
+    "Aksaray", "Bayburt", "Karaman", "Kırıkkale", "Batman", "Şırnak", "Bartın", "Ardahan",
+    "Iğdır", "Yalova", "Karabük", "Kilis", "Osmaniye", "Düzce"
   ];
 
   const toggleDetail = (id: string) => {
@@ -70,45 +47,17 @@ export default function Home() {
     }));
   };
 
-  const handleIlanNoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, ''); // Sadece rakam
-    setIlanNo(value);
+  // Form validasyonu
+  const isFormValid = () => {
+    return selectedCity && selectedDistrict && hasSahibindenListing !== null && acceptedCommission && 
+           (hasSahibindenListing === false || (hasSahibindenListing === true && listingNumber.length === 10));
   };
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value;
-    
-    // Tüm tireleri, boşlukları ve özel karakterleri kaldır
-    value = value.replace(/[^\d]/g, '');
-    
-    // 90 ile başlıyorsa kaldır (Türkiye için)
-    if (value.startsWith('90')) {
-      value = value.substring(2);
-    }
-    
-    // Maksimum uzunluğu kontrol et
-    const maxLength = getCurrentCountryMaxLength();
-    if (value.length > maxLength) {
-      value = value.substring(0, maxLength);
-    }
-    
-    setPhoneNumber(value);
-  };
-
-  const getCurrentCountryMaxLength = () => {
-    const country = countryCodes.find(c => c.code === phoneCountryCode);
-    return country ? country.maxLength : 10;
-  };
-
-  const isIlanNoValid = ilanNo.length === 10;
-  const isPhoneValid = phoneNumber.length === getCurrentCountryMaxLength();
 
   // İlçe Temsilcisi form validasyonları
   const isTemsilciAdSoyadValid = temsilciAdSoyad.trim().length >= 2;
   const isTemsilciFirmaValid = temsilciFirma.trim().length >= 2;
   const getTemsilciTelefonMaxLength = () => {
-    const country = countryCodes.find(c => c.code === temsilciTelefonKodu);
-    return country ? country.maxLength : 10;
+    return 10; // Türkiye için sabit
   };
   const isTemsilciTelefonValid = temsilciTelefon.length === getTemsilciTelefonMaxLength();
   const isTemsilciEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(temsilciEmail);
@@ -116,97 +65,105 @@ export default function Home() {
   const isTemsilciFormValid = isTemsilciAdSoyadValid && isTemsilciFirmaValid && isTemsilciTelefonValid && isTemsilciEmailValid && 
                              temsilciIl && temsilciIlce && isTemsilciBelgeNoValid && temsilciKvkk;
 
-  const getWhatsAppMessage = (city: string) => {
-    const messages = {
-      "istanbul-avrupa": "Merhaba, İstanbul Avrupa yakasındaki evimin detaylarını paylaşmak istiyorum",
-      "istanbul-anadolu": "Merhaba, İstanbul Anadolu yakasındaki evimin detaylarını paylaşmak istiyorum",
-      "ankara": "Merhaba, Ankara'daki evimin detaylarını paylaşmak istiyorum",
-      "izmir": "Merhaba, İzmir'deki evimin detaylarını paylaşmak istiyorum",
-      "antalya": "Merhaba, Antalya'daki evimin detaylarını paylaşmak istiyorum",
-      "bursa": "Merhaba, Bursa'daki evimin detaylarını paylaşmak istiyorum",
-      "konya": "Merhaba, Konya'daki evimin detaylarını paylaşmak istiyorum",
-      "muğla": "Merhaba, Muğla'daki evimin detaylarını paylaşmak istiyorum",
-      "denizli": "Merhaba, Denizli'deki evimin detaylarını paylaşmak istiyorum",
-      "gaziantep": "Merhaba, Gaziantep'teki evimin detaylarını paylaşmak istiyorum",
-      "kocaeli": "Merhaba, Kocaeli'deki evimin detaylarını paylaşmak istiyorum",
-      "edirne": "Merhaba, Edirne'deki evimin detaylarını paylaşmak istiyorum",
-      "adana": "Merhaba, Adana'daki evimin detaylarını paylaşmak istiyorum",
-      "kayseri": "Merhaba, Kayseri'deki evimin detaylarını paylaşmak istiyorum",
-      "eskişehir": "Merhaba, Eskişehir'deki evimin detaylarını paylaşmak istiyorum",
-      "mersin": "Merhaba, Mersin'deki evimin detaylarını paylaşmak istiyorum",
-      "çanakkale": "Merhaba, Çanakkale'deki evimin detaylarını paylaşmak istiyorum",
-      "trabzon": "Merhaba, Trabzon'daki evimin detaylarını paylaşmak istiyorum",
-      "kırıkkale": "Merhaba, Kırıkkale'deki evimin detaylarını paylaşmak istiyorum",
-      "samsun": "Merhaba, Samsun'daki evimin detaylarını paylaşmak istiyorum",
-      "erzurum": "Merhaba, Erzurum'daki evimin detaylarını paylaşmak istiyorum",
-      "manisa": "Merhaba, Manisa'daki evimin detaylarını paylaşmak istiyorum",
-      "tekirdağ": "Merhaba, Tekirdağ'daki evimin detaylarını paylaşmak istiyorum",
-      "sakarya": "Merhaba, Sakarya'daki evimin detaylarını paylaşmak istiyorum",
-      "aydın": "Merhaba, Aydın'daki evimin detaylarını paylaşmak istiyorum",
-      "bolu": "Merhaba, Bolu'daki evimin detaylarını paylaşmak istiyorum",
-      "balıkesir": "Merhaba, Balıkesir'deki evimin detaylarını paylaşmak istiyorum",
-      "kütahya": "Merhaba, Kütahya'daki evimin detaylarını paylaşmak istiyorum",
-      "isparta": "Merhaba, Isparta'daki evimin detaylarını paylaşmak istiyorum",
-      "diyarbakır": "Merhaba, Diyarbakır'daki evimin detaylarını paylaşmak istiyorum"
-    };
-    return messages[city as keyof typeof messages] || "Merhaba, evimin detaylarını paylaşmak istiyorum";
+  const getWhatsAppMessage = () => {
+    let message = `Merhaba, ${selectedCity} - ${selectedDistrict} bölgesindeki evimi satmak istiyorum.`;
+    
+    if (hasSahibindenListing === true && listingNumber) {
+      message += ` Sahibinden ilan numaram: ${listingNumber}`;
+    }
+    
+    return message;
   };
 
 
 
-  const getDistricts = (province: string) => {
-    // FAZ 1 - Yeni İlçe Listesi (Bölgesel Organizasyon)
-    const districts = {
-      "istanbul-avrupa": [
-        "Şişli", "Beşiktaş", "Bakırköy", "Sarıyer", "Kağıthane", "Beyoğlu", "Fatih"
-      ],
-      "istanbul-anadolu": [
-        "Üsküdar", "Ataşehir", "Kadıköy", "Maltepe", "Kartal", "Pendik", "Ümraniye", "Beykoz"
-      ],
-      "ankara": [
-        "Çankaya", "Yenimahalle", "Etimesgut", "Gölbaşı"
-      ],
-      "izmir": [
-        "Konak", "Karşıyaka", "Bornova", "Bayraklı", "Balçova", "Narlıdere", "Güzelbahçe", "Urla", "Çeşme"
-      ],
-      "antalya": [
-        "Muratpaşa", "Konyaaltı", "Kepez", "Alanya", "Kemer"
-      ],
-      "bursa": [
-        "Nilüfer", "Osmangazi"
-      ],
-      "konya": [
-        "Selçuklu", "Meram"
-      ],
-      "muğla": [
-        "Bodrum", "Fethiye", "Marmaris"
-      ],
-      "mersin": [
-        "Yenişehir", "Mezitli"
-      ],
-      "adana": [
-        "Çukurova", "Seyhan"
-      ],
-      "samsun": [
-        "Atakum"
-      ],
-      "trabzon": [
-        "Ortahisar"
-      ],
-      "gaziantep": [
-        "Şehitkamil"
-      ],
-      "diyarbakır": [
-        "Kayapınar"
-      ],
-      "erzurum": [
-        "Yakutiye"
-      ],
-      "van": [
-        "İpekyolu"
-      ]
+  // İlçeler - tüm Türkiye ilçeleri
+  const getDistricts = (city: string) => {
+    const districts: Record<string, string[]> = {
+      "Adana": ["Seyhan", "Yüreğir", "Çukurova", "Sarıçam", "İmamoğlu", "Aladağ", "Yumurtalık", "Tufanbeyli", "Saimbeyli", "Pozantı", "Kozan", "Karataş", "Karaisalı", "Feke", "Ceyhan"],
+      "Adıyaman": ["Merkez", "Besni", "Çelikhan", "Gerger", "Gölbaşı", "Kahta", "Samsat", "Sincik", "Tut"],
+      "Afyonkarahisar": ["Merkez", "Başmakçı", "Bayat", "Bolvadin", "Çay", "Çobanlar", "Dazkırı", "Dinar", "Emirdağ", "Evciler", "Hocalar", "İhsaniye", "İscehisar", "Kızılören", "Sandıklı", "Sinanpaşa", "Sultandağı", "Şuhut"],
+      "Ağrı": ["Merkez", "Diyadin", "Doğubayazıt", "Eleşkirt", "Hamur", "Patnos", "Taşlıçay", "Tutak"],
+      "Amasya": ["Merkez", "Göynücek", "Gümüşhacıköy", "Hamamözü", "Merzifon", "Suluova", "Taşova"],
+      "Ankara": ["Altındağ", "Ayaş", "Bala", "Beypazarı", "Çamlıdere", "Çankaya", "Çubuk", "Elmadağ", "Etimesgut", "Evren", "Gölbaşı", "Güdül", "Haymana", "Kalecik", "Kazan", "Keçiören", "Kızılcahamam", "Mamak", "Nallıhan", "Polatlı", "Pursaklar", "Sincan", "Şereflikoçhisar", "Yenimahalle"],
+      "Antalya": ["Akseki", "Aksu", "Alanya", "Demre", "Döşemealtı", "Elmalı", "Finike", "Gazipaşa", "Gündoğmuş", "İbradı", "Kaş", "Kemer", "Kepez", "Konyaaltı", "Korkuteli", "Kumluca", "Manavgat", "Muratpaşa", "Serik"],
+      "Artvin": ["Ardanuç", "Arhavi", "Borçka", "Hopa", "Merkez", "Murgul", "Şavşat", "Yusufeli"],
+      "Aydın": ["Bozdoğan", "Buharkent", "Çine", "Didim", "Efeler", "Germencik", "İncirliova", "Karacasu", "Karpuzlu", "Koçarlı", "Köşk", "Kuşadası", "Kuyucak", "Nazilli", "Söke", "Sultanhisar", "Yenipazar"],
+      "Balıkesir": ["Altıeylül", "Ayvalık", "Balya", "Bandırma", "Bigadiç", "Burhaniye", "Dursunbey", "Edremit", "Erdek", "Gömeç", "Gönen", "Havran", "İvrindi", "Karesi", "Kepsut", "Manyas", "Marmara", "Savaştepe", "Sındırgı", "Susurluk"],
+      "Bilecik": ["Bozüyük", "Gölpazarı", "İnhisar", "Merkez", "Osmaneli", "Pazaryeri", "Söğüt", "Yenipazar"],
+      "Bingöl": ["Adaklı", "Genç", "Karlıova", "Kiğı", "Merkez", "Solhan", "Yayladere", "Yedisu"],
+      "Bitlis": ["Adilcevaz", "Ahlat", "Güroymak", "Hizan", "Merkez", "Mutki", "Tatvan"],
+      "Bolu": ["Dörtdivan", "Gerede", "Göynük", "Kıbrıscık", "Mengen", "Merkez", "Mudurnu", "Seben", "Yeniçağa"],
+      "Burdur": ["Ağlasun", "Altınyayla", "Bucak", "Çavdır", "Çeltikçi", "Gölhisar", "Karamanlı", "Kemer", "Merkez", "Tefenni", "Yeşilova"],
+      "Bursa": ["Büyükorhan", "Gemlik", "Gürsu", "Harmancık", "İnegöl", "İznik", "Karacabey", "Keles", "Kestel", "Mudanya", "Mustafakemalpaşa", "Nilüfer", "Orhaneli", "Orhangazi", "Osmangazi", "Yenişehir", "Yıldırım"],
+      "Çanakkale": ["Ayvacık", "Bayramiç", "Biga", "Bozcaada", "Çan", "Eceabat", "Ezine", "Gelibolu", "Gökçeada", "Lapseki", "Merkez", "Yenice"],
+      "Çankırı": ["Atkaracalar", "Bayramören", "Çerkeş", "Eldivan", "Ilgaz", "Kızılırmak", "Korgun", "Kurşunlu", "Merkez", "Orta", "Şabanözü", "Yapraklı"],
+      "Çorum": ["Alaca", "Bayat", "Boğazkale", "Dodurga", "İskilip", "Kargı", "Laçin", "Mecitözü", "Merkez", "Oğuzlar", "Ortaköy", "Osmancık", "Sungurlu", "Uğurludağ"],
+      "Denizli": ["Acıpayam", "Babadağ", "Baklan", "Bekilli", "Beyağaç", "Bozkurt", "Buldan", "Çal", "Çameli", "Çardak", "Çivril", "Güney", "Honaz", "Kale", "Merkez", "Merkezefendi", "Pamukkale", "Sarayköy", "Serinhisar", "Tavas"],
+      "Diyarbakır": ["Bağlar", "Bismil", "Çermik", "Çınar", "Çüngüş", "Dicle", "Eğil", "Ergani", "Hani", "Hazro", "Kayapınar", "Kocaköy", "Kulp", "Lice", "Merkez", "Silvan", "Sur", "Yenişehir"],
+      "Edirne": ["Enez", "Havsa", "İpsala", "Keşan", "Lalapaşa", "Merkez", "Meriç", "Süloğlu", "Uzunköprü"],
+      "Elazığ": ["Ağın", "Alacakaya", "Arıcak", "Baskil", "Karakoçan", "Keban", "Kovancılar", "Maden", "Merkez", "Palu", "Sivrice"],
+      "Erzincan": ["Çayırlı", "İliç", "Kemah", "Kemaliye", "Merkez", "Otlukbeli", "Refahiye", "Tercan", "Üzümlü"],
+      "Erzurum": ["Aşkale", "Aziziye", "Çat", "Hınıs", "Horasan", "İspir", "Karaçoban", "Karayazı", "Köprüköy", "Narman", "Oltu", "Olur", "Palandöken", "Pasinler", "Pazaryolu", "Şenkaya", "Tekman", "Tortum", "Uzundere", "Yakutiye"],
+      "Eskişehir": ["Alpu", "Beylikova", "Çifteler", "Günyüzü", "Han", "İnönü", "Mahmudiye", "Mihalgazi", "Mihalıççık", "Odunpazarı", "Sarıcakaya", "Seyitgazi", "Sivrihisar", "Tepebaşı"],
+      "Gaziantep": ["Araban", "İslahiye", "Karkamış", "Nizip", "Nurdağı", "Oğuzeli", "Şahinbey", "Şehitkamil", "Yavuzeli"],
+      "Giresun": ["Alucra", "Bulancak", "Çamoluk", "Çanakçı", "Dereli", "Doğankent", "Espiye", "Eynesil", "Görele", "Güce", "Keşap", "Merkez", "Piraziz", "Şebinkarahisar", "Tirebolu", "Yağlıdere"],
+      "Gümüşhane": ["Kelkit", "Köse", "Kürtün", "Merkez", "Şiran", "Torul"],
+      "Hakkâri": ["Çukurca", "Merkez", "Şemdinli", "Yüksekova"],
+      "Hatay": ["Altınözü", "Antakya", "Arsuz", "Belen", "Defne", "Dörtyol", "Erzin", "Hassa", "İskenderun", "Kırıkhan", "Kumlu", "Payas", "Reyhanlı", "Samandağı", "Yayladağı"],
+      "Isparta": ["Aksu", "Atabey", "Eğirdir", "Gelendost", "Gönen", "Keçiborlu", "Merkez", "Senirkent", "Sütçüler", "Şarkikaraağaç", "Uluborlu", "Yalvaç", "Yenişarbademli"],
+      "Mersin": ["Akdeniz", "Anamur", "Aydıncık", "Bozyazı", "Çamlıyayla", "Erdemli", "Gülnar", "Mezitli", "Mut", "Silifke", "Tarsus", "Toroslar", "Yenişehir"],
+      "İstanbul (Avrupa)": ["Adalar", "Arnavutköy", "Avcılar", "Bağcılar", "Bahçelievler", "Bakırköy", "Başakşehir", "Bayrampaşa", "Beşiktaş", "Beylikdüzü", "Beyoğlu", "Büyükçekmece", "Çatalca", "Çekmeköy", "Eminönü", "Esenler", "Esenyurt", "Eyüpsultan", "Fatih", "Gaziosmanpaşa", "Güngören", "Kağıthane", "Küçükçekmece", "Sancaktepe", "Sarıyer", "Silivri", "Sultanbeyli", "Sultangazi", "Şile", "Şişli", "Zeytinburnu"],
+      "İstanbul (Anadolu)": ["Ataşehir", "Beykoz", "Kadıköy", "Kartal", "Maltepe", "Pendik", "Tuzla", "Ümraniye", "Üsküdar"],
+      "İzmir": ["Aliağa", "Balçova", "Bayındır", "Bayraklı", "Bergama", "Beydağ", "Bornova", "Buca", "Çeşme", "Çiğli", "Dikili", "Foça", "Gaziemir", "Güzelbahçe", "Karabağlar", "Karaburun", "Karşıyaka", "Kemalpaşa", "Kınık", "Kiraz", "Konak", "Menderes", "Menemen", "Narlıdere", "Ödemiş", "Seferihisar", "Selçuk", "Tire", "Torbalı", "Urla"],
+      "Kars": ["Arpaçay", "Digor", "Kağızman", "Merkez", "Sarıkamış", "Selim", "Susuz", "Akyaka"],
+      "Kastamonu": ["Abana", "Ağlı", "Araç", "Azdavay", "Bozkurt", "Cide", "Çatalzeytin", "Daday", "Devrekani", "Doğanyurt", "Hanönü", "İhsangazi", "İnebolu", "Küre", "Merkez", "Pınarbaşı", "Seydiler", "Şenpazar", "Taşköprü", "Tosya", "Yapraklı"],
+      "Kayseri": ["Akkışla", "Bünyan", "Develi", "Felahiye", "Hacılar", "İncesu", "Kocasinan", "Melikgazi", "Özvatan", "Pınarbaşı", "Sarıoğlan", "Sarız", "Talas", "Tomarza", "Yahyalı", "Yeşilhisar"],
+      "Kırklareli": ["Babaeski", "Demirköy", "Kofçaz", "Lüleburgaz", "Merkez", "Pehlivanköy", "Pınarhisar", "Vize"],
+      "Kırşehir": ["Akçakent", "Akpınar", "Boztepe", "Çiçekdağı", "Kaman", "Merkez", "Mucur"],
+      "Kocaeli": ["Başiskele", "Çayırova", "Darıca", "Derince", "Dilovası", "Gebze", "Gölcük", "İzmit", "Kandıra", "Karamürsel", "Kartepe", "Körfez"],
+      "Konya": ["Ahırlı", "Akören", "Akşehir", "Altınekin", "Beyşehir", "Bozkır", "Cihanbeyli", "Çeltik", "Çumra", "Derbent", "Derebucak", "Doğanhisar", "Emirgazi", "Ereğli", "Güneysınır", "Hadim", "Halkapınar", "Hüyük", "Ilgın", "Kadınhanı", "Karapınar", "Karatay", "Kulu", "Meram", "Sarayönü", "Selçuklu", "Seydişehir", "Taşkent", "Tuzlukçu", "Yalıhüyük", "Yunak"],
+      "Kütahya": ["Altıntaş", "Aslanapa", "Çavdarhisar", "Domaniç", "Dumlupınar", "Emet", "Gediz", "Hisarcık", "Merkez", "Pazarlar", "Simav", "Şaphane", "Tavşanlı"],
+      "Malatya": ["Akçadağ", "Arapgir", "Arguvan", "Battalgazi", "Darende", "Doğanşehir", "Doğanyol", "Hekimhan", "Kale", "Kuluncak", "Merkez", "Pütürge", "Yazıhan", "Yeşilyurt"],
+      "Manisa": ["Ahmetli", "Akhisar", "Alaşehir", "Demirci", "Gölmarmara", "Gördes", "Kırkağaç", "Köprübaşı", "Kula", "Merkez", "Salihli", "Sarıgöl", "Saruhanlı", "Selendi", "Soma", "Şehzadeler", "Turgutlu", "Yunusemre"],
+      "Kahramanmaraş": ["Afşin", "Andırın", "Çağlayancerit", "Dulkadiroğlu", "Ekinözü", "Elbistan", "Göksun", "Merkez", "Nurhak", "Onikişubat", "Pazarcık", "Türkoğlu"],
+      "Mardin": ["Artuklu", "Dargeçit", "Derik", "Kızıltepe", "Mazıdağı", "Merkez", "Midyat", "Nusaybin", "Ömerli", "Savur", "Yeşilli"],
+      "Muğla": ["Bodrum", "Dalaman", "Datça", "Fethiye", "Kavaklıdere", "Köyceğiz", "Marmaris", "Menteşe", "Milas", "Ortaca", "Seydikemer", "Ula", "Yatağan"],
+      "Muş": ["Bulanık", "Hasköy", "Korkut", "Malazgirt", "Merkez", "Varto"],
+      "Nevşehir": ["Acıgöl", "Avanos", "Derinkuyu", "Gülşehir", "Hacıbektaş", "Kozaklı", "Merkez", "Ürgüp"],
+      "Niğde": ["Altunhisar", "Bor", "Çamardı", "Çiftlik", "Merkez", "Ulukışla"],
+      "Ordu": ["Akkuş", "Altınordu", "Aybastı", "Çamaş", "Çatalpınar", "Çaybaşı", "Fatsa", "Gölköy", "Gülyalı", "Gürgentepe", "İkizce", "Kabadüz", "Kabataş", "Korgan", "Kumru", "Mesudiye", "Merkez", "Perşembe", "Piraziz", "Ulubey", "Ünye"],
+      "Rize": ["Ardeşen", "Çamlıhemşin", "Çayeli", "Derepazarı", "Fındıklı", "Güneysu", "Hemşin", "İkizdere", "İyidere", "Kalkandere", "Merkez", "Pazar"],
+      "Sakarya": ["Adapazarı", "Akyazı", "Arifiye", "Erenler", "Ferizli", "Geyve", "Hendek", "Karapürçek", "Karasu", "Kaynarca", "Kocaali", "Pamukova", "Sapanca", "Serdivan", "Söğütlü", "Taraklı"],
+      "Samsun": ["19 Mayıs", "Alaçam", "Asarcık", "Atakum", "Ayvacık", "Bafra", "Canik", "Çarşamba", "Havza", "İlkadım", "Kavak", "Ladik", "Salıpazarı", "Tekkeköy", "Terme", "Vezirköprü", "Yakakent"],
+      "Siirt": ["Baykan", "Eruh", "Kurtalan", "Merkez", "Pervari", "Şirvan", "Tillo"],
+      "Sinop": ["Ayancık", "Boyabat", "Dikmen", "Durağan", "Erfelek", "Gerze", "Merkez", "Saraydüzü", "Türkeli"],
+      "Sivas": ["Akıncılar", "Altınyayla", "Divriği", "Doğanşar", "Gemerek", "Gölova", "Gürün", "Hafik", "İmranlı", "Kangal", "Koyulhisar", "Merkez", "Suşehri", "Şarkışla", "Ulaş", "Yıldızeli", "Zara"],
+      "Tekirdağ": ["Çerkezköy", "Çorlu", "Ergene", "Hayrabolu", "Kapaklı", "Malkara", "Marmaraereğlisi", "Muratlı", "Saray", "Şarköy", "Süleymanpaşa"],
+      "Tokat": ["Almus", "Artova", "Başçiftlik", "Erbaa", "Merkez", "Niksar", "Pazar", "Reşadiye", "Sulusaray", "Turhal", "Yeşilyurt", "Zile"],
+      "Trabzon": ["Akçaabat", "Araklı", "Arsin", "Beşikdüzü", "Çarşıbaşı", "Çaykara", "Dernekpazarı", "Düzköy", "Hayrat", "Köprübaşı", "Maçka", "Of", "Ortahisar", "Şalpazarı", "Sürmene", "Tonya", "Vakfıkebir", "Yomra"],
+      "Tunceli": ["Çemişgezek", "Hozat", "Mazgirt", "Merkez", "Nazımiye", "Ovacık", "Pertek", "Pülümür"],
+      "Şanlıurfa": ["Akçakale", "Birecik", "Bozova", "Ceylanpınar", "Eyyübiye", "Halfeti", "Haliliye", "Harran", "Hilvan", "Karaköprü", "Merkez", "Siverek", "Suruç", "Viranşehir"],
+      "Uşak": ["Banaz", "Eşme", "Karahallı", "Merkez", "Sivaslı", "Ulubey"],
+      "Van": ["Bahçesaray", "Başkale", "Çaldıran", "Çatak", "Edremit", "Erciş", "Gevaş", "Gürpınar", "İpekyolu", "Merkez", "Muradiye", "Özalp", "Saray", "Tuşba"],
+      "Yozgat": ["Akdağmadeni", "Aydıncık", "Boğazlıyan", "Çandır", "Çayıralan", "Çekerek", "Kadışehri", "Merkez", "Saraykent", "Sarıkaya", "Şefaatli", "Sorgun", "Yenifakılı", "Yerköy"],
+      "Zonguldak": ["Alaplı", "Çaycuma", "Devrek", "Ereğli", "Gökçebey", "Kilimli", "Kozlu", "Merkez"],
+      "Aksaray": ["Ağaçören", "Eskil", "Gülağaç", "Güzelyurt", "Merkez", "Ortaköy", "Sarıyahşi", "Sultanhanı"],
+      "Bayburt": ["Aydıntepe", "Demirözü", "Merkez"],
+      "Karaman": ["Ayrancı", "Başyayla", "Ermenek", "Kazımkarabekir", "Merkez", "Sarıveliler"],
+      "Kırıkkale": ["Bahşili", "Balışeyh", "Çelebi", "Delice", "Karakeçili", "Keskin", "Merkez", "Sulakyurt", "Yahşihan"],
+      "Batman": ["Beşiri", "Gercüş", "Hasankeyf", "Kozluk", "Merkez", "Sason"],
+      "Şırnak": ["Beytüşşebap", "Cizre", "Güçlükonak", "İdil", "Merkez", "Silopi", "Uludere"],
+      "Bartın": ["Amasra", "Kurucaşile", "Merkez", "Ulus"],
+      "Ardahan": ["Çıldır", "Damal", "Göle", "Hanak", "Merkez", "Posof"],
+      "Iğdır": ["Aralık", "Karakoyunlu", "Merkez", "Tuzluca"],
+      "Yalova": ["Altınova", "Armutlu", "Çınarcık", "Çiftlikköy", "Merkez", "Termal"],
+      "Karabük": ["Eflani", "Eskipazar", "Merkez", "Ovacık", "Safranbolu", "Yenice"],
+      "Kilis": ["Elbeyli", "Merkez", "Musabeyli", "Polateli"],
+      "Osmaniye": ["Bahçe", "Düziçi", "Hasanbeyli", "Kadirli", "Merkez", "Sumbas", "Toprakkale"],
+      "Düzce": ["Akçakoca", "Cumayeri", "Çilimli", "Gölyaka", "Gümüşova", "Kaynaşlı", "Merkez", "Yığılca"]
     };
-    return districts[province as keyof typeof districts] || [];
+    return districts[city] || [];
   };
 
   const handleTemsilciBasvuru = async (e: React.FormEvent) => {
@@ -319,7 +276,7 @@ export default function Home() {
       {/* All Cards */}
       <section className="px-6 py-8">
         <div className="max-w-md md:max-w-2xl lg:max-w-2xl mx-auto space-y-4">
-           {/* Evini Bizimle Hızlı Sat */}
+           {/* Evini Hızlı ve Güvenli Sat */}
           <div className="border border-[#E7E9EC] rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 bg-white">
             <button
               onClick={() => toggleDetail('satici')}
@@ -327,7 +284,7 @@ export default function Home() {
             >
               <span className="flex items-center gap-3">
                 <span className="text-2xl">🏠</span>
-                <span className="text-lg">Evimi Satmak İstiyorum</span>
+                <span className="text-lg">Evini Hızlı ve Güvenli Sat</span>
               </span>
               <span className={`transform transition-transform duration-200 ${openDetails.satici ? 'rotate-180' : ''}`}>
                 ▼
@@ -337,378 +294,253 @@ export default function Home() {
                <div className="px-6 pb-6">
                  <div className="border-t border-[#C40001]/10 pt-4">
                    <p className="text-sm text-zinc-600 mb-4 text-justify">
-                     Evinizin yatırım değerinin yüksek olduğuna inanıyorsanız başvurun. Eviniz kriterlerimize uygunsa şanslısınız çünkü geniş yatırımcı portföyümüz ve güçlü sosyal medya kanallarımız aracılığıyla evinizi hızlıca satıyoruz.
-                   </p>
-                   
-                   {/* İki Seçenek */}
-                   <div className="space-y-3">
-                     {/* Sahibinden İlan No ile Başvuru */}
-                     <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
-                       <div className="flex items-center gap-3 mb-3">
-                         <span className="text-lg">🔗</span>
+                  Evinizi hızlı ve güvenli bir şekilde satmak için WhatsApp üzerinden bizimle iletişime geçin.
+                </p>
+
+                <div className="space-y-4">
+                  {/* Şehir Seçimi */}
                          <div>
-                           <h4 className="font-medium text-sm text-zinc-800">Sahibinden İlan No ile Hızlı Başvuru</h4>
-                           <p className="text-xs text-zinc-600">İlanınız zaten sahibinden.com'da varsa</p>
-                         </div>
-                       </div>
-                       <form onSubmit={handleIlanBasvuru} className="space-y-3">
-                         <div className="grid grid-cols-2 gap-2">
-                           <input
-                             type="text"
-                             name="firstName"
-                             placeholder="Ad (zorunlu)"
-                             className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001]"
-                           />
-                           <input
-                             type="text"
-                             name="lastName"
-                             placeholder="Soyad (zorunlu)"
-                             className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001]"
-                           />
-                         </div>
-                         <div className="flex gap-2">
-                           <select
-                             value={phoneCountryCode}
-                             onChange={(e) => {
-                               setPhoneCountryCode(e.target.value);
-                               setPhoneNumber(''); // Alan kodu değişince telefon numarasını sıfırla
-                             }}
-                             className="border border-gray-300 rounded-lg px-2 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white w-20"
-                           >
-                             {countryCodes.map((country) => (
-                               <option key={country.code} value={country.code}>
-                                 {country.code}
-                               </option>
-                             ))}
-                           </select>
-                           <input
-                             type="text"
-                             name="phone"
-                             value={phoneNumber}
-                             onChange={handlePhoneChange}
-                             maxLength={getCurrentCountryMaxLength()}
-                             placeholder="Telefon numarası"
-                             className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                           />
-                         </div>
-                         {phoneNumber && !isPhoneValid && (
-                           <p className="text-xs text-red-600">
-                             ⚠️ {getCurrentCountryMaxLength()} haneli olmalıdır
-                           </p>
-                         )}
-                         
-                         {/* İl Seçimi */}
-                         <div>
-                         <label className="block text-xs font-medium text-zinc-700 mb-1">
-                           Evinizin bulunduğu şehri seçiniz (zorunlu) <span className="text-red-500">*</span>
+                    <label className="block text-xs font-medium text-zinc-700 mb-2">
+                      Şehir Seçiniz (Zorunlu) <span className="text-red-500">*</span>
                          </label>
-                         <p className="text-xs text-zinc-500 mb-2">
-                           Listemizde yer alan 7 bölgeden 15 il ve 50 ilçe dışında başvuru kabul edemiyoruz.
-                         </p>
                            <select
-                             value={selectedProvince}
+                      value={selectedCity}
                              onChange={(e) => {
-                               setSelectedProvince(e.target.value);
-                               setSelectedDistrict(""); // İl değişince ilçeyi sıfırla
-                             }}
-                             className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                        setSelectedCity(e.target.value);
+                        setSelectedDistrict("");
+                        setHasSahibindenListing(null);
+                        setListingNumber("");
+                      }}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white text-gray-900 font-medium"
                              required
                            >
                              <option value="">Şehir seçiniz</option>
-                             <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
-                             <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
-                             <option value="ankara">Ankara</option>
-                             <option value="izmir">İzmir</option>
-                             <option value="antalya">Antalya</option>
-                             <option value="bursa">Bursa</option>
-                             <option value="konya">Konya</option>
-                             <option value="muğla">Muğla</option>
-                             <option value="mersin">Mersin</option>
-                             <option value="adana">Adana</option>
-                             <option value="samsun">Samsun</option>
-                             <option value="trabzon">Trabzon</option>
-                             <option value="gaziantep">Gaziantep</option>
-                             <option value="diyarbakır">Diyarbakır</option>
-                             <option value="erzurum">Erzurum</option>
-                             <option value="van">Van</option>
+                      {cities.map((city) => (
+                        <option key={city} value={city}>{city}</option>
+                      ))}
                            </select>
                          </div>
                          
                          {/* İlçe Seçimi */}
-                         {selectedProvince && selectedProvince !== "diger" && (
+                  {selectedCity && (
                            <div>
-                             <label className="block text-xs font-medium text-zinc-700 mb-1">
-                               İlçe seçiniz (zorunlu) <span className="text-red-500">*</span>
+                      <label className="block text-xs font-medium text-zinc-700 mb-2">
+                        İlçe Seçiniz (Zorunlu) <span className="text-red-500">*</span>
                              </label>
                              <select
                                value={selectedDistrict}
-                               onChange={(e) => setSelectedDistrict(e.target.value)}
-                               className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                        onChange={(e) => {
+                          setSelectedDistrict(e.target.value);
+                          setHasSahibindenListing(null);
+                          setListingNumber("");
+                        }}
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white text-gray-900 font-medium"
                                required
                              >
                                <option value="">İlçe seçiniz</option>
-                               {getDistricts(selectedProvince).map((district) => (
-                                 <option key={district} value={district}>
-                                   {district}
-                                 </option>
+                        {getDistricts(selectedCity).map((district) => (
+                          <option key={district} value={district}>{district}</option>
                                ))}
                              </select>
                            </div>
                          )}
                          
-                         <div className="flex gap-2">
-                           <input
-                             type="text"
-                             name="ilanNo"
-                             placeholder="İlan no giriniz"
-                             value={ilanNo}
-                             onChange={handleIlanNoChange}
-                             maxLength={10}
-                             className="w-4/5 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001]"
-                           />
-                           <button 
-                             type="submit"
-                             disabled={!isIlanNoValid || !ilanNoAccepted || sending}
-                             className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                               isIlanNoValid && ilanNoAccepted && !sending
-                                 ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
-                                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                             }`}
-                           >
-                             {sending ? "Gönderiliyor..." : "Başvur"}
-                           </button>
-                         </div>
-                         <label className="text-xs text-zinc-600 inline-flex items-start gap-2 cursor-pointer">
-                           <input 
-                             type="checkbox" 
-                             required 
-                             className="mt-0.5" 
-                             checked={ilanNoAccepted}
-                             onChange={(e) => setIlanNoAccepted(e.target.checked)}
-                           />
-                           <span>Evimin satışı konusunda Yatırımlık Evler'e 3 ay süreyle tam yetki vermeyi ve bu süreçte evimin satılması durumunda %4+KDV'lik bir hizmet bedeli ödemeyi kabul ediyorum.</span>
+                  {/* Sahibinden İlan Sorusu */}
+                  {selectedDistrict && (
+                         <div>
+                         <label className="block text-xs font-medium text-zinc-700 mb-2">
+                        Sahibinden.com'da ilanınız var mı? <span className="text-red-500">*</span>
                          </label>
-                         {ilanNo && !isIlanNoValid && (
-                           <p className="text-xs text-red-600">
-                             ⚠️ İlan numarası 10 haneli olmalıdır
-                           </p>
-                         )}
-                         {isIlanNoValid && !ilanNoAccepted && (
-                           <p className="text-xs text-red-600">
-                             ⚠️ Lütfen şartları kabul etmek için kutucuğu işaretleyin
-                           </p>
+                      <div className="flex gap-6">
+                        <label className="flex items-center">
+                           <input
+                            type="radio"
+                            name="hasListing"
+                            value="yes"
+                            checked={hasSahibindenListing === true}
+                            onChange={() => {
+                              setHasSahibindenListing(true);
+                              setListingNumber("");
+                            }}
+                            className="mr-3 h-5 w-5 text-gray-900 focus:ring-gray-900 border-gray-900 bg-white"
+                          />
+                          <span className="text-sm text-gray-900">Evet</span>
+                         </label>
+                        <label className="flex items-center">
+                           <input 
+                            type="radio"
+                            name="hasListing"
+                            value="no"
+                            checked={hasSahibindenListing === false}
+                            onChange={() => {
+                              setHasSahibindenListing(false);
+                              setListingNumber("");
+                            }}
+                            className="mr-3 h-5 w-5 text-gray-900 focus:ring-gray-900 border-gray-900 bg-white"
+                          />
+                          <span className="text-sm text-gray-900">Hayır</span>
+                         </label>
+                      </div>
+                         </div>
                          )}
                          
-                         {/* Success/Error Messages */}
-                         {success && (
-                           <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                             <p className="text-sm text-green-800">
-                               ✅ Başvurunuz başarıyla gönderildi! En kısa sürede size dönüş yapacağız.
-                             </p>
-                           </div>
-                         )}
-                         {error && (
-                           <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                             <p className="text-sm text-red-800">
-                               ❌ {error}
-                             </p>
-                           </div>
-                         )}
-                       </form>
-                     </div>
-
-                     {/* WhatsApp ile Başvuru */}
-                     <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
-                       <div className="flex items-center gap-3 mb-3">
-                         <span className="text-lg">📝</span>
+                  {/* Sahibinden İlan No Girişi */}
+                  {hasSahibindenListing === true && (
                          <div>
-                           <h4 className="font-medium text-sm text-zinc-800">Henüz ilanınız yok mu?</h4>
-                           <p className="text-xs text-zinc-600">Evinizin görsellerini ve detaylarını bize WhatsApp'tan iletin, 48 saat içinde inceleyelim.</p>
+                      <label className="block text-xs font-medium text-zinc-700 mb-2">
+                        Sahibinden İlan Numarası (Zorunlu) <span className="text-red-500">*</span>
+                             </label>
+                             <div className="relative">
+                               <input
+                                 type="text"
+                                 value={listingNumber}
+                                 onChange={(e) => setListingNumber(e.target.value.replace(/\D/g, ''))}
+                                 maxLength={10}
+                                 placeholder="10 haneli ilan numarası"
+                                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
+                                 required
+                               />
+                               <div className="absolute right-3 top-2 text-xs">
+                                 {listingNumber.length === 10 ? (
+                                   <span className="text-green-600">✓ Geçerli ilan numarası</span>
+                                 ) : listingNumber.length > 0 ? (
+                                   <span className="text-red-600">Geçersiz ilan numarası</span>
+                                 ) : (
+                                   <span className="text-gray-400">{listingNumber.length}/10</span>
+                                 )}
+                               </div>
+                             </div>
                          </div>
-                       </div>
-                       
-                       {/* Şehir Seçimi */}
-                       <div className="mb-3">
-                         <label className="block text-xs font-medium text-zinc-700 mb-2">
-                           Evinizin bulunduğu şehri seçiniz (zorunlu) <span className="text-red-500">*</span>
-                         </label>
-                         <p className="text-xs text-zinc-500 mb-2">
-                           Listemizde yer alan 7 bölgeden 15 il ve 50 ilçe dışında başvuru kabul edemiyoruz.
-                         </p>
-                         <select
-                           value={selectedCity}
-                           onChange={(e) => setSelectedCity(e.target.value)}
-                           className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#C40001] bg-white"
-                           required
+                         )}
+                         
+                  {/* Komisyon Kabul */}
+                  {selectedDistrict && (
+                         <div>
+                      <label className="block text-xs font-medium text-zinc-700 mb-2">
+                        Hizmet Şartları <span className="text-red-500">*</span>
+                             </label>
+                             <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
+                               <input
+                                 type="checkbox"
+                                 checked={acceptedCommission}
+                                 onChange={(e) => setAcceptedCommission(e.target.checked)}
+                                 className="mt-0.5"
+                                 required
+                               />
+                               <span>Lütfen hizmet şartlarımızı kabul etmek için kutucuğu işaretleyiniz.</span>
+                             </label>
+                         </div>
+                         )}
+                         
+                  {/* WhatsApp Butonu */}
+                  {isFormValid() && (
+                         <a
+                           href={`https://wa.me/905407208080?text=${encodeURIComponent(getWhatsAppMessage())}`}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="block w-full bg-[#C40001] hover:bg-[#C40001]/90 text-white text-center py-3 px-4 rounded-lg transition-colors text-sm font-medium flex items-center justify-center gap-2"
                          >
-                           <option value="">Şehir seçiniz</option>
-                           <option value="istanbul-avrupa">İstanbul (Avrupa)</option>
-                           <option value="istanbul-anadolu">İstanbul (Anadolu)</option>
-                           <option value="ankara">Ankara</option>
-                           <option value="izmir">İzmir</option>
-                           <option value="antalya">Antalya</option>
-                           <option value="bursa">Bursa</option>
-                           <option value="konya">Konya</option>
-                           <option value="muğla">Muğla</option>
-                           <option value="mersin">Mersin</option>
-                           <option value="adana">Adana</option>
-                           <option value="samsun">Samsun</option>
-                           <option value="trabzon">Trabzon</option>
-                           <option value="gaziantep">Gaziantep</option>
-                           <option value="diyarbakır">Diyarbakır</option>
-                           <option value="erzurum">Erzurum</option>
-                           <option value="van">Van</option>
-                         </select>
-                       </div>
-                       
-                       {/* Onay Kutucuğu */}
-                       <div className="mb-3">
-                         <label className="flex items-start gap-2 text-xs text-zinc-700 cursor-pointer">
-                           <input
-                             type="checkbox"
-                             checked={whatsappAccepted}
-                             onChange={(e) => setWhatsappAccepted(e.target.checked)}
-                             className="mt-0.5"
-                           />
-                           <span>Evimin satışı konusunda Yatırımlık Evler'e 3 ay süreyle tam yetki vermeyi ve bu süreçte evimin satılması durumunda %4+KDV'lik bir hizmet bedeli ödemeyi kabul ediyorum.</span>
-                         </label>
-                       </div>
-                       
-                       <a 
-                         href={selectedCity && whatsappAccepted ? `https://wa.me/905407208080?text=${encodeURIComponent(getWhatsAppMessage(selectedCity))}` : "#"}
-                         target="_blank"
-                         rel="noopener noreferrer"
-                         className={`block w-full rounded-xl p-3 text-center font-medium transition-all duration-300 text-sm flex items-center justify-center gap-2 ${
-                           selectedCity && whatsappAccepted
-                             ? 'bg-[#C40001] text-white hover:bg-[#C40001]/90' 
-                             : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                         }`}
-                         onClick={!(selectedCity && whatsappAccepted) ? (e) => e.preventDefault() : undefined}
-                       >
-                         <span>📱</span>
-                         WhatsApp'tan Gönder
-                       </a>
-                       
-                       {!selectedCity && (
-                         <p className="text-xs text-red-600 mt-2">
-                           ⚠️ Lütfen önce şehir seçimi yapın
-                         </p>
-                       )}
-                       {selectedCity && !whatsappAccepted && (
-                         <p className="text-xs text-red-600 mt-2">
-                           ⚠️ Lütfen şartları kabul etmek için kutucuğu işaretleyin
-                         </p>
-                       )}
-                     </div>
-                   </div>
-                   
-                   {/* Sık Sorulan Sorular */}
-                   <div className="mt-6">
-                     <h4 className="font-medium text-sm text-zinc-800 mb-4">Sık Sorulan Sorular</h4>
-                     <div className="space-y-3">
-                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           1. Siz emlakçı mısınız?
-                         </summary>
-                         <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Hayır. Biz bir dijital pazarlama ajansıyız.<br />
-                           Evinizi emlakçı değil, iyi pazarlama satar — biz de bu konuda oldukça iyiyiz.
-                         </div>
-                       </details>
-                       
-                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           2. Hizmet bedeliniz nedir?
-                         </summary>
-                         <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Sadece satış olursa %4 + KDV hizmet bedeli alınır.<br />
-                           (Siz net satış rakamını belirlersiniz, eviniz %4 eklenmiş brüt satış fiyatı üzerinden pazarlanır)<br />
-                           Alıcıdan hiçbir bedel alınmaz; bu da satışı hızlandırır ve şeffaflık sağlar.
-                         </div>
-                       </details>
-                       
-                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           3. Süreç nasıl başlıyor?
-                         </summary>
-                         <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Evinizi bize iletin, ekibimiz 48 saat içinde yatırım analizini tamamlar.<br />
-                           Uygun görülürse 3 ay süreli dijital pazarlama sözleşmesi imzalanır ve süreç başlar.
-                         </div>
-                       </details>
-                       
-                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           4. Ne hizmet veriyorsunuz?
-                         </summary>
-                         <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Biz yalnızca dijital pazarlama ve müşteri yönlendirme hizmeti sunarız.<br />
-                           Satış aracılığı yapmayız; tapu işlemleri ev sahibine aittir.
-                         </div>
-                       </details>
-                       
-                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           5. Diğer ilanlarımı yayında tutabilir miyim?
-                         </summary>
-                         <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Evet, bu sizin tercihinizdir.<br />
-                           Ancak 3 ay boyunca Yatırımlık Evler tam yetkili olur.<br />
-                           Bu sürede satış gerçekleşirse, alıcının nereden geldiğine bakılmaksızın hizmet bedeline hak kazanırız.
-                         </div>
-                       </details>
-                       
-                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           6. Kabul kriterleri nelerdir?
-                         </summary>
-                         <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Yalnızca yatırım değeri yüksek konutlar kabul edilir.<br />
-                           Değer artış potansiyeli ve amortisman süresi gibi kriterler, yapay zekâ destekli bir sistem ile analiz edilir.<br />
-                           100 üzerinden 50 puan ve üzeri alan konutlar platforma kabul edilir.<br />
-                           Başvurunuz kabul edilirse şanslısınız demektir.
-                         </div>
-                       </details>
-                       
-                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           7. Süreç gerçekten ücretsiz mi?
-                         </summary>
-                         <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Evet. Değerlendirme, içerik hazırlığı ve pazarlama tamamen ücretsizdir.<br />
-                           Yalnızca satış gerçekleştiğinde hizmet bedeli doğar.
-                         </div>
-                       </details>
-                       
-                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           8. Satış ne kadar sürer?
-                         </summary>
-                         <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Kabul edilen evler genellikle 4 hafta içinde yatırımcı bulur.
-                         </div>
-                       </details>
-                       
-                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           9. Satış süreci güvenli mi?
-                         </summary>
-                         <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Evet. Potansiyel alıcılar size yönlendirilmeden önce gerekli kontroller hukuk departmanımız tarafından yapılır.
-                         </div>
-                       </details>
-                       
-                       <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
-                         <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
-                           10. Neden Yatırımlık Evler'i seçmeliyim?
-                         </summary>
-                         <div className="px-3 pb-3 text-sm text-zinc-600">
-                           Çünkü biz 40 binden fazla takipçi ve aylık 5 milyondan fazla görüntülenme ile Türkiye'nin en güçlü dijital görünürlüğüne sahibiz.<br />
-                           Evinizi binlerce yatırımcının önüne ücretsiz çıkarıyor, yalnızca satış olursa kazanıyoruz.
-                         </div>
-                       </details>
-                     </div>
-                   </div>
+                           <span>📱</span>
+                           <span>WhatsApp'tan Başvurunu Tamamla</span>
+                         </a>
+                         )}
+                </div>
+                
+                {/* Sık Sorulan Sorular */}
+                <div className="mt-6">
+                  <h4 className="font-medium text-sm text-zinc-800 mb-4">Sık Sorulan Sorular</h4>
+                  <div className="space-y-3">
+                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                        1. Siz emlakçı mısınız?
+                      </summary>
+                      <div className="px-3 pb-3 text-sm text-zinc-600">
+                        Hayır. Biz bir dijital pazarlama ajansıyız. Evinizi emlakçı değil, iyi pazarlama satar — biz de bu konuda oldukça iyiyiz.
+                      </div>
+                    </details>
+                    
+                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                        2. Hizmet bedeliniz nedir?
+                      </summary>
+                      <div className="px-3 pb-3 text-sm text-zinc-600">
+                        Sadece satış olursa %4 + KDV hizmet bedeli alınır. (Siz net satış rakamını belirlersiniz, eviniz %4 eklenmiş brüt satış fiyatı üzerinden pazarlanır) Alıcıdan hiçbir bedel alınmaz; bu da satışı hızlandırır ve şeffaflık sağlar.
+                      </div>
+                    </details>
+                    
+                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                        3. Süreç nasıl başlıyor?
+                      </summary>
+                      <div className="px-3 pb-3 text-sm text-zinc-600">
+                        Evinizi bize iletin, ekibimiz 48 saat içinde evinizi değerlendirsin. Uygun görülürse 3 ay süreli dijital pazarlama sözleşmesi imzalanır ve süreç başlar.
+                      </div>
+                    </details>
+                    
+                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                        4. Ne hizmeti veriyorsunuz?
+                      </summary>
+                      <div className="px-3 pb-3 text-sm text-zinc-600">
+                        Biz yalnızca dijital pazarlama ve müşteri yönlendirme hizmeti sunarız. Satış aracılığı yapmayız; tapu işlemleri ev sahibine aittir.
+                      </div>
+                    </details>
+                    
+                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                        5. Diğer ilanlarımı yayında tutabilir miyim?
+                      </summary>
+                      <div className="px-3 pb-3 text-sm text-zinc-600">
+                        Evet, bu sizin tercihinizdir. Ancak 3 ay boyunca Yatırımlık Evler evinizin dijital pazarlaması konusunda tek yetkili olur.
+                      </div>
+                    </details>
+                    
+                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                        6. Kabul kriterleri nelerdir?
+                      </summary>
+                      <div className="px-3 pb-3 text-sm text-zinc-600">
+                        Yalnızca yatırım değeri yüksek evler kabul edilir.
+                      </div>
+                    </details>
+                    
+                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                        7. Süreç gerçekten ücretsiz mi?
+                      </summary>
+                      <div className="px-3 pb-3 text-sm text-zinc-600">
+                        Evet. Değerlendirme, içerik hazırlığı ve pazarlama tamamen ücretsizdir. Yalnızca satış gerçekleştiğinde hizmet bedeli doğar. Bu süreçte satış olmazsa herhangi bir ücret ödemek zorunda kalmazsınız.
+                      </div>
+                    </details>
+                    
+                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                        8. Satış ne kadar sürer?
+                      </summary>
+                      <div className="px-3 pb-3 text-sm text-zinc-600">
+                        Kabul edilen evler genellikle 4 hafta içinde yatırımcı bulur.
+                      </div>
+                    </details>
+                    
+                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                        9. Satış süreci güvenli mi?
+                      </summary>
+                      <div className="px-3 pb-3 text-sm text-zinc-600">
+                        Evet. Potansiyel alıcılar size yönlendirilmeden önce gerekli kontroller hukuk departmanımız tarafından yapılır.
+                      </div>
+                    </details>
+                    
+                    <details className="group border border-gray-200 rounded-lg open:border-l-4 open:border-[#C40001]">
+                      <summary className="p-3 cursor-pointer text-sm font-medium text-zinc-700 hover:text-[#C40001] transition-colors">
+                        10. Neden Yatırımlık Evler'i seçmeliyim?
+                      </summary>
+                      <div className="px-3 pb-3 text-sm text-zinc-600">
+                        Çünkü biz 200 bin takipçi ve aylık 5 milyondan fazla görüntülenme ile emlak alanında Türkiye'nin en güçlü dijital görünürlüğüne sahibiz.
+                      </div>
+                    </details>
+                  </div>
+                </div>
                  </div>
                </div>
              )}
