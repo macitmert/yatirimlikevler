@@ -123,8 +123,54 @@ html {
   animation: fade-in 1s ease-out;
 }
 
-/* PDF Container */
-.pdf-container {
+/* PDF Wrapper - Mobil uyumlu */
+.pdf-wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  position: fixed;
+  inset: 0;
+}
+
+.pdf-iframe {
   width: 100%;
   height: 100%;
+  border: 0;
+  display: block;
+  min-height: 100vh;
+}
+
+@media (max-width: 767px) {
+  .pdf-wrapper {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    position: fixed;
+    inset: 0;
+  }
+  
+  .pdf-iframe {
+    width: 200%;
+    min-height: 200vh;
+    transform: scale(0.5);
+    transform-origin: top left;
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Mobilde PDF container'ı küçült */
+  .pdf-container {
+    transform: scale(0.5);
+    transform-origin: top left;
+    width: 200vw;
+    min-height: 200vh;
+  }
+  
+  /* Mobilde iframe */
+  .pdf-container iframe {
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+  }
 }

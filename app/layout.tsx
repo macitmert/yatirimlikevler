@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
         <link rel="icon" href="/favicon.ico?v=4" sizes="any" />
         <link rel="icon" href="/favicon.ico?v=4" type="image/x-icon" />
         <link rel="shortcut icon" href="/favicon.ico?v=4" />
@@ -76,6 +76,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         style={{fontFamily: "'SF Pro Display', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"}}
+        suppressHydrationWarning
       >
         {children}
       </body>

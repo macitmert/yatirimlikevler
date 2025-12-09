@@ -2,11 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Client-side only pathname to avoid hydration mismatch
+  const currentPathname = mounted ? pathname : "";
 
   const menuItems = [
     { href: "/", label: "Ana Sayfa" },
@@ -47,7 +55,7 @@ export default function Header() {
           {/* Desktop Navigation Menu */}
           <nav className="hidden md:flex items-center gap-2 lg:gap-3">
             {menuItems.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive = mounted && currentPathname === item.href;
               return (
                 <Link
                   key={item.href}
@@ -70,7 +78,7 @@ export default function Header() {
           <nav className="md:hidden mt-3 pb-2 border-t border-[#C40001]/10 pt-3">
             <div className="flex flex-col gap-2">
               {menuItems.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive = mounted && currentPathname === item.href;
                 return (
                   <Link
                     key={item.href}

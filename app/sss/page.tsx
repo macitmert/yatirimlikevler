@@ -8,13 +8,16 @@ export default function SSSPage() {
       <Header />
       
       {/* PDF Viewer - Full Screen */}
-      <div className="fixed inset-0 top-[60px] sm:top-[80px] bg-white">
-        <iframe
-          src="/sunum.pdf#page=10"
-          className="w-full h-full border-0"
-          title="Sık Sorulan Sorular"
-          allow="popups"
-        />
+      <div className="fixed inset-0 top-[60px] sm:top-[80px] bg-white overflow-auto" style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}>
+        <div className="pdf-container">
+          <iframe
+            src="/sunum.pdf#page=10"
+            className="w-full border-0"
+            style={{ minHeight: '100vh', height: 'auto', display: 'block' }}
+            title="Sık Sorulan Sorular"
+            allow="popups"
+          />
+        </div>
       </div>
     </main>
   );
